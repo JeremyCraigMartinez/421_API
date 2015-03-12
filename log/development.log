@@ -1,0 +1,1790 @@
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 19:04:49 -0800
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/railties-4.2.0/lib/rails/templates/rails/welcome/index.html.erb (1.9ms)
+Completed 200 OK in 12ms (Views: 11.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 19:30:45 -0800
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/railties-4.2.0/lib/rails/templates/rails/welcome/index.html.erb (3.5ms)
+Completed 200 OK in 34ms (Views: 33.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 19:39:09 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/application (0.7ms)
+Completed 500 Internal Server Error in 106ms
+
+ActionView::Template::Error (couldn't find file 'turbolinks'
+  (in /home/jeremy/angular-rails/popcorn/app/assets/javascripts/application.js:15)):
+    3: <head>
+    4:   <title>Popcorn</title>
+    5:   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    6:   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+    9: <body>
+  app/views/layouts/application.html.erb:6:in `_app_views_layouts_application_html_erb___2471041708945518988_70000123514540'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (9.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (10.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (18.7ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (73.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/_markup.html (2.9ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/style.css within layouts/inlined_string (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/_inner_console_markup.html within layouts/inlined_string (0.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/_prompt_box_markup.html within layouts/inlined_string (3.6ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/console.js within layouts/javascript (32.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/main.js within layouts/javascript (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/error_page.js within layouts/javascript (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/index.html (76.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 19:39:32 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 939ms (Views: 938.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/popcorn-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-03 19:39:33 -0800
+
+
+Started GET "/assets/application-5266d2988799ecc8fe6e81eaab412e7d.css?body=1" for 127.0.0.1 at 2015-03-03 19:39:33 -0800
+
+
+Started GET "/assets/popcorn-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-03 19:39:33 -0800
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-03 19:39:33 -0800
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-03 19:39:33 -0800
+
+
+Started GET "/assets/application-45645ec4db91c4ecdfae46d4e9ebab3d.js?body=1" for 127.0.0.1 at 2015-03-03 19:39:33 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 19:43:41 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.2ms)
+Completed 200 OK in 15ms (Views: 12.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 19:43:44 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 19:43:52 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.0ms)
+Completed 200 OK in 46ms (Views: 45.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 19:45:51 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.0ms)
+Completed 200 OK in 2420ms (Views: 2419.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter/bootstrap-89b6799acc98e356c2ddb605402f471f.css?body=1" for 127.0.0.1 at 2015-03-03 19:45:53 -0800
+
+
+Started GET "/assets/application-dc5f48ee1f321f83b68430f198ceb656.css?body=1" for 127.0.0.1 at 2015-03-03 19:45:53 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 19:46:03 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 90ms (Views: 89.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 19:52:12 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 181ms (Views: 181.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/angular-a5b3ffc8a0708f1d34698951e18c0807.js?body=1" for 127.0.0.1 at 2015-03-03 19:52:12 -0800
+
+
+Started GET "/assets/app/app-214c2194fc7fefc9b253733caf176feb.js?body=1" for 127.0.0.1 at 2015-03-03 19:52:12 -0800
+
+
+Started GET "/assets/application-e1f2fd31ff542cddc00a987159cf47f9.js?body=1" for 127.0.0.1 at 2015-03-03 19:52:12 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 19:52:55 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 65ms (Views: 65.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter/bootstrap-89b6799acc98e356c2ddb605402f471f.css?body=1" for 127.0.0.1 at 2015-03-03 19:52:55 -0800
+
+
+Started GET "/assets/application-dc5f48ee1f321f83b68430f198ceb656.css?body=1" for 127.0.0.1 at 2015-03-03 19:52:55 -0800
+
+
+Started GET "/assets/popcorn-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-03 19:52:55 -0800
+
+
+Started GET "/assets/angular-a5b3ffc8a0708f1d34698951e18c0807.js?body=1" for 127.0.0.1 at 2015-03-03 19:52:55 -0800
+
+
+Started GET "/assets/app/app-214c2194fc7fefc9b253733caf176feb.js?body=1" for 127.0.0.1 at 2015-03-03 19:52:55 -0800
+
+
+Started GET "/assets/popcorn-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-03 19:52:55 -0800
+
+
+Started GET "/assets/application-e1f2fd31ff542cddc00a987159cf47f9.js?body=1" for 127.0.0.1 at 2015-03-03 19:52:55 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 19:54:20 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 146ms (Views: 145.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/app/app-3b2a0ef8dad7c49a3accff394fec995f.js?body=1" for 127.0.0.1 at 2015-03-03 19:54:20 -0800
+
+
+Started GET "/assets/application-81882d5c3d891a61150225e1c3cbe3aa.js?body=1" for 127.0.0.1 at 2015-03-03 19:54:21 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 19:55:04 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 89ms (Views: 88.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 20:00:25 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.0ms)
+Completed 200 OK in 155ms (Views: 154.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/app/app-0abfa9d0bb155abe59e6ff5f74df1112.js?body=1" for 127.0.0.1 at 2015-03-03 20:00:25 -0800
+
+
+Started GET "/assets/application-96410a04825b01c5705a2257ea200327.js?body=1" for 127.0.0.1 at 2015-03-03 20:00:25 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 20:02:23 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 52ms (Views: 51.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/movie/hsdvhJTqLak" for 127.0.0.1 at 2015-03-03 20:02:35 -0800
+
+ActionController::RoutingError (No route matches [GET] "/movie/hsdvhJTqLak"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.0) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /usr/local/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (11.9ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (40.1ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/_markup.html (0.6ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/style.css within layouts/inlined_string (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/_inner_console_markup.html within layouts/inlined_string (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/_prompt_box_markup.html within layouts/inlined_string (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/console.js within layouts/javascript (18.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/main.js within layouts/javascript (0.6ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/error_page.js within layouts/javascript (0.5ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/index.html (40.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 20:10:26 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 96ms (Views: 95.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 20:10:47 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 49ms (Views: 49.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter/bootstrap-89b6799acc98e356c2ddb605402f471f.css?body=1" for 127.0.0.1 at 2015-03-03 20:10:47 -0800
+
+
+Started GET "/assets/popcorn-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-03 20:10:47 -0800
+
+
+Started GET "/assets/app/app-0abfa9d0bb155abe59e6ff5f74df1112.js?body=1" for 127.0.0.1 at 2015-03-03 20:10:47 -0800
+
+
+Started GET "/assets/angular-a5b3ffc8a0708f1d34698951e18c0807.js?body=1" for 127.0.0.1 at 2015-03-03 20:10:47 -0800
+
+
+Started GET "/assets/popcorn-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-03 20:10:47 -0800
+
+
+Started GET "/assets/application-dc5f48ee1f321f83b68430f198ceb656.css?body=1" for 127.0.0.1 at 2015-03-03 20:10:47 -0800
+
+
+Started GET "/assets/application-96410a04825b01c5705a2257ea200327.js?body=1" for 127.0.0.1 at 2015-03-03 20:10:47 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 20:13:25 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 131ms (Views: 130.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter/bootstrap-89b6799acc98e356c2ddb605402f471f.css?body=1" for 127.0.0.1 at 2015-03-03 20:13:26 -0800
+
+
+Started GET "/assets/popcorn-52c42b1b2e8abbedd838b6c52a6934b0.css?body=1" for 127.0.0.1 at 2015-03-03 20:13:26 -0800
+
+
+Started GET "/assets/application-9726b7e8e85704b8580b308bdc768cc9.css?body=1" for 127.0.0.1 at 2015-03-03 20:13:26 -0800
+
+
+Started GET "/assets/angular-a5b3ffc8a0708f1d34698951e18c0807.js?body=1" for 127.0.0.1 at 2015-03-03 20:13:26 -0800
+
+
+Started GET "/assets/app/app-0abfa9d0bb155abe59e6ff5f74df1112.js?body=1" for 127.0.0.1 at 2015-03-03 20:13:26 -0800
+
+
+Started GET "/assets/popcorn-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-03 20:13:26 -0800
+
+
+Started GET "/assets/application-96410a04825b01c5705a2257ea200327.js?body=1" for 127.0.0.1 at 2015-03-03 20:13:26 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 20:13:50 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 83ms (Views: 82.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter/bootstrap-89b6799acc98e356c2ddb605402f471f.css?body=1" for 127.0.0.1 at 2015-03-03 20:13:50 -0800
+
+
+Started GET "/assets/popcorn-52c42b1b2e8abbedd838b6c52a6934b0.css?body=1" for 127.0.0.1 at 2015-03-03 20:13:50 -0800
+
+
+Started GET "/assets/application-9726b7e8e85704b8580b308bdc768cc9.css?body=1" for 127.0.0.1 at 2015-03-03 20:13:50 -0800
+
+
+Started GET "/assets/angular-a5b3ffc8a0708f1d34698951e18c0807.js?body=1" for 127.0.0.1 at 2015-03-03 20:13:50 -0800
+
+
+Started GET "/assets/app/app-0abfa9d0bb155abe59e6ff5f74df1112.js?body=1" for 127.0.0.1 at 2015-03-03 20:13:50 -0800
+
+
+Started GET "/assets/popcorn-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-03 20:13:50 -0800
+
+
+Started GET "/assets/application-96410a04825b01c5705a2257ea200327.js?body=1" for 127.0.0.1 at 2015-03-03 20:13:50 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 20:14:02 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 63ms (Views: 62.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 20:14:03 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 69ms (Views: 69.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 20:15:11 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 127ms (Views: 126.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 20:16:38 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 156ms (Views: 155.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/popcorn-4bb35569dfcb17894991f89043f1c41a.css?body=1" for 127.0.0.1 at 2015-03-03 20:16:38 -0800
+
+
+Started GET "/assets/application-87a03de18607f3f472629afca52b77e5.css?body=1" for 127.0.0.1 at 2015-03-03 20:16:38 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 20:17:24 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 113ms (Views: 112.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 20:19:28 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 60ms (Views: 59.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 20:21:14 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 98ms (Views: 97.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter/bootstrap-89b6799acc98e356c2ddb605402f471f.css?body=1" for 127.0.0.1 at 2015-03-03 20:21:14 -0800
+
+
+Started GET "/assets/popcorn-4bb35569dfcb17894991f89043f1c41a.css?body=1" for 127.0.0.1 at 2015-03-03 20:21:14 -0800
+
+
+Started GET "/assets/application-87a03de18607f3f472629afca52b77e5.css?body=1" for 127.0.0.1 at 2015-03-03 20:21:14 -0800
+
+
+Started GET "/assets/angular-a5b3ffc8a0708f1d34698951e18c0807.js?body=1" for 127.0.0.1 at 2015-03-03 20:21:14 -0800
+
+
+Started GET "/assets/popcorn-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-03 20:21:14 -0800
+
+
+Started GET "/assets/app/app-0abfa9d0bb155abe59e6ff5f74df1112.js?body=1" for 127.0.0.1 at 2015-03-03 20:21:14 -0800
+
+
+Started GET "/assets/application-96410a04825b01c5705a2257ea200327.js?body=1" for 127.0.0.1 at 2015-03-03 20:21:14 -0800
+
+
+Started GET "/movie/lgo3Hb5vWLE" for 127.0.0.1 at 2015-03-03 20:21:17 -0800
+
+ActionController::RoutingError (No route matches [GET] "/movie/lgo3Hb5vWLE"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.0) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /usr/local/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.7ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (45.6ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/_markup.html (0.5ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/style.css within layouts/inlined_string (0.7ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/_inner_console_markup.html within layouts/inlined_string (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/_prompt_box_markup.html within layouts/inlined_string (2.7ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/console.js within layouts/javascript (29.5ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/main.js within layouts/javascript (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/error_page.js within layouts/javascript (0.7ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/index.html (64.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 20:23:06 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.2ms)
+Completed 200 OK in 141ms (Views: 140.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application-6d86c2a1f0f230cffaadfc5e823a41bf.js?body=1" for 127.0.0.1 at 2015-03-03 20:23:06 -0800
+
+
+Started GET "/assets/app/app-c289db6473c8c1a0b0162bb45e6e92e3.js?body=1" for 127.0.0.1 at 2015-03-03 20:23:06 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 20:32:46 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (1.7ms)
+Completed 200 OK in 179ms (Views: 178.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter/bootstrap-89b6799acc98e356c2ddb605402f471f.css?body=1" for 127.0.0.1 at 2015-03-03 20:32:46 -0800
+
+
+Started GET "/assets/popcorn-4bb35569dfcb17894991f89043f1c41a.css?body=1" for 127.0.0.1 at 2015-03-03 20:32:46 -0800
+
+
+Started GET "/assets/application-87a03de18607f3f472629afca52b77e5.css?body=1" for 127.0.0.1 at 2015-03-03 20:32:46 -0800
+
+
+Started GET "/assets/angular-a5b3ffc8a0708f1d34698951e18c0807.js?body=1" for 127.0.0.1 at 2015-03-03 20:32:46 -0800
+
+
+Started GET "/assets/angular-route-32ede5291d0b773157e4ca00448b65a1.js?body=1" for 127.0.0.1 at 2015-03-03 20:32:46 -0800
+
+
+Started GET "/assets/app/app-59ffe5f475725f9e215912e10eda965b.js?body=1" for 127.0.0.1 at 2015-03-03 20:32:46 -0800
+
+
+Started GET "/assets/popcorn-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-03 20:32:47 -0800
+
+
+Started GET "/assets/application-348cddcb237a64e527e937ba15cb867c.js?body=1" for 127.0.0.1 at 2015-03-03 20:32:47 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 20:32:55 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 85ms (Views: 85.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 20:33:06 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 91ms (Views: 91.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/app/app-8b73f9169b8c2ea6a93f4824d129efe6.js?body=1" for 127.0.0.1 at 2015-03-03 20:33:06 -0800
+
+
+Started GET "/assets/application-4340bf43971be1e56688582564b29b59.js?body=1" for 127.0.0.1 at 2015-03-03 20:33:06 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 20:34:17 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 101ms (Views: 101.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/app/app-5c5c4bfbdaefa68cb157913fabc84187.js?body=1" for 127.0.0.1 at 2015-03-03 20:34:17 -0800
+
+
+Started GET "/assets/application-0a901f565fcefe428778d4d07362c8a7.js?body=1" for 127.0.0.1 at 2015-03-03 20:34:17 -0800
+
+
+Started GET "/template/movies.html" for 127.0.0.1 at 2015-03-03 20:34:18 -0800
+
+ActionController::RoutingError (No route matches [GET] "/template/movies.html"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.0) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /usr/local/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (26.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/_markup.html (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/style.css within layouts/inlined_string (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/_inner_console_markup.html within layouts/inlined_string (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/_prompt_box_markup.html within layouts/inlined_string (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/console.js within layouts/javascript (18.1ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/main.js within layouts/javascript (0.7ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/error_page.js within layouts/javascript (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/index.html (39.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 20:34:41 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 58ms (Views: 57.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter/bootstrap-89b6799acc98e356c2ddb605402f471f.css?body=1" for 127.0.0.1 at 2015-03-03 20:34:41 -0800
+
+
+Started GET "/assets/popcorn-4bb35569dfcb17894991f89043f1c41a.css?body=1" for 127.0.0.1 at 2015-03-03 20:34:41 -0800
+
+
+Started GET "/assets/angular-route-32ede5291d0b773157e4ca00448b65a1.js?body=1" for 127.0.0.1 at 2015-03-03 20:34:41 -0800
+
+
+Started GET "/assets/app/app-5c5c4bfbdaefa68cb157913fabc84187.js?body=1" for 127.0.0.1 at 2015-03-03 20:34:41 -0800
+
+
+Started GET "/assets/angular-a5b3ffc8a0708f1d34698951e18c0807.js?body=1" for 127.0.0.1 at 2015-03-03 20:34:41 -0800
+
+
+Started GET "/assets/application-87a03de18607f3f472629afca52b77e5.css?body=1" for 127.0.0.1 at 2015-03-03 20:34:41 -0800
+
+
+Started GET "/assets/popcorn-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-03 20:34:41 -0800
+
+
+Started GET "/assets/application-0a901f565fcefe428778d4d07362c8a7.js?body=1" for 127.0.0.1 at 2015-03-03 20:34:42 -0800
+
+
+Started GET "/template/movies.html" for 127.0.0.1 at 2015-03-03 20:34:42 -0800
+
+ActionController::RoutingError (No route matches [GET] "/template/movies.html"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.0) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /usr/local/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (29.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/_markup.html (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/style.css within layouts/inlined_string (0.5ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/_inner_console_markup.html within layouts/inlined_string (0.5ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/_prompt_box_markup.html within layouts/inlined_string (0.5ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/console.js within layouts/javascript (23.9ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/main.js within layouts/javascript (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/error_page.js within layouts/javascript (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/index.html (46.6ms)
+
+
+Started GET "/template/movies.html" for 127.0.0.1 at 2015-03-03 20:37:16 -0800
+
+ActionController::RoutingError (No route matches [GET] "/template/movies.html"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.0) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /usr/local/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.7ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.0ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (26.0ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/_markup.html (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/style.css within layouts/inlined_string (0.3ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/_inner_console_markup.html within layouts/inlined_string (0.5ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/_prompt_box_markup.html within layouts/inlined_string (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/console.js within layouts/javascript (19.0ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/main.js within layouts/javascript (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/error_page.js within layouts/javascript (0.5ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/index.html (40.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 20:37:55 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 103ms (Views: 103.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/popcorn-4bb35569dfcb17894991f89043f1c41a.css?body=1" for 127.0.0.1 at 2015-03-03 20:37:55 -0800
+
+
+Started GET "/assets/application-87a03de18607f3f472629afca52b77e5.css?body=1" for 127.0.0.1 at 2015-03-03 20:37:55 -0800
+
+
+Started GET "/assets/twitter/bootstrap-89b6799acc98e356c2ddb605402f471f.css?body=1" for 127.0.0.1 at 2015-03-03 20:37:55 -0800
+
+
+Started GET "/assets/angular-a5b3ffc8a0708f1d34698951e18c0807.js?body=1" for 127.0.0.1 at 2015-03-03 20:37:55 -0800
+
+
+Started GET "/assets/angular-route-32ede5291d0b773157e4ca00448b65a1.js?body=1" for 127.0.0.1 at 2015-03-03 20:37:55 -0800
+
+
+Started GET "/assets/popcorn-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-03 20:37:55 -0800
+
+
+Started GET "/assets/app/app-86037415cca0a591de8c2e474d0281c2.js?body=1" for 127.0.0.1 at 2015-03-03 20:37:55 -0800
+
+
+Started GET "/assets/application-24ab5ff692c599bb5bd222c63fe5afcd.js?body=1" for 127.0.0.1 at 2015-03-03 20:37:55 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 20:38:27 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 93ms (Views: 92.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter/bootstrap-89b6799acc98e356c2ddb605402f471f.css?body=1" for 127.0.0.1 at 2015-03-03 20:38:28 -0800
+
+
+Started GET "/assets/popcorn-4bb35569dfcb17894991f89043f1c41a.css?body=1" for 127.0.0.1 at 2015-03-03 20:38:28 -0800
+
+
+Started GET "/assets/application-87a03de18607f3f472629afca52b77e5.css?body=1" for 127.0.0.1 at 2015-03-03 20:38:28 -0800
+
+
+Started GET "/assets/angular-a5b3ffc8a0708f1d34698951e18c0807.js?body=1" for 127.0.0.1 at 2015-03-03 20:38:28 -0800
+
+
+Started GET "/assets/angular-route-32ede5291d0b773157e4ca00448b65a1.js?body=1" for 127.0.0.1 at 2015-03-03 20:38:28 -0800
+
+
+Started GET "/assets/app/app-86037415cca0a591de8c2e474d0281c2.js?body=1" for 127.0.0.1 at 2015-03-03 20:38:28 -0800
+
+
+Started GET "/assets/popcorn-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-03 20:38:28 -0800
+
+
+Started GET "/assets/application-24ab5ff692c599bb5bd222c63fe5afcd.js?body=1" for 127.0.0.1 at 2015-03-03 20:38:28 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 20:39:21 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 143ms (Views: 142.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/popcorn-4bb35569dfcb17894991f89043f1c41a.css?body=1" for 127.0.0.1 at 2015-03-03 20:39:22 -0800
+
+
+Started GET "/assets/application-87a03de18607f3f472629afca52b77e5.css?body=1" for 127.0.0.1 at 2015-03-03 20:39:22 -0800
+
+
+Started GET "/assets/angular-a5b3ffc8a0708f1d34698951e18c0807.js?body=1" for 127.0.0.1 at 2015-03-03 20:39:22 -0800
+
+
+Started GET "/assets/twitter/bootstrap-89b6799acc98e356c2ddb605402f471f.css?body=1" for 127.0.0.1 at 2015-03-03 20:39:22 -0800
+
+
+Started GET "/assets/app/app-36243e7fcccfc428ed038273daaab506.js?body=1" for 127.0.0.1 at 2015-03-03 20:39:22 -0800
+
+
+Started GET "/assets/angular-route-32ede5291d0b773157e4ca00448b65a1.js?body=1" for 127.0.0.1 at 2015-03-03 20:39:22 -0800
+
+
+Started GET "/assets/popcorn-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-03 20:39:22 -0800
+
+
+Started GET "/assets/application-f18940d8696c6ea6900c2466fa6a40d7.js?body=1" for 127.0.0.1 at 2015-03-03 20:39:22 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 20:40:02 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 113ms (Views: 112.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter/bootstrap-89b6799acc98e356c2ddb605402f471f.css?body=1" for 127.0.0.1 at 2015-03-03 20:40:02 -0800
+
+
+Started GET "/assets/application-87a03de18607f3f472629afca52b77e5.css?body=1" for 127.0.0.1 at 2015-03-03 20:40:02 -0800
+
+
+Started GET "/assets/angular-a5b3ffc8a0708f1d34698951e18c0807.js?body=1" for 127.0.0.1 at 2015-03-03 20:40:02 -0800
+
+
+Started GET "/assets/angular-route-32ede5291d0b773157e4ca00448b65a1.js?body=1" for 127.0.0.1 at 2015-03-03 20:40:02 -0800
+
+
+Started GET "/assets/popcorn-4bb35569dfcb17894991f89043f1c41a.css?body=1" for 127.0.0.1 at 2015-03-03 20:40:02 -0800
+
+
+Started GET "/assets/app/app-36243e7fcccfc428ed038273daaab506.js?body=1" for 127.0.0.1 at 2015-03-03 20:40:02 -0800
+
+
+Started GET "/assets/popcorn-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-03 20:40:02 -0800
+
+
+Started GET "/assets/application-f18940d8696c6ea6900c2466fa6a40d7.js?body=1" for 127.0.0.1 at 2015-03-03 20:40:02 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 20:46:45 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 139ms (Views: 139.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/popcorn-4bb35569dfcb17894991f89043f1c41a.css?body=1" for 127.0.0.1 at 2015-03-03 20:46:45 -0800
+
+
+Started GET "/assets/angular-a5b3ffc8a0708f1d34698951e18c0807.js?body=1" for 127.0.0.1 at 2015-03-03 20:46:45 -0800
+
+
+Started GET "/assets/application-87a03de18607f3f472629afca52b77e5.css?body=1" for 127.0.0.1 at 2015-03-03 20:46:45 -0800
+
+
+Started GET "/assets/angular-route-32ede5291d0b773157e4ca00448b65a1.js?body=1" for 127.0.0.1 at 2015-03-03 20:46:45 -0800
+
+
+Started GET "/assets/app/app-25b4c8a84e29c8c35e5608086222f701.js?body=1" for 127.0.0.1 at 2015-03-03 20:46:45 -0800
+
+
+Started GET "/assets/twitter/bootstrap-89b6799acc98e356c2ddb605402f471f.css?body=1" for 127.0.0.1 at 2015-03-03 20:46:45 -0800
+
+
+Started GET "/assets/app/controllers-52c0dd5305b3593769865450399e7f16.js?body=1" for 127.0.0.1 at 2015-03-03 20:46:45 -0800
+
+
+Started GET "/assets/app/controllers/movies-06e1d24f371f505e3ced8e4657a49b91.js?body=1" for 127.0.0.1 at 2015-03-03 20:46:45 -0800
+
+
+Started GET "/assets/popcorn-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-03 20:46:45 -0800
+
+
+Started GET "/assets/application-4024186e55ee229413b029bddbcc64f3.js?body=1" for 127.0.0.1 at 2015-03-03 20:46:45 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 20:47:49 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 105ms (Views: 105.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter/bootstrap-89b6799acc98e356c2ddb605402f471f.css?body=1" for 127.0.0.1 at 2015-03-03 20:47:49 -0800
+
+
+Started GET "/assets/popcorn-4bb35569dfcb17894991f89043f1c41a.css?body=1" for 127.0.0.1 at 2015-03-03 20:47:49 -0800
+
+
+Started GET "/assets/application-87a03de18607f3f472629afca52b77e5.css?body=1" for 127.0.0.1 at 2015-03-03 20:47:49 -0800
+
+
+Started GET "/assets/angular-route-32ede5291d0b773157e4ca00448b65a1.js?body=1" for 127.0.0.1 at 2015-03-03 20:47:49 -0800
+
+
+Started GET "/assets/angular-a5b3ffc8a0708f1d34698951e18c0807.js?body=1" for 127.0.0.1 at 2015-03-03 20:47:49 -0800
+
+
+Started GET "/assets/app/app-25b4c8a84e29c8c35e5608086222f701.js?body=1" for 127.0.0.1 at 2015-03-03 20:47:49 -0800
+
+
+Started GET "/assets/app/controllers-52c0dd5305b3593769865450399e7f16.js?body=1" for 127.0.0.1 at 2015-03-03 20:47:49 -0800
+
+
+Started GET "/assets/app/controllers/movies-5211fb48243b4675f0193885fdd6af72.js?body=1" for 127.0.0.1 at 2015-03-03 20:47:49 -0800
+
+
+Started GET "/assets/application-3ef11290dc46b5dd6a523f661640e8a3.js?body=1" for 127.0.0.1 at 2015-03-03 20:47:49 -0800
+
+
+Started GET "/assets/popcorn-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-03 20:47:49 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 20:52:32 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 189ms (Views: 188.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter/bootstrap-89b6799acc98e356c2ddb605402f471f.css?body=1" for 127.0.0.1 at 2015-03-03 20:52:32 -0800
+
+
+Started GET "/assets/popcorn-4bb35569dfcb17894991f89043f1c41a.css?body=1" for 127.0.0.1 at 2015-03-03 20:52:32 -0800
+
+
+Started GET "/assets/application-87a03de18607f3f472629afca52b77e5.css?body=1" for 127.0.0.1 at 2015-03-03 20:52:32 -0800
+
+
+Started GET "/assets/angular-route-32ede5291d0b773157e4ca00448b65a1.js?body=1" for 127.0.0.1 at 2015-03-03 20:52:32 -0800
+
+
+Started GET "/assets/angular-a5b3ffc8a0708f1d34698951e18c0807.js?body=1" for 127.0.0.1 at 2015-03-03 20:52:32 -0800
+
+
+Started GET "/assets/app/app-8cbd32a4a43187ae943a2445fc794045.js?body=1" for 127.0.0.1 at 2015-03-03 20:52:32 -0800
+
+
+Started GET "/assets/app/controllers-52c0dd5305b3593769865450399e7f16.js?body=1" for 127.0.0.1 at 2015-03-03 20:52:32 -0800
+
+
+Started GET "/assets/app/controllers/movie-6b001785dcb4398b2bb2dfb2793ae0f2.js?body=1" for 127.0.0.1 at 2015-03-03 20:52:32 -0800
+
+
+Started GET "/assets/app/controllers/movies-5211fb48243b4675f0193885fdd6af72.js?body=1" for 127.0.0.1 at 2015-03-03 20:52:32 -0800
+
+
+Started GET "/assets/popcorn-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-03 20:52:32 -0800
+
+
+Started GET "/assets/application-294a002183210ab11b5bed59ee1a1cb5.js?body=1" for 127.0.0.1 at 2015-03-03 20:52:32 -0800
+
+
+Started GET "/movie/8Eg6yIwP2vs" for 127.0.0.1 at 2015-03-03 20:52:53 -0800
+
+ActionController::RoutingError (No route matches [GET] "/movie/8Eg6yIwP2vs"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.0) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /usr/local/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.2ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (4.5ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (40.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/_markup.html (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/style.css within layouts/inlined_string (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/_inner_console_markup.html within layouts/inlined_string (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/_prompt_box_markup.html within layouts/inlined_string (0.4ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/console.js within layouts/javascript (22.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/main.js within layouts/javascript (0.5ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/error_page.js within layouts/javascript (0.8ms)
+  Rendered /usr/local/lib/ruby/gems/2.1.0/gems/web-console-2.1.0/lib/web_console/templates/index.html (60.2ms)
+
+
+Started GET "/movie/8Eg6yIwP2vs" for 127.0.0.1 at 2015-03-03 20:54:35 -0800
+Processing by PopcornController#index as HTML
+  Parameters: {"path"=>"movie/8Eg6yIwP2vs"}
+  Rendered popcorn/index.html.erb within layouts/angular (0.3ms)
+Completed 200 OK in 113ms (Views: 112.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 21:01:43 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 195ms (Views: 194.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter/bootstrap-89b6799acc98e356c2ddb605402f471f.css?body=1" for 127.0.0.1 at 2015-03-03 21:01:44 -0800
+
+
+Started GET "/assets/popcorn-4bb35569dfcb17894991f89043f1c41a.css?body=1" for 127.0.0.1 at 2015-03-03 21:01:44 -0800
+
+
+Started GET "/assets/application-87a03de18607f3f472629afca52b77e5.css?body=1" for 127.0.0.1 at 2015-03-03 21:01:44 -0800
+
+
+Started GET "/assets/angular-route-32ede5291d0b773157e4ca00448b65a1.js?body=1" for 127.0.0.1 at 2015-03-03 21:01:44 -0800
+
+
+Started GET "/assets/angular-a5b3ffc8a0708f1d34698951e18c0807.js?body=1" for 127.0.0.1 at 2015-03-03 21:01:44 -0800
+
+
+Started GET "/assets/app/app-36ad6a4d8a14d7caeeb2d5dc1dc3602e.js?body=1" for 127.0.0.1 at 2015-03-03 21:01:44 -0800
+
+
+Started GET "/assets/app/controllers-52c0dd5305b3593769865450399e7f16.js?body=1" for 127.0.0.1 at 2015-03-03 21:01:44 -0800
+
+
+Started GET "/assets/app/controllers/movie-6b001785dcb4398b2bb2dfb2793ae0f2.js?body=1" for 127.0.0.1 at 2015-03-03 21:01:44 -0800
+
+
+Started GET "/assets/app/controllers/movies-4bf1ce81132d2b7e255170f89a604066.js?body=1" for 127.0.0.1 at 2015-03-03 21:01:44 -0800
+
+
+Started GET "/assets/popcorn-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-03 21:01:44 -0800
+
+
+Started GET "/assets/application-a993c977d4da9ebf5c6a5ea884d08cc3.js?body=1" for 127.0.0.1 at 2015-03-03 21:01:44 -0800
+
+
+Started GET "/assets/app/services-b4329ab2063a422c4f81253db8f2740d.js?body=1" for 127.0.0.1 at 2015-03-03 21:01:44 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-03 21:03:05 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.0ms)
+Completed 200 OK in 112ms (Views: 111.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/movie/8Eg6yIwP2vs" for 127.0.0.1 at 2015-03-03 21:08:12 -0800
+Processing by PopcornController#index as HTML
+  Parameters: {"path"=>"movie/8Eg6yIwP2vs"}
+  Rendered popcorn/index.html.erb within layouts/angular (2.7ms)
+Completed 200 OK in 243ms (Views: 242.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/underscore-28613f0e805cced2ee013902879a17f7.js?body=1" for 127.0.0.1 at 2015-03-03 21:08:12 -0800
+
+
+Started GET "/assets/app/controllers/movie-7744ab71eb536d17931523df9385243a.js?body=1" for 127.0.0.1 at 2015-03-03 21:08:12 -0800
+
+
+Started GET "/assets/application-51b3fd9e41336f5d3dc1ee4490a4b1e8.js?body=1" for 127.0.0.1 at 2015-03-03 21:08:12 -0800
+
+
+Started GET "/movie/8Eg6yIwP2vs" for 127.0.0.1 at 2015-03-03 21:11:40 -0800
+Processing by PopcornController#index as HTML
+  Parameters: {"path"=>"movie/8Eg6yIwP2vs"}
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 262ms (Views: 262.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/app/controllers/movie-9fb52aaeb760a9e15390edb714844e3e.js?body=1" for 127.0.0.1 at 2015-03-03 21:11:40 -0800
+
+
+Started GET "/assets/application-bcad2bc43d2c7e9da9ea56d9496a650d.js?body=1" for 127.0.0.1 at 2015-03-03 21:11:40 -0800
+
+
+Started GET "/movie/8Eg6yIwP2vs" for 127.0.0.1 at 2015-03-03 21:13:03 -0800
+Processing by PopcornController#index as HTML
+  Parameters: {"path"=>"movie/8Eg6yIwP2vs"}
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 145ms (Views: 144.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter/bootstrap-89b6799acc98e356c2ddb605402f471f.css?body=1" for 127.0.0.1 at 2015-03-03 21:13:03 -0800
+
+
+Started GET "/assets/popcorn-4bb35569dfcb17894991f89043f1c41a.css?body=1" for 127.0.0.1 at 2015-03-03 21:13:03 -0800
+
+
+Started GET "/assets/application-87a03de18607f3f472629afca52b77e5.css?body=1" for 127.0.0.1 at 2015-03-03 21:13:03 -0800
+
+
+Started GET "/assets/underscore-28613f0e805cced2ee013902879a17f7.js?body=1" for 127.0.0.1 at 2015-03-03 21:13:03 -0800
+
+
+Started GET "/assets/angular-a5b3ffc8a0708f1d34698951e18c0807.js?body=1" for 127.0.0.1 at 2015-03-03 21:13:03 -0800
+
+
+Started GET "/assets/angular-route-32ede5291d0b773157e4ca00448b65a1.js?body=1" for 127.0.0.1 at 2015-03-03 21:13:03 -0800
+
+
+Started GET "/assets/app/app-36ad6a4d8a14d7caeeb2d5dc1dc3602e.js?body=1" for 127.0.0.1 at 2015-03-03 21:13:03 -0800
+
+
+Started GET "/assets/app/controllers-52c0dd5305b3593769865450399e7f16.js?body=1" for 127.0.0.1 at 2015-03-03 21:13:03 -0800
+
+
+Started GET "/assets/app/controllers/movie-86e832400c5d30547e1b931823c1a66e.js?body=1" for 127.0.0.1 at 2015-03-03 21:13:03 -0800
+
+
+Started GET "/assets/app/controllers/movies-4bf1ce81132d2b7e255170f89a604066.js?body=1" for 127.0.0.1 at 2015-03-03 21:13:03 -0800
+
+
+Started GET "/assets/app/services-b4329ab2063a422c4f81253db8f2740d.js?body=1" for 127.0.0.1 at 2015-03-03 21:13:03 -0800
+
+
+Started GET "/assets/popcorn-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-03 21:13:03 -0800
+
+
+Started GET "/assets/application-21f06835cf96f9986e4482251844f2aa.js?body=1" for 127.0.0.1 at 2015-03-03 21:13:03 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-05 16:16:38 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (2.7ms)
+Completed 200 OK in 936ms (Views: 935.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/app/services-ebddbf889dfbc8b755b357175cbccd83.js?body=1" for 127.0.0.1 at 2015-03-05 16:16:40 -0800
+
+
+Started GET "/assets/application-a173a17d224c570a9d88dbe6d875407a.js?body=1" for 127.0.0.1 at 2015-03-05 16:16:40 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-05 16:20:34 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 225ms (Views: 224.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/app/services-08adf30bbc905fda4778a95c9c231dd7.js?body=1" for 127.0.0.1 at 2015-03-05 16:20:34 -0800
+
+
+Started GET "/assets/application-a074557cc1e1e8b0efe9737e7d4e5237.js?body=1" for 127.0.0.1 at 2015-03-05 16:20:34 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-05 16:21:03 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 129ms (Views: 128.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/app/services-56daa659cd79e116a6298e4ea35f7e7c.js?body=1" for 127.0.0.1 at 2015-03-05 16:21:04 -0800
+
+
+Started GET "/assets/application-caf260059570a1231eaac8af231a4947.js?body=1" for 127.0.0.1 at 2015-03-05 16:21:04 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-05 16:26:07 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.3ms)
+Completed 200 OK in 261ms (Views: 260.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/app/controllers/movies-eebc87738bc00a5c2f30c6213fbb6ec1.js?body=1" for 127.0.0.1 at 2015-03-05 16:26:08 -0800
+
+
+Started GET "/assets/app/services-3d8c678585d7a1a2e0fe45a660bb6cba.js?body=1" for 127.0.0.1 at 2015-03-05 16:26:08 -0800
+
+
+Started GET "/assets/application-5a3cf24db9173a66b14c0372f420f540.js?body=1" for 127.0.0.1 at 2015-03-05 16:26:08 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-05 16:26:54 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 145ms (Views: 145.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter/bootstrap-89b6799acc98e356c2ddb605402f471f.css?body=1" for 127.0.0.1 at 2015-03-05 16:26:54 -0800
+
+
+Started GET "/assets/popcorn-4bb35569dfcb17894991f89043f1c41a.css?body=1" for 127.0.0.1 at 2015-03-05 16:26:54 -0800
+
+
+Started GET "/assets/application-87a03de18607f3f472629afca52b77e5.css?body=1" for 127.0.0.1 at 2015-03-05 16:26:54 -0800
+
+
+Started GET "/assets/angular-a5b3ffc8a0708f1d34698951e18c0807.js?body=1" for 127.0.0.1 at 2015-03-05 16:26:54 -0800
+
+
+Started GET "/assets/underscore-28613f0e805cced2ee013902879a17f7.js?body=1" for 127.0.0.1 at 2015-03-05 16:26:54 -0800
+
+
+Started GET "/assets/angular-route-32ede5291d0b773157e4ca00448b65a1.js?body=1" for 127.0.0.1 at 2015-03-05 16:26:54 -0800
+
+
+Started GET "/assets/app/app-36ad6a4d8a14d7caeeb2d5dc1dc3602e.js?body=1" for 127.0.0.1 at 2015-03-05 16:26:54 -0800
+
+
+Started GET "/assets/app/controllers-52c0dd5305b3593769865450399e7f16.js?body=1" for 127.0.0.1 at 2015-03-05 16:26:54 -0800
+
+
+Started GET "/assets/app/controllers/movie-86e832400c5d30547e1b931823c1a66e.js?body=1" for 127.0.0.1 at 2015-03-05 16:26:54 -0800
+
+
+Started GET "/assets/app/controllers/movies-ab1baeba681e3aa0d6fabc0c092078a7.js?body=1" for 127.0.0.1 at 2015-03-05 16:26:54 -0800
+
+
+Started GET "/assets/app/services-3d8c678585d7a1a2e0fe45a660bb6cba.js?body=1" for 127.0.0.1 at 2015-03-05 16:26:54 -0800
+
+
+Started GET "/assets/application-ca1c1397817da0a47424cc19a374eaf7.js?body=1" for 127.0.0.1 at 2015-03-05 16:26:54 -0800
+
+
+Started GET "/assets/popcorn-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-05 16:26:54 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-05 16:29:39 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (1.8ms)
+Completed 200 OK in 238ms (Views: 234.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application-c95aeeff916bbcfab4c618f82b47d01f.js?body=1" for 127.0.0.1 at 2015-03-05 16:29:40 -0800
+
+
+Started GET "/assets/app/controllers/movie-84e1c6da48fe6091a5290228cccfcb31.js?body=1" for 127.0.0.1 at 2015-03-05 16:29:40 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-05 23:11:05 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (2.0ms)
+Completed 200 OK in 271ms (Views: 271.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-05 23:11:05 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 92ms (Views: 92.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/app/app-c1c35e45d29150cf482968d8e339b87d.js?body=1" for 127.0.0.1 at 2015-03-05 23:11:06 -0800
+
+
+Started GET "/assets/app/controllers/login-6b27763d8e9a79ada98f8b72dd5c90ae.js?body=1" for 127.0.0.1 at 2015-03-05 23:11:06 -0800
+
+
+Started GET "/assets/application-363ddcd84f651755336cd56c3a9f341c.js?body=1" for 127.0.0.1 at 2015-03-05 23:11:06 -0800
+
+
+Started GET "/login" for 127.0.0.1 at 2015-03-05 23:11:34 -0800
+Processing by PopcornController#index as HTML
+  Parameters: {"path"=>"login"}
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 209ms (Views: 209.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2015-03-05 23:24:07 -0800
+Processing by PopcornController#index as HTML
+  Parameters: {"path"=>"login"}
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 160ms (Views: 160.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/app/controllers/login-77f9e900596731cadadba65194bf68a2.js?body=1" for 127.0.0.1 at 2015-03-05 23:24:08 -0800
+
+
+Started GET "/assets/app/services-13993e11993c5f94984b50ef763101ba.js?body=1" for 127.0.0.1 at 2015-03-05 23:24:08 -0800
+
+
+Started GET "/assets/application-99ce8b6e631a1b469d5e75eae442ac8c.js?body=1" for 127.0.0.1 at 2015-03-05 23:24:08 -0800
+
+
+Started GET "/login" for 127.0.0.1 at 2015-03-05 23:27:52 -0800
+Processing by PopcornController#index as HTML
+  Parameters: {"path"=>"login"}
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 164ms (Views: 163.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/app/services-05e5a9d46e595ab3c99ffb33e40b4587.js?body=1" for 127.0.0.1 at 2015-03-05 23:27:52 -0800
+
+
+Started GET "/assets/application-eb0003f25b63752ea3e8f278c9b65a50.js?body=1" for 127.0.0.1 at 2015-03-05 23:27:52 -0800
+
+
+Started GET "/login" for 127.0.0.1 at 2015-03-05 23:28:55 -0800
+Processing by PopcornController#index as HTML
+  Parameters: {"path"=>"login"}
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 127ms (Views: 126.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/app/controllers/login-8624878676a60b29e9b35c303ed81696.js?body=1" for 127.0.0.1 at 2015-03-05 23:28:55 -0800
+
+
+Started GET "/assets/application-56237bd1f3f0c65d65377a827ceadbfe.js?body=1" for 127.0.0.1 at 2015-03-05 23:28:55 -0800
+
+
+Started GET "/login" for 127.0.0.1 at 2015-03-05 23:30:40 -0800
+Processing by PopcornController#index as HTML
+  Parameters: {"path"=>"login"}
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 150ms (Views: 150.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2015-03-05 23:39:43 -0800
+Processing by PopcornController#index as HTML
+  Parameters: {"path"=>"login"}
+  Rendered popcorn/index.html.erb within layouts/angular (0.2ms)
+Completed 200 OK in 220ms (Views: 219.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application-87a03de18607f3f472629afca52b77e5.css?body=1" for 127.0.0.1 at 2015-03-05 23:39:44 -0800
+
+
+Started GET "/assets/twitter/bootstrap-89b6799acc98e356c2ddb605402f471f.css?body=1" for 127.0.0.1 at 2015-03-05 23:39:44 -0800
+
+
+Started GET "/assets/popcorn-4bb35569dfcb17894991f89043f1c41a.css?body=1" for 127.0.0.1 at 2015-03-05 23:39:44 -0800
+
+
+Started GET "/assets/angular-a5b3ffc8a0708f1d34698951e18c0807.js?body=1" for 127.0.0.1 at 2015-03-05 23:39:44 -0800
+
+
+Started GET "/assets/angular-route-32ede5291d0b773157e4ca00448b65a1.js?body=1" for 127.0.0.1 at 2015-03-05 23:39:44 -0800
+
+
+Started GET "/assets/underscore-28613f0e805cced2ee013902879a17f7.js?body=1" for 127.0.0.1 at 2015-03-05 23:39:44 -0800
+
+
+Started GET "/assets/angular-cookies-8e0e066772613aa521e5a731c1b35be6.js?body=1" for 127.0.0.1 at 2015-03-05 23:39:44 -0800
+
+
+Started GET "/assets/app/app-e50128d2e4dfaab3e71dc4685c4a5d7b.js?body=1" for 127.0.0.1 at 2015-03-05 23:39:44 -0800
+
+
+Started GET "/assets/app/controllers-52c0dd5305b3593769865450399e7f16.js?body=1" for 127.0.0.1 at 2015-03-05 23:39:44 -0800
+
+
+Started GET "/assets/app/controllers/login-25871b1889127a4712cb89ff9e45a3e9.js?body=1" for 127.0.0.1 at 2015-03-05 23:39:44 -0800
+
+
+Started GET "/assets/app/controllers/movie-84e1c6da48fe6091a5290228cccfcb31.js?body=1" for 127.0.0.1 at 2015-03-05 23:39:44 -0800
+
+
+Started GET "/assets/app/controllers/movies-ab1baeba681e3aa0d6fabc0c092078a7.js?body=1" for 127.0.0.1 at 2015-03-05 23:39:44 -0800
+
+
+Started GET "/assets/app/services-56b24b7c6a33707d428b77018a9aaf6c.js?body=1" for 127.0.0.1 at 2015-03-05 23:39:44 -0800
+
+
+Started GET "/assets/popcorn-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-05 23:39:44 -0800
+
+
+Started GET "/assets/application-506ba063dea81fb099eb0f64e15af6fb.js?body=1" for 127.0.0.1 at 2015-03-05 23:39:44 -0800
+
+
+Started GET "/login" for 127.0.0.1 at 2015-03-05 23:40:06 -0800
+Processing by PopcornController#index as HTML
+  Parameters: {"path"=>"login"}
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 216ms (Views: 215.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter/bootstrap-89b6799acc98e356c2ddb605402f471f.css?body=1" for 127.0.0.1 at 2015-03-05 23:40:06 -0800
+
+
+Started GET "/assets/popcorn-4bb35569dfcb17894991f89043f1c41a.css?body=1" for 127.0.0.1 at 2015-03-05 23:40:06 -0800
+
+
+Started GET "/assets/application-87a03de18607f3f472629afca52b77e5.css?body=1" for 127.0.0.1 at 2015-03-05 23:40:06 -0800
+
+
+Started GET "/assets/angular-a5b3ffc8a0708f1d34698951e18c0807.js?body=1" for 127.0.0.1 at 2015-03-05 23:40:06 -0800
+
+
+Started GET "/assets/angular-route-32ede5291d0b773157e4ca00448b65a1.js?body=1" for 127.0.0.1 at 2015-03-05 23:40:06 -0800
+
+
+Started GET "/assets/underscore-28613f0e805cced2ee013902879a17f7.js?body=1" for 127.0.0.1 at 2015-03-05 23:40:06 -0800
+
+
+Started GET "/assets/angular-cookies-8e0e066772613aa521e5a731c1b35be6.js?body=1" for 127.0.0.1 at 2015-03-05 23:40:06 -0800
+
+
+Started GET "/assets/app/app-e50128d2e4dfaab3e71dc4685c4a5d7b.js?body=1" for 127.0.0.1 at 2015-03-05 23:40:06 -0800
+
+
+Started GET "/assets/app/controllers-52c0dd5305b3593769865450399e7f16.js?body=1" for 127.0.0.1 at 2015-03-05 23:40:06 -0800
+
+
+Started GET "/assets/app/controllers/login-f1a36976f41aac50dc00de2370e84082.js?body=1" for 127.0.0.1 at 2015-03-05 23:40:06 -0800
+
+
+Started GET "/assets/app/controllers/movie-84e1c6da48fe6091a5290228cccfcb31.js?body=1" for 127.0.0.1 at 2015-03-05 23:40:06 -0800
+
+
+Started GET "/assets/app/controllers/movies-ab1baeba681e3aa0d6fabc0c092078a7.js?body=1" for 127.0.0.1 at 2015-03-05 23:40:06 -0800
+
+
+Started GET "/assets/app/services-56b24b7c6a33707d428b77018a9aaf6c.js?body=1" for 127.0.0.1 at 2015-03-05 23:40:06 -0800
+
+
+Started GET "/assets/popcorn-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-05 23:40:06 -0800
+
+
+Started GET "/assets/application-19e548f0aff827bc30e2f27a1497419f.js?body=1" for 127.0.0.1 at 2015-03-05 23:40:06 -0800
+
+
+Started GET "/login" for 127.0.0.1 at 2015-03-05 23:40:22 -0800
+Processing by PopcornController#index as HTML
+  Parameters: {"path"=>"login"}
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 130ms (Views: 129.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2015-03-05 23:41:40 -0800
+Processing by PopcornController#index as HTML
+  Parameters: {"path"=>"login"}
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 163ms (Views: 163.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter/bootstrap-89b6799acc98e356c2ddb605402f471f.css?body=1" for 127.0.0.1 at 2015-03-05 23:41:41 -0800
+
+
+Started GET "/assets/popcorn-4bb35569dfcb17894991f89043f1c41a.css?body=1" for 127.0.0.1 at 2015-03-05 23:41:41 -0800
+
+
+Started GET "/assets/application-87a03de18607f3f472629afca52b77e5.css?body=1" for 127.0.0.1 at 2015-03-05 23:41:41 -0800
+
+
+Started GET "/assets/underscore-28613f0e805cced2ee013902879a17f7.js?body=1" for 127.0.0.1 at 2015-03-05 23:41:41 -0800
+
+
+Started GET "/assets/angular-a5b3ffc8a0708f1d34698951e18c0807.js?body=1" for 127.0.0.1 at 2015-03-05 23:41:41 -0800
+
+
+Started GET "/assets/angular-route-32ede5291d0b773157e4ca00448b65a1.js?body=1" for 127.0.0.1 at 2015-03-05 23:41:41 -0800
+
+
+Started GET "/assets/angular-cookies-8e0e066772613aa521e5a731c1b35be6.js?body=1" for 127.0.0.1 at 2015-03-05 23:41:41 -0800
+
+
+Started GET "/assets/app/app-e50128d2e4dfaab3e71dc4685c4a5d7b.js?body=1" for 127.0.0.1 at 2015-03-05 23:41:41 -0800
+
+
+Started GET "/assets/app/controllers-52c0dd5305b3593769865450399e7f16.js?body=1" for 127.0.0.1 at 2015-03-05 23:41:41 -0800
+
+
+Started GET "/assets/app/controllers/login-4b0b16cd3272b5d21851ec4e8464b34c.js?body=1" for 127.0.0.1 at 2015-03-05 23:41:41 -0800
+
+
+Started GET "/assets/app/controllers/movie-84e1c6da48fe6091a5290228cccfcb31.js?body=1" for 127.0.0.1 at 2015-03-05 23:41:41 -0800
+
+
+Started GET "/assets/app/controllers/movies-ab1baeba681e3aa0d6fabc0c092078a7.js?body=1" for 127.0.0.1 at 2015-03-05 23:41:41 -0800
+
+
+Started GET "/assets/app/services-56b24b7c6a33707d428b77018a9aaf6c.js?body=1" for 127.0.0.1 at 2015-03-05 23:41:41 -0800
+
+
+Started GET "/assets/popcorn-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-05 23:41:41 -0800
+
+
+Started GET "/assets/application-d41dddaa1a9b527128123a230966cf3f.js?body=1" for 127.0.0.1 at 2015-03-05 23:41:41 -0800
+
+
+Started GET "/login" for 127.0.0.1 at 2015-03-05 23:41:52 -0800
+Processing by PopcornController#index as HTML
+  Parameters: {"path"=>"login"}
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 170ms (Views: 169.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-05 23:55:47 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 171ms (Views: 170.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/app/app-59f989627bbd4229e30c3d08f3a20162.js?body=1" for 127.0.0.1 at 2015-03-05 23:55:48 -0800
+
+
+Started GET "/assets/app/directives-e061015e718d7fb7ac949dfa4a613101.js?body=1" for 127.0.0.1 at 2015-03-05 23:55:48 -0800
+
+
+Started GET "/assets/application-88ae12bffbaa22aed951d679768e03c2.js?body=1" for 127.0.0.1 at 2015-03-05 23:55:48 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-05 23:56:17 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 204ms (Views: 203.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter/bootstrap-89b6799acc98e356c2ddb605402f471f.css?body=1" for 127.0.0.1 at 2015-03-05 23:56:17 -0800
+
+
+Started GET "/assets/popcorn-4bb35569dfcb17894991f89043f1c41a.css?body=1" for 127.0.0.1 at 2015-03-05 23:56:17 -0800
+
+
+Started GET "/assets/application-87a03de18607f3f472629afca52b77e5.css?body=1" for 127.0.0.1 at 2015-03-05 23:56:17 -0800
+
+
+Started GET "/assets/underscore-28613f0e805cced2ee013902879a17f7.js?body=1" for 127.0.0.1 at 2015-03-05 23:56:17 -0800
+
+
+Started GET "/assets/angular-a5b3ffc8a0708f1d34698951e18c0807.js?body=1" for 127.0.0.1 at 2015-03-05 23:56:17 -0800
+
+
+Started GET "/assets/angular-route-32ede5291d0b773157e4ca00448b65a1.js?body=1" for 127.0.0.1 at 2015-03-05 23:56:17 -0800
+
+
+Started GET "/assets/angular-cookies-8e0e066772613aa521e5a731c1b35be6.js?body=1" for 127.0.0.1 at 2015-03-05 23:56:18 -0800
+
+
+Started GET "/assets/app/app-59f989627bbd4229e30c3d08f3a20162.js?body=1" for 127.0.0.1 at 2015-03-05 23:56:18 -0800
+
+
+Started GET "/assets/app/controllers-52c0dd5305b3593769865450399e7f16.js?body=1" for 127.0.0.1 at 2015-03-05 23:56:18 -0800
+
+
+Started GET "/assets/app/controllers/login-4b0b16cd3272b5d21851ec4e8464b34c.js?body=1" for 127.0.0.1 at 2015-03-05 23:56:18 -0800
+
+
+Started GET "/assets/app/controllers/movie-84e1c6da48fe6091a5290228cccfcb31.js?body=1" for 127.0.0.1 at 2015-03-05 23:56:18 -0800
+
+
+Started GET "/assets/app/controllers/movies-ab1baeba681e3aa0d6fabc0c092078a7.js?body=1" for 127.0.0.1 at 2015-03-05 23:56:18 -0800
+
+
+Started GET "/assets/app/directives-e061015e718d7fb7ac949dfa4a613101.js?body=1" for 127.0.0.1 at 2015-03-05 23:56:18 -0800
+
+
+Started GET "/assets/popcorn-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-05 23:56:18 -0800
+
+
+Started GET "/assets/app/services-56b24b7c6a33707d428b77018a9aaf6c.js?body=1" for 127.0.0.1 at 2015-03-05 23:56:18 -0800
+
+
+Started GET "/assets/application-88ae12bffbaa22aed951d679768e03c2.js?body=1" for 127.0.0.1 at 2015-03-05 23:56:18 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-05 23:56:45 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 133ms (Views: 133.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter/bootstrap-89b6799acc98e356c2ddb605402f471f.css?body=1" for 127.0.0.1 at 2015-03-05 23:56:45 -0800
+
+
+Started GET "/assets/angular-route-32ede5291d0b773157e4ca00448b65a1.js?body=1" for 127.0.0.1 at 2015-03-05 23:56:45 -0800
+
+
+Started GET "/assets/underscore-28613f0e805cced2ee013902879a17f7.js?body=1" for 127.0.0.1 at 2015-03-05 23:56:45 -0800
+
+
+Started GET "/assets/angular-a5b3ffc8a0708f1d34698951e18c0807.js?body=1" for 127.0.0.1 at 2015-03-05 23:56:45 -0800
+
+
+Started GET "/assets/popcorn-4bb35569dfcb17894991f89043f1c41a.css?body=1" for 127.0.0.1 at 2015-03-05 23:56:45 -0800
+
+
+Started GET "/assets/application-87a03de18607f3f472629afca52b77e5.css?body=1" for 127.0.0.1 at 2015-03-05 23:56:45 -0800
+
+
+Started GET "/assets/angular-cookies-8e0e066772613aa521e5a731c1b35be6.js?body=1" for 127.0.0.1 at 2015-03-05 23:56:45 -0800
+
+
+Started GET "/assets/app/app-59f989627bbd4229e30c3d08f3a20162.js?body=1" for 127.0.0.1 at 2015-03-05 23:56:45 -0800
+
+
+Started GET "/assets/app/controllers-52c0dd5305b3593769865450399e7f16.js?body=1" for 127.0.0.1 at 2015-03-05 23:56:45 -0800
+
+
+Started GET "/assets/app/controllers/login-4b0b16cd3272b5d21851ec4e8464b34c.js?body=1" for 127.0.0.1 at 2015-03-05 23:56:45 -0800
+
+
+Started GET "/assets/app/controllers/movie-84e1c6da48fe6091a5290228cccfcb31.js?body=1" for 127.0.0.1 at 2015-03-05 23:56:45 -0800
+
+
+Started GET "/assets/app/controllers/movies-ab1baeba681e3aa0d6fabc0c092078a7.js?body=1" for 127.0.0.1 at 2015-03-05 23:56:45 -0800
+
+
+Started GET "/assets/app/directives-b7e39fdaba75d84cd3bef1cf88729da1.js?body=1" for 127.0.0.1 at 2015-03-05 23:56:45 -0800
+
+
+Started GET "/assets/app/services-56b24b7c6a33707d428b77018a9aaf6c.js?body=1" for 127.0.0.1 at 2015-03-05 23:56:45 -0800
+
+
+Started GET "/assets/popcorn-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-05 23:56:45 -0800
+
+
+Started GET "/assets/application-9782b3af41bbf1380ba751533791087e.js?body=1" for 127.0.0.1 at 2015-03-05 23:56:45 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-06 00:05:09 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.0ms)
+Completed 200 OK in 147ms (Views: 147.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/app/directives-2c72d55821655e645441b952c15d359a.js?body=1" for 127.0.0.1 at 2015-03-06 00:05:10 -0800
+
+
+Started GET "/assets/app/services-f4b6f88635a47e2c74c9eebb8f209bc6.js?body=1" for 127.0.0.1 at 2015-03-06 00:05:10 -0800
+
+
+Started GET "/assets/application-518502a7a35e6012baf755d573854e21.js?body=1" for 127.0.0.1 at 2015-03-06 00:05:10 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-06 00:07:50 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 139ms (Views: 138.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/app/services-323f01b602b058cc8f581c36889a1dbf.js?body=1" for 127.0.0.1 at 2015-03-06 00:07:50 -0800
+
+
+Started GET "/assets/application-d403ca0249ddcf48dbea9e8ecbb5de5d.js?body=1" for 127.0.0.1 at 2015-03-06 00:07:50 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-06 00:07:57 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 110ms (Views: 109.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-06 00:14:18 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 121ms (Views: 120.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-06 00:14:26 -0800
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 103ms (Views: 103.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2015-03-06 00:16:42 -0800
+Processing by PopcornController#index as HTML
+  Parameters: {"path"=>"login"}
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 106ms (Views: 106.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter/bootstrap-89b6799acc98e356c2ddb605402f471f.css?body=1" for 127.0.0.1 at 2015-03-06 00:16:43 -0800
+
+
+Started GET "/assets/popcorn-4bb35569dfcb17894991f89043f1c41a.css?body=1" for 127.0.0.1 at 2015-03-06 00:16:43 -0800
+
+
+Started GET "/assets/application-87a03de18607f3f472629afca52b77e5.css?body=1" for 127.0.0.1 at 2015-03-06 00:16:43 -0800
+
+
+Started GET "/assets/angular-a5b3ffc8a0708f1d34698951e18c0807.js?body=1" for 127.0.0.1 at 2015-03-06 00:16:43 -0800
+
+
+Started GET "/assets/underscore-28613f0e805cced2ee013902879a17f7.js?body=1" for 127.0.0.1 at 2015-03-06 00:16:43 -0800
+
+
+Started GET "/assets/angular-route-32ede5291d0b773157e4ca00448b65a1.js?body=1" for 127.0.0.1 at 2015-03-06 00:16:43 -0800
+
+
+Started GET "/assets/angular-cookies-8e0e066772613aa521e5a731c1b35be6.js?body=1" for 127.0.0.1 at 2015-03-06 00:16:43 -0800
+
+
+Started GET "/assets/app/app-59f989627bbd4229e30c3d08f3a20162.js?body=1" for 127.0.0.1 at 2015-03-06 00:16:43 -0800
+
+
+Started GET "/assets/app/controllers-52c0dd5305b3593769865450399e7f16.js?body=1" for 127.0.0.1 at 2015-03-06 00:16:43 -0800
+
+
+Started GET "/assets/app/controllers/login-4b0b16cd3272b5d21851ec4e8464b34c.js?body=1" for 127.0.0.1 at 2015-03-06 00:16:43 -0800
+
+
+Started GET "/assets/app/controllers/movie-84e1c6da48fe6091a5290228cccfcb31.js?body=1" for 127.0.0.1 at 2015-03-06 00:16:43 -0800
+
+
+Started GET "/assets/app/controllers/movies-ab1baeba681e3aa0d6fabc0c092078a7.js?body=1" for 127.0.0.1 at 2015-03-06 00:16:43 -0800
+
+
+Started GET "/assets/app/directives-2c72d55821655e645441b952c15d359a.js?body=1" for 127.0.0.1 at 2015-03-06 00:16:43 -0800
+
+
+Started GET "/assets/app/services-323f01b602b058cc8f581c36889a1dbf.js?body=1" for 127.0.0.1 at 2015-03-06 00:16:43 -0800
+
+
+Started GET "/assets/popcorn-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-06 00:16:43 -0800
+
+
+Started GET "/assets/application-d403ca0249ddcf48dbea9e8ecbb5de5d.js?body=1" for 127.0.0.1 at 2015-03-06 00:16:43 -0800
+
+
+Started GET "/login" for 127.0.0.1 at 2015-03-06 00:18:09 -0800
+Processing by PopcornController#index as HTML
+  Parameters: {"path"=>"login"}
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 97ms (Views: 97.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2015-03-06 00:18:13 -0800
+Processing by PopcornController#index as HTML
+  Parameters: {"path"=>"login"}
+  Rendered popcorn/index.html.erb within layouts/angular (0.0ms)
+Completed 200 OK in 104ms (Views: 104.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter/bootstrap-89b6799acc98e356c2ddb605402f471f.css?body=1" for 127.0.0.1 at 2015-03-06 00:18:13 -0800
+
+
+Started GET "/assets/application-87a03de18607f3f472629afca52b77e5.css?body=1" for 127.0.0.1 at 2015-03-06 00:18:13 -0800
+
+
+Started GET "/assets/popcorn-4bb35569dfcb17894991f89043f1c41a.css?body=1" for 127.0.0.1 at 2015-03-06 00:18:13 -0800
+
+
+Started GET "/assets/underscore-28613f0e805cced2ee013902879a17f7.js?body=1" for 127.0.0.1 at 2015-03-06 00:18:13 -0800
+
+
+Started GET "/assets/angular-a5b3ffc8a0708f1d34698951e18c0807.js?body=1" for 127.0.0.1 at 2015-03-06 00:18:13 -0800
+
+
+Started GET "/assets/angular-route-32ede5291d0b773157e4ca00448b65a1.js?body=1" for 127.0.0.1 at 2015-03-06 00:18:13 -0800
+
+
+Started GET "/assets/angular-cookies-8e0e066772613aa521e5a731c1b35be6.js?body=1" for 127.0.0.1 at 2015-03-06 00:18:13 -0800
+
+
+Started GET "/assets/app/app-59f989627bbd4229e30c3d08f3a20162.js?body=1" for 127.0.0.1 at 2015-03-06 00:18:13 -0800
+
+
+Started GET "/assets/app/controllers-52c0dd5305b3593769865450399e7f16.js?body=1" for 127.0.0.1 at 2015-03-06 00:18:13 -0800
+
+
+Started GET "/assets/app/controllers/login-4b0b16cd3272b5d21851ec4e8464b34c.js?body=1" for 127.0.0.1 at 2015-03-06 00:18:13 -0800
+
+
+Started GET "/assets/app/controllers/movie-84e1c6da48fe6091a5290228cccfcb31.js?body=1" for 127.0.0.1 at 2015-03-06 00:18:13 -0800
+
+
+Started GET "/assets/app/controllers/movies-ab1baeba681e3aa0d6fabc0c092078a7.js?body=1" for 127.0.0.1 at 2015-03-06 00:18:13 -0800
+
+
+Started GET "/assets/app/directives-2c72d55821655e645441b952c15d359a.js?body=1" for 127.0.0.1 at 2015-03-06 00:18:13 -0800
+
+
+Started GET "/assets/app/services-323f01b602b058cc8f581c36889a1dbf.js?body=1" for 127.0.0.1 at 2015-03-06 00:18:13 -0800
+
+
+Started GET "/assets/popcorn-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-06 00:18:13 -0800
+
+
+Started GET "/assets/application-d403ca0249ddcf48dbea9e8ecbb5de5d.js?body=1" for 127.0.0.1 at 2015-03-06 00:18:13 -0800
+
+
+Started GET "/login" for 127.0.0.1 at 2015-03-06 00:34:32 -0800
+Processing by PopcornController#index as HTML
+  Parameters: {"path"=>"login"}
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 159ms (Views: 158.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/app/app-fe862a9a8ba10c5fd2453a2b109e69eb.js?body=1" for 127.0.0.1 at 2015-03-06 00:34:32 -0800
+
+
+Started GET "/assets/app/controllers/profile-f3d1a7a5f4ae955d87e813ee6f9e4ac4.js?body=1" for 127.0.0.1 at 2015-03-06 00:34:32 -0800
+
+
+Started GET "/assets/application-653e7589a4506319ff56f732c03ab7cc.js?body=1" for 127.0.0.1 at 2015-03-06 00:34:32 -0800
+
+
+Started GET "/user/1" for 127.0.0.1 at 2015-03-06 00:34:59 -0800
+Processing by PopcornController#index as HTML
+  Parameters: {"path"=>"user/1"}
+  Rendered popcorn/index.html.erb within layouts/angular (0.0ms)
+Completed 200 OK in 121ms (Views: 121.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/popcorn-4bb35569dfcb17894991f89043f1c41a.css?body=1" for 127.0.0.1 at 2015-03-06 00:35:00 -0800
+
+
+Started GET "/assets/twitter/bootstrap-89b6799acc98e356c2ddb605402f471f.css?body=1" for 127.0.0.1 at 2015-03-06 00:35:00 -0800
+
+
+Started GET "/assets/application-87a03de18607f3f472629afca52b77e5.css?body=1" for 127.0.0.1 at 2015-03-06 00:35:00 -0800
+
+
+Started GET "/assets/underscore-28613f0e805cced2ee013902879a17f7.js?body=1" for 127.0.0.1 at 2015-03-06 00:35:00 -0800
+
+
+Started GET "/assets/angular-route-32ede5291d0b773157e4ca00448b65a1.js?body=1" for 127.0.0.1 at 2015-03-06 00:35:00 -0800
+
+
+Started GET "/assets/angular-a5b3ffc8a0708f1d34698951e18c0807.js?body=1" for 127.0.0.1 at 2015-03-06 00:35:00 -0800
+
+
+Started GET "/assets/angular-cookies-8e0e066772613aa521e5a731c1b35be6.js?body=1" for 127.0.0.1 at 2015-03-06 00:35:00 -0800
+
+
+Started GET "/assets/app/app-fe862a9a8ba10c5fd2453a2b109e69eb.js?body=1" for 127.0.0.1 at 2015-03-06 00:35:00 -0800
+
+
+Started GET "/assets/app/controllers-52c0dd5305b3593769865450399e7f16.js?body=1" for 127.0.0.1 at 2015-03-06 00:35:00 -0800
+
+
+Started GET "/assets/app/controllers/login-4b0b16cd3272b5d21851ec4e8464b34c.js?body=1" for 127.0.0.1 at 2015-03-06 00:35:00 -0800
+
+
+Started GET "/assets/app/controllers/movie-84e1c6da48fe6091a5290228cccfcb31.js?body=1" for 127.0.0.1 at 2015-03-06 00:35:00 -0800
+
+
+Started GET "/assets/app/controllers/movies-ab1baeba681e3aa0d6fabc0c092078a7.js?body=1" for 127.0.0.1 at 2015-03-06 00:35:00 -0800
+
+
+Started GET "/assets/app/controllers/profile-f3d1a7a5f4ae955d87e813ee6f9e4ac4.js?body=1" for 127.0.0.1 at 2015-03-06 00:35:00 -0800
+
+
+Started GET "/assets/app/directives-2c72d55821655e645441b952c15d359a.js?body=1" for 127.0.0.1 at 2015-03-06 00:35:00 -0800
+
+
+Started GET "/assets/app/services-323f01b602b058cc8f581c36889a1dbf.js?body=1" for 127.0.0.1 at 2015-03-06 00:35:00 -0800
+
+
+Started GET "/assets/popcorn-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-06 00:35:00 -0800
+
+
+Started GET "/assets/application-653e7589a4506319ff56f732c03ab7cc.js?body=1" for 127.0.0.1 at 2015-03-06 00:35:00 -0800
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-11 17:53:34 -0700
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (2.3ms)
+Completed 200 OK in 337ms (Views: 336.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-11 17:53:35 -0700
+Processing by PopcornController#index as HTML
+  Rendered popcorn/index.html.erb within layouts/angular (0.1ms)
+Completed 200 OK in 170ms (Views: 169.9ms | ActiveRecord: 0.0ms)
