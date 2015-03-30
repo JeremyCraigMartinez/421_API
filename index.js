@@ -27,11 +27,11 @@ http.listen('5024');
 /* API calls */
 app.get('/',function(req,res,next){
   obj = {
-    username: username,
-    password: password,
-    doctor: doctor
+    username: username || "",
+    password: password || "",
+    doctor: doctor || ""
   }
-  res.end(obj);
+  res.end(JSON.stringify(obj));
 });
 
 app.get('/login', function(req,res,next){
