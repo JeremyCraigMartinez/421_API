@@ -26,7 +26,12 @@ http.listen('5024');
 
 /* API calls */
 app.get('/',function(req,res,next){
-  res.end("API is working on port 5024 - WSU Senior Design - Wearable Sensors. \nCURRENT USER: " + username + " PASSWORD: " + password + " DOCTOR: " + doctor);
+  obj = {
+    username: username,
+    password: password,
+    doctor: doctor
+  }
+  res.end(obj);
 });
 
 app.get('/login', function(req,res,next){
