@@ -26,20 +26,20 @@ http.listen('5024');
 
 /* API calls */
 app.get('/',function(req,res,next){
-  res.end("API is working on port 5024 - WSU Senior Design - Wearable Sensors. \nCURRENT USER: " + user + " PASSWORD: " + password + " DOCTOR: " + doctor);
+  res.end("API is working on port 5024 - WSU Senior Design - Wearable Sensors. \nCURRENT USER: " + username + " PASSWORD: " + password + " DOCTOR: " + doctor);
 });
 
 app.get('/login', function(req,res,next){
   res.end('you need to send a POST request to receive an OAuth2 access token');
 });
 
-var user;
+var username;
 var password;
 var doctor;
 app.post('/signup', function(req,res,next){
   obj = req.body;//JSON.parse(req.body);
   console.log(obj);
-  user = obj['username'];
+  username = obj['username'];
   password = obj['password'];
   doctor = obj['doctor'];
   res.end('thank you');
