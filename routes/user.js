@@ -10,7 +10,7 @@ module.exports = function (app) {
 	app.get('/user', function (req, res, next) {
 		User_pass.find(function (err, users) {
 			if (err) return next(err);
-			if (!users) return invalid();
+			if (!users) return invalid(res);
 
 			var user_ids = [];
 			for (user in users) {
@@ -20,25 +20,33 @@ module.exports = function (app) {
 		});
 	});
 
-	app.get('/user/:id', function (req, res, next) {
-		var email = cleanString(req.body['email']).toLowerCase();
+	var invalid = function (res) {
+		res.redirect('/');
+	}
 
-		User_pass.findById(email, function (err, user) {
+	app.get('/user/:id', function (req, res, next) {
+		console.log(req.params['id']);
+		var id = cleanString(req.params['id']).toLowerCase();
+
+		User_info.findById(id, function (err, user) {
 			if (err) return next(err);
 
-			if (!user) return invalid();
+			if (!user) return invalid(res);
 
 			return res.json(user);
 		});
 	});
 
 	app.post('/user/create', function (req, res, next) {
-		var email = cleanString(req.body['email']).toLowerCase();
-		var pass = cleanString(req.body['pass']);
-		if (!(email && pass)) return invalid();
+		var email = req.body['email'];
+		var pass = req.body['pass'];
+
+		//if (!(email && pass)) return invalid(res);
 
 		User_pass.findById(email, function (err, user) {
-			if (err) return next(err);
+			if (err) {
+				return next(err);
+			}
 
 			if (user) return res.send(401, "already exists");
 			
@@ -52,7 +60,7 @@ module.exports = function (app) {
 				User_pass.create(user, function (err, newUser) {
 					if (err) {
 						if (err instanceof mongoose.Error.ValidationError) {
-							return invalid();
+							return invalid(res);
 						}
 						return next(err);
 					}
@@ -62,8 +70,45 @@ module.exports = function (app) {
 				});
 			});			
 		});
-		function invalid() {
-			res.redirect('/');
-		}
 	});
+
+	app.post('/user/:email/info', function (req, res, next) {
+		var group = req.body['group'];
+		var first_name = cleanString(req.body['first_name']);
+		var last_name = cleanString(req.body['last_name']);
+		var age = cleanString(req.body['age']);
+		var height = cleanString(req.body['height']);
+		var weight = cleanString(req.body['weight']);
+		var sex = cleanString(req.body['sex']);
+		var email = cleanString(req.params['email']).toLowerCase();
+		
+		if (!email) return invalid(res);
+
+		User_pass.findById(email, function (err, user) {
+			if (err) return next(err);
+
+			if (!user) return res.end("User does not exist");
+			
+			var user = {_id: email };
+			user.group = group;
+			user.first_name = first_name;
+			user.last_name = last_name;
+			user.age = age;
+			user.height = height;
+			user.weight = weight;
+			user.sex = sex;
+//{_id:email}, user, {upsert:true},
+			User_info.update({_id:email}, user, {upsert:true,runValidators:true}, function (err, newUser) {
+				if (err) {
+					if (err instanceof mongoose.Error.ValidationError) {
+						return res.json(err.errors);
+					}
+					return next(err);
+				}
+
+				console.log('created user: %s', email);
+				return res.end();
+			});			
+		});
+	});	
 }
