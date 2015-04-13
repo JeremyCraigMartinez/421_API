@@ -292,3 +292,4 @@
 [0mPOST /user/j@m.com/info [31m500 [0m69.890 ms - 4[0m
 [0mPOST /user/j@m.com/info [32m200 [0m58.572 ms - -[0m
 [0mPOST /user/j@m.com/info [32m200 [0m12.358 ms - 272[0m
+[0mGET /user [36m304 [0m37.967 ms - -[0m

@@ -41,7 +41,7 @@ module.exports = function (app) {
 		var email = req.body['email'];
 		var pass = req.body['pass'];
 
-		//if (!(email && pass)) return invalid(res);
+		if (!(email && pass)) return invalid(res);
 
 		User_pass.findById(email, function (err, user) {
 			if (err) {

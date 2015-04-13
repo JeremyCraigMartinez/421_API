@@ -4,3 +4,4 @@ bin
 nohup*
 npm-debug.log
 test-curl.js
+access*
