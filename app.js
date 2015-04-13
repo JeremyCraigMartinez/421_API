@@ -11,7 +11,7 @@ mongoose.connect('mongodb://localhost/test', function(err) {
 
 	middleware(app);
 	routes(app);
-	app.listen(8000, function() {
-		console.log('now listen on localhost:8000');
+	app.listen(5024, function() {
+		console.log('now listen on localhost:5024');
 	});
 });
