@@ -1,17 +1,10 @@
 var errors = require('./errors');
-var login = require('./login');
-var posts = require('./posts');
+var user = require('./user');
+var mongoose = require('mongoose');
 
 module.exports = function(app) {
 
-	//home page
-	app.get('/', function(req, res){
-		res.render('home.jade');
-	});
-
-	login(app);
-
-	posts(app);
+	user(app);
 
 	errors(app);
 }
