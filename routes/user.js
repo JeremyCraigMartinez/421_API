@@ -60,7 +60,7 @@ module.exports = function (app) {
 				User_pass.create(user, function (err, newUser) {
 					if (err) {
 						if (err instanceof mongoose.Error.ValidationError) {
-							return invalid(res);
+							return res.json(err.errors);
 						}
 						return next(err);
 					}
