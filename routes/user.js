@@ -25,7 +25,6 @@ module.exports = function (app) {
 	}
 
 	app.get('/user/:id', function (req, res, next) {
-		console.log(req.params['id']);
 		var id = cleanString(req.params['id']).toLowerCase();
 
 		User_info.findById(id, function (err, user) {
@@ -73,6 +72,8 @@ module.exports = function (app) {
 	});
 
 	app.post('/user/:email/info', function (req, res, next) {
+		console.log('asdf');
+
 		var group = req.body['group'];
 		var first_name = cleanString(req.body['first_name']);
 		var last_name = cleanString(req.body['last_name']);
@@ -83,6 +84,7 @@ module.exports = function (app) {
 		var email = cleanString(req.params['email']).toLowerCase();
 		
 		if (!email) return invalid(res);
+
 
 		User_pass.findById(email, function (err, user) {
 			if (err) return next(err);
@@ -111,4 +113,8 @@ module.exports = function (app) {
 			});			
 		});
 	});	
+
+	app.post('/login', function (req, res, next) {
+		res.json({"token":"78ha87382oidh"});
+	});
 }
