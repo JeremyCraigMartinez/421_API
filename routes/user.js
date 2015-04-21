@@ -37,6 +37,8 @@ module.exports = function (app) {
 	});
 
 	app.post('/user/create', function (req, res, next) {
+		console.log(req.body);
+		
 		var email = req.body['email'];
 		var pass = req.body['pass'];
 
