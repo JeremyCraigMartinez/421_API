@@ -21,6 +21,7 @@ module.exports = function (app) {
 	app.use(bodyParser());
 
 	app.use(function (req, res, next) {
+		res.header("Access-Control-Allow-Origin", "*");
 		res.locals.session = req.session;
 		next();
 	});
