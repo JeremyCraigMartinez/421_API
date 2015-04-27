@@ -10,50 +10,45 @@ var crypto = require('crypto');
 var validate = require('../helpers/validate')();
 
 module.exports = function (app) {
-	app.get('/patients', function (req, res, next) {
-		Patients.find(function (err, patients) {
+	app.get('/doctors', function (req, res, next) {
+		Doctors.find(function (err, doctors) {
 			if (err) return next(err);
-			if (!patients) return invalid(res);
+			if (!doctors) return invalid(res);
 
-			var patient_ids = [];
-			for (patient in patients) {
-				patient_ids.push(patients[patient]._id);
+			var doctor_ids = [];
+			for (doctor in doctors) {
+				doctor_ids.push(doctors[doctor]._id);
 			}
-			return res.json(patient_ids);
+			return res.json(doctor_ids);
 		});
 	});
 
-	app.get('/patients/:patient_id', function (req, res, next) {
-		var patient_id = cleanString(req.params['patient_id']).toLowerCase();
+	app.get('/doctors/:doctor_id', function (req, res, next) {
+		var doctor_id = cleanString(req.params['doctor_id']).toLowerCase();
 
-		Patients.findById(patient_id, function (err, patient) {
+		Doctors.findById(doctor_id, function (err, doctor) {
 			if (err) return next(err);
 
-			if (!patient) return res.status(400).send('no patient: '+patient_id);
+			if (!doctor) return res.status(400).send('no doctor: '+doctor_id);
 
-			return res.json(patient);
+			return res.json(doctor);
 		});
 	});
 
-	app.post('/patients', function (req, res, next) {
-		var new_patient = {
-			_id:        req.body['_id'],
-			group:      req.body['group'],
-			first_name: req.body['first_name'],
-			last_name:  req.body['last_name'],
-			age:        req.body['age'],
-			height:     req.body['height'],
-			weight:     req.body['weight'],
-			sex:        req.body['sex']
+	app.post('/doctors', function (req, res, next) {
+		var new_doctor = {
+			_id:       req.body['_id'],
+			specialty: req.body['specialty'],
+			hospital:  req.body['hospital']
 		}
 
-		validate.is_valid(new_patient).then(function (error_msg) {
+		validate.is_valid_doctor(new_doctor).then(function (error_msg) {
 			if (error_msg.length > 0) return res.status(400).send(error_msg);
 
 			//check if someone with this email already has an account
-			Creds.findById(req.body['_id'], function (err, patient) {
+			Creds.findById(req.body['_id'], function (err, doctor) {
 				if (err) return next(err);
-				if (patient) return res.status(400).send('patient already exists. If you want to update, send post to /patients/update');
+				if (doctor) return res.status(400).send('doctor already exists. If you want to update, send post to /doctors/update');
 
 				//encrypt password
 				crypto.randomBytes(16, function (err, bytes) {
@@ -72,8 +67,8 @@ module.exports = function (app) {
 							return next(err);
 						}
 
-						//insert row into Patients table
-						Patients.create(new_patient, function (err, inserted) {
+						//insert row into Doctors table
+						Doctors.create(new_doctor, function (err, inserted) {
 							if (err) {
 								if (err instanceof mongoose.Error.ValidationError) {
 									return res.json(err.errors);
@@ -88,14 +83,14 @@ module.exports = function (app) {
 		});
 	});
 
-	app.post('/patients/update', function (req, res, next) {
-		var updated_patient = {};
+	app.post('/doctors/update', function (req, res, next) {
+		var updated_doctor = {};
 		for (key in req.body) {
-			updated_patient[key] = req.body[key];
+			updated_doctor[key] = req.body[key];
 		}
-		delete updated_patient['pass'];
+		delete updated_doctor['pass'];
 
-		validate.is_valid(updated_patient).then(function (error_msg) {
+		validate.is_valid_doctor(updated_doctor).then(function (error_msg) {
 			console.log(error_msg);
 		});
 	});

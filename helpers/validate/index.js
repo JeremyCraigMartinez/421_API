@@ -17,11 +17,12 @@ module.exports = function () {
 		age: validAge,
 		height: validWeight,
 		weight: validHeight,
-		sex: validSex
+		sex: validSex,
+		specialty: validName,
+		hospital: validName
 	}	
-	console.log(validJSON.group);
 	return {
-		is_valid_patient: function (obj) {
+		is_valid: function (obj) {
 			var deferred = q.defer();
 			var error_msg = [];
 			var fields = [];
