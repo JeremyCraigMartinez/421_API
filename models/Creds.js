@@ -8,4 +8,4 @@ var schema = mongoose.Schema({
 	created: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('User_pass', schema);
+module.exports = mongoose.model('Creds', schema);

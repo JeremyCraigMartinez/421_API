@@ -3,7 +3,7 @@ var express = require('express');
 var routes = require('./routes');
 var middleware = require('./middleware');
 
-mongoose.connect('mongodb://localhost/test', function(err) {
+mongoose.connect('mongodb://localhost/m3', function(err) {
 	if (err) throw err;
 	console.log('connected');
 

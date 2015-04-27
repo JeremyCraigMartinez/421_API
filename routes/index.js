@@ -1,10 +1,13 @@
 var errors = require('./errors');
-var user = require('./user');
+var creds = require('./creds');
+var groups = require('./groups');
+
 var mongoose = require('mongoose');
 
 module.exports = function(app) {
 
-	user(app);
+	creds(app);
+	groups(app);
 
 	errors(app);
 }

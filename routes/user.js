@@ -30,7 +30,7 @@ module.exports = function (app) {
 		User_info.findById(id, function (err, user) {
 			if (err) return next(err);
 
-			if (!user) return invalid(res);
+			if (!user) return res.status(404).send('no user: '+id);
 
 			return res.json(user);
 		});

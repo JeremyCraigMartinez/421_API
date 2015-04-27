@@ -1,4 +1,8 @@
+var q = require('q');
+
 module.exports = function (sex) {
+	var deferred = q.defer();
   var re = /(male|female)/i;
-  return re.test(sex);
+  deferred.resolve(re.test(sex));
+  return deferred.promise;
 }

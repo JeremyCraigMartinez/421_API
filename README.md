@@ -13,22 +13,30 @@ It will ```urlencode``` each request to avoid any injection attack. It will then
 
 ###API GET Calls include:
 
-|      | PATH       | RES               |
-|------|------------|-------------------|
-| GET  | /          | JSON - ERROR      |
-| GET  | /user      | JSON - users list |
-| GET  | /user/:id  | JSON - user info  |
+|      | PATH          | RES                  |
+|------|---------------|----------------------|
+| GET  | /             | JSON - ERROR         |
+| GET  | /patient      | JSON - patients list |
+| GET  | /patient/:id  | JSON - patient info  |
 
 
 ###API POST Calls include:
 
-> /user/create  
+> /patient/create  
 
     {
     	email:"email@example.com",
-    	pass:"$ExamPLePasSworD$"
+    	pass:"$ExamPLePasSworD$",
+        group: "WSU",
+        first_name: "jeremy",
+        last_name: "martinez",
+        age: "22",
+        height: "72", //inches
+        weight: "180", //pounds
+        sex: "male"        
     }
-> /user/:email/info  
+
+> /patient/update
 
     {
     	group: "WSU",

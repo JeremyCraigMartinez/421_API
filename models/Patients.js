@@ -3,8 +3,9 @@ var validEmail = require('../helpers/validate/email');
 var validSex = require('../helpers/validate/sex');
 
 var schema = mongoose.Schema({
-	_id: { type: String, trim: true, ref: 'User_pass', validate: validEmail },
-	group: { type: String, trim: true, lowercase: true },
+	_id: { type: String, trim: true, ref: 'Creds', validate: validEmail },
+	doctor: { type: String, trim: true, ref: 'Doctors', validate: validEmail },
+	group: [String],
 	first_name: { type: String, trim: true, required: true, lowercase: true },
 	last_name: { type: String, trim: true, required: true, lowercase: true },
 	age: { type: Number, required: true},
@@ -13,4 +14,4 @@ var schema = mongoose.Schema({
 	sex: { type: String, lowercase: true, trim: true, validate: validSex }
 });
 
-module.exports = mongoose.model('User_info', schema);
+module.exports = mongoose.model('Patients', schema);
