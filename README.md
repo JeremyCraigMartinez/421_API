@@ -16,13 +16,14 @@ It will ```urlencode``` each request to avoid any injection attack. It will then
 |      | PATH          | RES                  |
 |------|---------------|----------------------|
 | GET  | /             | JSON - ERROR         |
-| GET  | /patient      | JSON - patients list |
-| GET  | /patient/:id  | JSON - patient info  |
+| GET  | /patients     | JSON - patients list |
+| GET  | /patients/:id | JSON - patient info  |
+| GET  | /groups/      | ARRAY - groups       |
 
 
 ###API POST Calls include:
 
-> /patient/create  
+> /patients 
 
     {
     	email:"email@example.com",
@@ -36,14 +37,27 @@ It will ```urlencode``` each request to avoid any injection attack. It will then
         sex: "male"        
     }
 
-> /patient/update
+> /patients/update #not currently working
 
     {
-    	group: "WSU",
-    	first_name: "jeremy",
-    	last_name: "martinez",
-    	age: "22",
-    	height: "72", //inches
-    	weight: "180", //pounds
-    	sex: "male"
+        group: "WSU",
+        first_name: "jeremy",
+        last_name: "martinez",
+        age: "22",
+        height: "72", //inches
+        weight: "180", //pounds
+        sex: "male"
     }
+
+> /groups 
+
+    {
+        _id: "cancer"
+    }
+
+> /groups/remove
+
+    {
+        _id: "cancer"
+    }
+
