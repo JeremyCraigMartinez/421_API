@@ -39,6 +39,7 @@ module.exports = function (app) {
 		var new_patient = {
 			_id:        req.body['_id'],
 			group:      req.body['group'],
+			doctor:     req.body['doctor'],
 			first_name: req.body['first_name'],
 			last_name:  req.body['last_name'],
 			age:        req.body['age'],

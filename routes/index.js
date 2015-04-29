@@ -1,5 +1,5 @@
 var errors = require('./errors');
-var creds = require('./creds');
+var patients = require('./patients');
 var groups = require('./groups');
 var doctors = require('./doctors');
 
@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 
 module.exports = function(app) {
 
-	creds(app);
+	patients(app);
 	groups(app);
 	doctors(app);
 

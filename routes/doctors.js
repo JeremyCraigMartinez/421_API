@@ -38,11 +38,13 @@ module.exports = function (app) {
 	app.post('/doctors', function (req, res, next) {
 		var new_doctor = {
 			_id:       req.body['_id'],
+			first_name: req.body['first_name'],
+			last_name: req.body['last_name'],
 			specialty: req.body['specialty'],
 			hospital:  req.body['hospital']
 		}
 
-		validate.is_valid_doctor(new_doctor).then(function (error_msg) {
+		validate.is_valid(new_doctor).then(function (error_msg) {
 			if (error_msg.length > 0) return res.status(400).send(error_msg);
 
 			//check if someone with this email already has an account
@@ -90,8 +92,19 @@ module.exports = function (app) {
 		}
 		delete updated_doctor['pass'];
 
-		validate.is_valid_doctor(updated_doctor).then(function (error_msg) {
-			console.log(error_msg);
+		validate.is_valid(updated_doctor).then(function (error_msg) {
+			return res.json({"err":error_msg});
+		});
+	});
+
+	app.post('/doctors/remove', function (req, res, next) {
+		var _id = req.body['_id'];
+		Doctors.findByIdAndRemove(_id, function (err, removed) {
+			if (err) console.log('no doctor found with that id. checking credentials table');
+			Creds.findByIdAndRemove(_id, function (err, removed) {
+				if (err) return res.status(400).send(err);
+				return res.status(200).send('group '+_id+' was deleted');
+			});
 		});
 	});
 }
