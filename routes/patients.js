@@ -99,5 +99,16 @@ module.exports = function (app) {
 		validate.is_valid(updated_patient).then(function (error_msg) {
 			console.log(error_msg);
 		});
+
+	app.post('/patients/remove', function (req, res, next) {
+		var _id = req.body['_id'];
+		Patients.findByIdAndRemove(_id, function (err, removed) {
+			if (err) console.log('no doctor found with that id. checking credentials table');
+			Creds.findByIdAndRemove(_id, function (err, removed) {
+				if (err) return res.status(400).send(err);
+				return res.status(200).send('group '+_id+' was deleted');
+			});
+		});
+	});
 	});
 }
