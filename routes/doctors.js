@@ -43,6 +43,7 @@ module.exports = function (app) {
 			specialty: req.body['specialty'],
 			hospital:  req.body['hospital']
 		}
+		console.log(new_doctor);
 
 		validate.is_valid(new_doctor).then(function (error_msg) {
 			if (error_msg.length > 0) return res.status(400).send(error_msg);
@@ -50,6 +51,7 @@ module.exports = function (app) {
 			//check if someone with this email already has an account
 			Creds.findById(req.body['_id'], function (err, doctor) {
 				if (err) return next(err);
+				console.log(doctor);
 				if (doctor) return res.status(400).send('doctor already exists. If you want to update, send post to /doctors/update');
 
 				//encrypt password

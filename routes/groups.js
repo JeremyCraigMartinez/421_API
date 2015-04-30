@@ -30,8 +30,10 @@ module.exports = function (app) {
 		});
 	});
 
-	app.get('/groups/remove', function (req, res, next) {
+	app.post('/groups/remove', function (req, res, next) {
 		var _id = req.body['_id'].toLowerCase();
+
+		console.log(_id);
 
 		Groups.findByIdAndRemove(_id, function (err, removed) {
 			if (err) return res.status(200).send("err");

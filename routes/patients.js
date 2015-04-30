@@ -48,6 +48,8 @@ module.exports = function (app) {
 			sex:        req.body['sex']
 		}
 
+		console.log(new_patient);
+
 		validate.is_valid(new_patient).then(function (error_msg) {
 			if (error_msg.length > 0) return res.status(400).send(error_msg);
 

@@ -11,7 +11,7 @@ mongoose.connect('mongodb://localhost/m3', function(err) {
 
 	middleware(app);
 	routes(app);
-	app.listen(5024, function() {
-		console.log('now listen on localhost:5024');
+	app.listen(5025, function() {
+		console.log('now listen on localhost:5025');
 	});
 });
