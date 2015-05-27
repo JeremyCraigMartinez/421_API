@@ -3,7 +3,7 @@ var validEmail = require('../helpers/validate/email');
 var validSex = require('../helpers/validate/sex');
 
 var schema = mongoose.Schema({
-	_id: { type: String, trim: true, required: true, ref: 'Creds', validate: validEmail },
+	email: { type: String, trim: true, unique: true, required: true, ref: 'Creds', validate: validEmail },
 	doctor: { type: String, trim: true, required: true, ref: 'Doctors', validate: validEmail },
 	group: [String],
 	first_name: { type: String, trim: true, required: true, lowercase: true },

@@ -1,12 +1,12 @@
 var Doctors = require('../../models/Doctors');
 var q = require('q');
 
-module.exports = function (doctor) {
+module.exports = function (email) {
 	var deferred = q.defer();
-  Doctors.findById(doctor, function (err, doctor_id) {
+  Doctors.find({email:email}, function (err, doctor) {
   	if (err) console.log(err);
 
-  	if (!doctor_id) deferred.resolve(false);
+  	if (!doctor) deferred.resolve(false);
 	  else deferred.resolve(true);
   });
   return deferred.promise;

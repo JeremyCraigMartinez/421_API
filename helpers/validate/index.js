@@ -11,7 +11,7 @@ var q = require('q');
 
 module.exports = function () {
 	var validJSON = {
-		_id: validEmail,
+		email: validEmail,
 		group: validGroup,
 		doctor: validDoctor,
 		first_name: validName,

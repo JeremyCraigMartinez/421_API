@@ -15,21 +15,21 @@ module.exports = function (app) {
 			if (err) return next(err);
 			if (!doctors) return invalid(res);
 
-			var doctor_ids = [];
+			var doctor_emails = [];
 			for (doctor in doctors) {
-				doctor_ids.push(doctors[doctor]._id);
+				doctor_emails.push(doctors[doctor].email);
 			}
-			return res.json(doctor_ids);
+			return res.json(doctor_emails);
 		});
 	});
 
-	app.get('/doctors/:doctor_id', function (req, res, next) {
-		var doctor_id = cleanString(req.params['doctor_id']).toLowerCase();
+	app.get('/doctors/:doctor_email', function (req, res, next) {
+		var doctor_email = cleanString(req.params['doctor_email']).toLowerCase();
 
-		Doctors.findById(doctor_id, function (err, doctor) {
+		Doctors.find({email:doctor_email}, function (err, doctor) {
 			if (err) return next(err);
 
-			if (!doctor) return res.status(400).send('no doctor: '+doctor_id);
+			if (!doctor) return res.status(400).send('no doctor: '+doctor_email);
 
 			return res.json(doctor);
 		});
@@ -37,28 +37,26 @@ module.exports = function (app) {
 
 	app.post('/doctors', function (req, res, next) {
 		var new_doctor = {
-			_id:       req.body['_id'],
+			email:       req.body['email'],
 			first_name: req.body['first_name'],
 			last_name: req.body['last_name'],
 			specialty: req.body['specialty'],
 			hospital:  req.body['hospital']
 		}
-		console.log(new_doctor);
 
 		validate.is_valid(new_doctor).then(function (error_msg) {
 			if (error_msg.length > 0) return res.status(400).send(error_msg);
 
 			//check if someone with this email already has an account
-			Creds.findById(req.body['_id'], function (err, doctor) {
+			Creds.find({email:req.body['email']}, function (err, doctor) {
 				if (err) return next(err);
-				console.log(doctor);
-				if (doctor) return res.status(400).send('doctor already exists. If you want to update, send post to /doctors/update');
+				if (doctor.length) return res.json({error:'doctor already exists. If you want to update, send post to /doctors/update'});
 
 				//encrypt password
 				crypto.randomBytes(16, function (err, bytes) {
 					if (err) return next(err);
 
-					var new_creds = { _id: req.body['_id'] };
+					var new_creds = { email: req.body['email'] };
 					new_creds.salt = bytes.toString('utf8');
 					new_creds.hash = hash(req.body['pass'], new_creds.salt);
 
@@ -79,7 +77,7 @@ module.exports = function (app) {
 								}
 								return next(err);
 							}
-							return res.status(201).send('inserted '+inserted);
+							return res.status(201).send(inserted);
 						});
 					});
 				});			
@@ -87,25 +85,40 @@ module.exports = function (app) {
 		});
 	});
 
-	app.post('/doctors/update', function (req, res, next) {
-		var updated_doctor = {};
-		for (key in req.body) {
-			updated_doctor[key] = req.body[key];
-		}
-		delete updated_doctor['pass'];
+	//update sensitive information
+	//copy entry in "doctors" table
+	//delete entry in "doctors" and "creds" table
+	//create
+	app.post('/doctors/update_email', function (req, res, next) {
+		Doctors.findByIdAndUpdate(
+			{email:req.body["email"]},
+			{$set: req.body},
+			{},
+			function (err, object) {
+				if (err) next(err);
+				return res.json(object);
+			});
+	});
 
-		validate.is_valid(updated_doctor).then(function (error_msg) {
-			return res.json({"err":error_msg});
-		});
+	//update non sensitive information
+	app.post('/doctors/update_info', function (req, res, next) {
+		Doctors.findOneAndUpdate(
+			{email:req.body["email"]},
+			{$set: req.body},
+			{},
+			function (err, object, t) {
+				if (err) next(err);
+				return res.json(object);
+			});
 	});
 
 	app.post('/doctors/remove', function (req, res, next) {
-		var _id = req.body['_id'];
-		Doctors.findByIdAndRemove(_id, function (err, removed) {
+		var email = req.body['email'];
+		Doctors.findOneAndRemove({email:email}, function (err, removed) {
 			if (err) console.log('no doctor found with that id. checking credentials table');
-			Creds.findByIdAndRemove(_id, function (err, removed) {
+			Creds.findOneAndRemove({email:email}, function (err, removed) {
 				if (err) return res.status(400).send(err);
-				return res.status(200).send('group '+_id+' was deleted');
+				return res.status(200).send(removed);
 			});
 		});
 	});

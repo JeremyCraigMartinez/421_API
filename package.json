@@ -4,7 +4,8 @@
   "description": "Senior Project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "grunt",
+    "test-unit": "grunt mochaTest"
   },
   "repository": {
     "type": "git",
@@ -19,11 +20,21 @@
     "express": "~4.12.1",
     "express-session": "^1.10.4",
     "jade": "^1.9.2",
+    "method-override": "^2.3.3",
     "mongoose": "^4.0.1",
     "mongoose-lifecycle": "^1.0.0",
     "morgan": "^1.5.2",
     "passport": "~0.2.1",
     "q": "^1.3.0",
+    "string": "^3.1.1",
     "validator": "^3.37.0"
+  },
+  "devDependencies": {
+    "chai": "^2.3.0",
+    "grunt": "latest",
+    "grunt-mocha": "^0.4.12",
+    "grunt-mocha-test": "^0.12.7",
+    "mocha": "^2.2.5",
+    "supertest": "^1.0.1"
   }
 }
