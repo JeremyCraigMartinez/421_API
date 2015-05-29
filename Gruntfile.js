@@ -3,16 +3,6 @@
 	  grunt.initConfig({
 	    pkg: grunt.file.readJSON('package.json'),
 
-	    // Mocha
-	    mocha: {
-	      all: {
-	        src: ['test/testrunner.html'],
-	      },
-	      options: {
-	        run: true
-	      }
-	    },
-
 	    // Mocha Test
 	    mochaTest: {
 			  test: {
