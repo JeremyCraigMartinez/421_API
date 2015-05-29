@@ -9,8 +9,10 @@ var hash = require('../helpers/hash');
 var crypto = require('crypto');
 var validate = require('../helpers/validate')();
 
+var authController = require('../helpers/auth');
+
 module.exports = function (app) {
-	app.get('/doctors', function (req, res, next) {
+	app.get('/doctors', authController.isAuthenticated, function (req, res, next) {
 		Doctors.find(function (err, doctors) {
 			if (err) return next(err);
 			if (!doctors) return invalid(res);
@@ -23,7 +25,7 @@ module.exports = function (app) {
 		});
 	});
 
-	app.get('/doctors/:doctor_email', function (req, res, next) {
+	app.get('/doctors/:doctor_email', authController.isAuthenticated, function (req, res, next) {
 		var doctor_email = cleanString(req.params['doctor_email']).toLowerCase();
 
 		Doctors.find({email:doctor_email}, function (err, doctor) {
@@ -52,35 +54,29 @@ module.exports = function (app) {
 				if (err) return next(err);
 				if (doctor.length) return res.json({error:'doctor already exists. If you want to update, send post to /doctors/update'});
 
-				//encrypt password
-				crypto.randomBytes(16, function (err, bytes) {
-					if (err) return next(err);
+				var new_creds = { email: req.body['email'] };
+				new_creds.password = req.body['pass'];
 
-					var new_creds = { email: req.body['email'] };
-					new_creds.salt = bytes.toString('utf8');
-					new_creds.hash = hash(req.body['pass'], new_creds.salt);
+				//insert row into Creds table
+				Creds.create(new_creds, function (err, inserted) {
+					if (err) {
+						if (err instanceof mongoose.Error.ValidationError) {
+							return res.json(err.errors);
+						}
+						return next(err);
+					}
 
-					//insert row into Creds table
-					Creds.create(new_creds, function (err, inserted) {
+					//insert row into Doctors table
+					Doctors.create(new_doctor, function (err, inserted) {
 						if (err) {
 							if (err instanceof mongoose.Error.ValidationError) {
 								return res.json(err.errors);
 							}
 							return next(err);
 						}
-
-						//insert row into Doctors table
-						Doctors.create(new_doctor, function (err, inserted) {
-							if (err) {
-								if (err instanceof mongoose.Error.ValidationError) {
-									return res.json(err.errors);
-								}
-								return next(err);
-							}
-							return res.status(201).send(inserted);
-						});
+						return res.status(201).send(inserted);
 					});
-				});			
+				});
 			});
 		});
 	});
@@ -89,7 +85,7 @@ module.exports = function (app) {
 	//copy entry in "doctors" table
 	//delete entry in "doctors" and "creds" table
 	//create
-	app.post('/doctors/update_email', function (req, res, next) {
+	app.post('/doctors/update_email', authController.isAuthenticated, function (req, res, next) {
 		Doctors.findByIdAndUpdate(
 			{email:req.body["email"]},
 			{$set: req.body},
@@ -101,7 +97,7 @@ module.exports = function (app) {
 	});
 
 	//update non sensitive information
-	app.post('/doctors/update_info', function (req, res, next) {
+	app.post('/doctors/update_info', authController.isAuthenticated, function (req, res, next) {
 		Doctors.findOneAndUpdate(
 			{email:req.body["email"]},
 			{$set: req.body},
@@ -112,7 +108,7 @@ module.exports = function (app) {
 			});
 	});
 
-	app.post('/doctors/remove', function (req, res, next) {
+	app.post('/doctors/remove', authController.isAuthenticated, function (req, res, next) {
 		var email = req.body['email'];
 		Doctors.findOneAndRemove({email:email}, function (err, removed) {
 			if (err) console.log('no doctor found with that id. checking credentials table');
