@@ -10,9 +10,8 @@ var schema = mongoose.Schema({
 	hospital: { type: String, trim: true, required: true, lowercase: true }
 });
 
-schema.post('remove', function(next) {
-	Creds.remove({_id:this._id}).exec();
-	next();
+schema.pre('remove', function(next) {
+	console.log('%s has been removed', this.email);
 });
 
 module.exports = mongoose.model('Doctors', schema);

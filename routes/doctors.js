@@ -28,7 +28,12 @@ module.exports = function (app) {
 	app.get('/doctors/:doctor_email', authController.isAuthenticated, function (req, res, next) {
 		var doctor_email = cleanString(req.params['doctor_email']).toLowerCase();
 
-		Doctors.find({email:doctor_email}, function (err, doctor) {
+		// Reject request if doctor inquires about any doctors other than themselves
+		if (req.user['email'] != req.params['doctor_email']) {
+			res.status(401).send('unauthorized');
+		}
+
+		Doctors.findOne({email:doctor_email}, function (err, doctor) {
 			if (err) return next(err);
 
 			if (!doctor) return res.status(400).send('no doctor: '+doctor_email);
@@ -85,21 +90,27 @@ module.exports = function (app) {
 	//copy entry in "doctors" table
 	//delete entry in "doctors" and "creds" table
 	//create
-	app.post('/doctors/update_email', authController.isAuthenticated, function (req, res, next) {
-		Doctors.findByIdAndUpdate(
-			{email:req.body["email"]},
+	app.put('/doctors/update_account', authController.isAuthenticated, function (req, res, next) {
+		Doctors.findOneAndUpdate(
+			{email:req.user["email"]},
 			{$set: req.body},
 			{},
 			function (err, object) {
 				if (err) next(err);
-				return res.json(object);
+				Creds.findOne({email:req.user["email"]}, function (err, object) {
+					object['email'] = (req.body['email']) ? req.body['email'] : object['email'];
+					object['password'] = (req.body['pass']) ? req.body['pass'] : object['password'];
+					object.save(function (err) {
+						return res.json(object);
+					});
+				});
 			});
 	});
 
 	//update non sensitive information
-	app.post('/doctors/update_info', authController.isAuthenticated, function (req, res, next) {
+	app.put('/doctors/update_info', authController.isAuthenticated, function (req, res, next) {
 		Doctors.findOneAndUpdate(
-			{email:req.body["email"]},
+			{email:req.user["email"]},
 			{$set: req.body},
 			{},
 			function (err, object, t) {
@@ -108,12 +119,12 @@ module.exports = function (app) {
 			});
 	});
 
-	app.post('/doctors/remove', authController.isAuthenticated, function (req, res, next) {
-		var email = req.body['email'];
+	app.delete('/doctors/remove', authController.isAuthenticated, function (req, res, next) {
+		var email = req.user['email'];
 		Doctors.findOneAndRemove({email:email}, function (err, removed) {
-			if (err) console.log('no doctor found with that id. checking credentials table');
+			if (err) return next(err);
 			Creds.findOneAndRemove({email:email}, function (err, removed) {
-				if (err) return res.status(400).send(err);
+				if (err) return next(err);
 				return res.status(200).send(removed);
 			});
 		});

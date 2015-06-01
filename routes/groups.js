@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 var Groups = require('../models/Groups');
 
+var authController = require('../helpers/auth');
+
 module.exports = function (app) {
 	app.get('/groups', function (req, res, next) {
 		Groups.find(function (err, groups) {
@@ -26,12 +28,12 @@ module.exports = function (app) {
 					return next(err);
 				}
 				res.end();
-			})
+			});
 		});
 	});
 
-	app.post('/groups/remove', function (req, res, next) {
-		var _id = req.body['_id'].toLowerCase();
+	app.delete('/groups/remove/:groupid', authController.isAuthenticated, function (req, res, next) {
+		var _id = req.params['groupid'].toLowerCase();
 
 		Groups.findByIdAndRemove(_id, function (err, removed) {
 			if (err) return res.status(200).send("err");
