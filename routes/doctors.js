@@ -7,12 +7,13 @@ var Groups = require('../models/Groups');
 var cleanString = require('../helpers/cleanString');
 var hash = require('../helpers/hash');
 var crypto = require('crypto');
+var q = require('q');
 var validate = require('../helpers/validate')();
 
 var authController = require('../helpers/auth');
 
 module.exports = function (app) {
-	app.get('/doctors', authController.isAuthenticated, function (req, res, next) {
+	app.get('/doctors', function (req, res, next) {
 		Doctors.find(function (err, doctors) {
 			if (err) return next(err);
 			if (!doctors) return invalid(res);
@@ -25,13 +26,8 @@ module.exports = function (app) {
 		});
 	});
 
-	app.get('/doctors/:doctor_email', authController.isAuthenticated, function (req, res, next) {
+	app.get('/doctors/:doctor_email', function (req, res, next) {
 		var doctor_email = cleanString(req.params['doctor_email']).toLowerCase();
-
-		// Reject request if doctor inquires about any doctors other than themselves
-		if (req.user['email'] != req.params['doctor_email']) {
-			res.status(401).send('unauthorized');
-		}
 
 		Doctors.findOne({email:doctor_email}, function (err, doctor) {
 			if (err) return next(err);
@@ -119,14 +115,35 @@ module.exports = function (app) {
 			});
 	});
 
-	app.delete('/doctors/remove', authController.isAuthenticated, function (req, res, next) {
+  app.delete('/doctors/remove', authController.isAuthenticated, function (req, res, next) {
+    var email = req.user['email'];
+    Doctors.remove({email:email}, function (err, removed) {
+      if (err) return next(err);
+      Creds.remove({email:email}, function (err, removed) {
+        if (err) return next(err);
+
+				Patients.find({doctor:email}, function (err, relative_patients) {
+					if (!relative_patients) return res.status(200).send(removed);
+
+					var all = [];
+					for (var patient in relative_patients) {
+						all.push(Patients.update(
+											{email:relative_patients[patient].email},
+											{$set:{doctor:null}}));
+					}
+					q.all(all).then(function () {
+        		return res.status(200).send(removed);
+					});
+				});
+      });
+    });
+  });
+	/*app.delete('/doctors/remove', authController.isAuthenticated, function (req, res, next) {
 		var email = req.user['email'];
-		Doctors.findOneAndRemove({email:email}, function (err, removed) {
+		Doctors.findOne({email:email}).remove(function (err, removed) {
 			if (err) return next(err);
-			Creds.findOneAndRemove({email:email}, function (err, removed) {
-				if (err) return next(err);
-				return res.status(200).send(removed);
-			});
+
+			return res.status(200).send(removed);
 		});
-	});
+	});*/
 }

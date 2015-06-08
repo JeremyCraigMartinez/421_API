@@ -13,7 +13,7 @@ var authController = require('../helpers/auth');
 
 module.exports = function (app) {
 	app.get('/patients', authController.isAuthenticated, function (req, res, next) {
-		Patients.find(function (err, patients) {
+		Patients.find({doctor:req.user.email}, function (err, patients) {
 			if (err) return next(err);
 			if (!patients) return invalid(res);
 
@@ -27,11 +27,6 @@ module.exports = function (app) {
 
 	app.get('/patients/:patient_email', authController.isAuthenticated, function (req, res, next) {
 		var patient_email = cleanString(req.params['patient_email']).toLowerCase();
-
-		// Reject request if doctor inquires about any doctors other than themselves
-		if (req.user['email'] != req.params['patient_email']) {
-			res.status(401).send('unauthorized');
-		}
 
 		Patients.findOne({email:patient_email}, function (err, patient) {
 			if (err) return next(err);
@@ -124,11 +119,11 @@ module.exports = function (app) {
 	});
 
 	app.delete('/patients/remove', authController.isAuthenticated, function (req, res, next) {
-		var email = req.user['email'];
-		Patients.findOneAndRemove({email:email}, function (err, removed) {
-			if (err) console.log('no doctor found with that id. checking credentials table');
-			Creds.findOneAndRemove({email:email}, function (err, removed) {
-				if (err) return res.status(400).send(err);
+    var email = req.user['email'];
+    Patients.remove({email:email}, function (err, removed) {
+      if (err) return next(err);
+      Creds.remove({email:email}, function (err, removed) {
+        if (err) return next(err);
 				return res.status(200).send(removed);
 			});
 		});

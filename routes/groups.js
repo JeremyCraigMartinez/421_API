@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Groups = require('../models/Groups');
+var Patients = require('../models/Patients');
 
 var authController = require('../helpers/auth');
 
@@ -27,7 +28,7 @@ module.exports = function (app) {
 					}
 					return next(err);
 				}
-				res.end();
+				return res.status(201).send(inserted);
 			});
 		});
 	});
@@ -36,8 +37,13 @@ module.exports = function (app) {
 		var _id = req.params['groupid'].toLowerCase();
 
 		Groups.findByIdAndRemove(_id, function (err, removed) {
-			if (err) return res.status(200).send("err");
-			return res.status(200).send(removed);
+			if (err) return res.status(400).send(err);
+
+			Patients.update({group:_id}, {$pull:{group:_id}}, {multi:true}, function (err, removed) {
+				if (err) return res.status(400).send(err);
+
+				return res.status(200).send(removed);
+			});
 		});
 	});
 }
