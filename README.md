@@ -13,6 +13,7 @@ It will ```urlencode``` each request to avoid any injection attack. It will then
 
 ###API GET Calls include:
 
+<<<<<<< HEAD
 |      | PATH              | RES                  |
 |------|-------------------|----------------------|
 | GET  | /                 | JSON - ERROR         |
@@ -20,6 +21,16 @@ It will ```urlencode``` each request to avoid any injection attack. It will then
 | GET  | /list_of_patients | JSON - patients list |
 | GET  | /patients/:id     | JSON - patient info  |
 | GET  | /groups/          | ARRAY - groups       |
+=======
+|      | PATH          | RES                  |
+|------|---------------|----------------------|
+| GET  | /             | JSON - ERROR         |
+| GET  | /patients     | JSON - patients list |
+| GET  | /patients/:id | JSON - patient info  |
+| GET  | /groups/      | ARRAY - groups       |
+| GET  | /doctors/     | ARRAY - doctors      |
+| GET  | /doctors/:id  | JSON - doctor info   |
+>>>>>>> d27c76fafaff48bd1cd199d485026ced0687b1f8
 
 
 ###API POST Calls include:
@@ -29,7 +40,7 @@ It will ```urlencode``` each request to avoid any injection attack. It will then
     {
     	email:"email@example.com",
     	pass:"$ExamPLePasSworD$",
-        group: "WSU",
+        group: ["WSU"],
         first_name: "jeremy",
         last_name: "martinez",
         age: "22",
@@ -38,27 +49,52 @@ It will ```urlencode``` each request to avoid any injection attack. It will then
         sex: "male"        
     }
 
-> /patients/update #not currently working
-
-    {
-        group: "WSU",
-        first_name: "jeremy",
-        last_name: "martinez",
-        age: "22",
-        height: "72", //inches
-        weight: "180", //pounds
-        sex: "male"
-    }
-
 > /groups 
 
     {
         _id: "cancer"
     }
 
-> /groups/remove
+> /doctors
 
     {
-        _id: "cancer"
+    	email	   : "example@test.com",
+    	first_name : "example",
+    	last_name  : "test",
+    	specialty  : "specs",
+    	hospital   : "hosp",
+    	pass	   : "pass" 
     }
 
+###API PUT Calls include:
+
+> /patients/update_info - for everything BUT email and password
+
+    #same as post for patient
+    
+> /patients/update_account - for email and password
+
+    {
+        email: "new@email.com",
+        pass: "newpass"
+    }
+    
+> /doctors/update_info - for everything BUT email and password
+
+    #same as post for doctor
+    
+> /doctors/update_account - for email and password
+
+    {
+        email: "new@email.com",
+        pass: "newpass"
+    }
+    
+###API DELETE Calls include
+All of these DELETE do not need data sent. Patients and Doctors removal deletes the user that authenticates to the api call
+
+> /groups/remove/:groupid
+
+> /patients/remove
+
+> /doctors/remove
