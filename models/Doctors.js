@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var validEmail = require('../helpers/validate/email');
 var Creds = require('./Creds');
 var Patients = require('./Patients');
+var q = require('q');
 
 var schema = mongoose.Schema({
 	email: { type: String, trim: true, unique: true, ref: 'Creds', validate: validEmail },
@@ -11,18 +12,18 @@ var schema = mongoose.Schema({
 	hospital: { type: String, trim: true, required: true, lowercase: true }
 });
 
-schema.pre('remove', function (doc) {
-	console.log('doctors - post - remove');
+schema.pre('save', function (next, req, callback) {
+	console.log(next);
+	console.log(req);
+	console.log(callback);
+	next();
+});
+
+schema.post('remove', function (doc, done) {
 	Creds.remove({email:doc.email}).exec();
 
-	Patients.find({doctor:doc.email}, function (relative_patients) {
-		var all = [];
-		for (var patient in relative_patients) {
-			all.push(Patients.update(
-								{email:relative_patients[patient].email},
-								{$set:{doctor:null}}));
-		}
-		q.all(all).then(function () {});
+	Patients.update({doctor:doc.email}, {$set:{doctor:null}}, {multi:true}, function (err, removed) {
+		done();
 	});
 });
 

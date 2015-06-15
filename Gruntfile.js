@@ -13,7 +13,8 @@
 			    src: ['all.js',
 			    			'test/groups.js',
 			    			'test/doctors.js',
-			    			'test/patients.js']
+			    			'test/patients.js',
+			    			'test/diet.js']
 			  }
 			}
 	  });

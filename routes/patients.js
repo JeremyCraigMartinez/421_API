@@ -12,7 +12,16 @@ var validate = require('../helpers/validate')();
 var authController = require('../helpers/auth');
 
 module.exports = function (app) {
-	app.get('/patients', authController.isAuthenticated, function (req, res, next) {
+	app.get('/patients', authController.isPatient, function (req, res, next) {
+		Patients.findOne({email:req.user.email}, function (err, patient) {
+			if (err) return next(err);
+			if (!patient) return invalid(res);
+
+			return res.json(patient);
+		});
+	});
+
+	app.get('/list_of_patients', authController.isDoctor, function (req, res, next) {
 		Patients.find({doctor:req.user.email}, function (err, patients) {
 			if (err) return next(err);
 			if (!patients) return invalid(res);
@@ -25,7 +34,8 @@ module.exports = function (app) {
 		});
 	});
 
-	app.get('/patients/:patient_email', authController.isAuthenticated, function (req, res, next) {
+	//must be self inquery or correct doctor
+	app.get('/patients/:patient_email', authController.isDoctor, function (req, res, next) {
 		var patient_email = cleanString(req.params['patient_email']).toLowerCase();
 
 		Patients.findOne({email:patient_email}, function (err, patient) {
@@ -89,7 +99,7 @@ module.exports = function (app) {
 	//copy entry in "patients" table
 	//delete entry in "patients" and "creds" table
 	//create
-	app.put('/patients/update_account', authController.isAuthenticated, function (req, res, next) {
+	app.put('/patients/update_account', authController.isUser, function (req, res, next) {
 		Patients.findOneAndUpdate(
 			{email:req.user["email"]},
 			{$set: req.body},
@@ -107,7 +117,7 @@ module.exports = function (app) {
 	});
 
 	//update non sensitive information
-	app.put('/patients/update_info', authController.isAuthenticated, function (req, res, next) {
+	app.put('/patients/update_info', authController.isUser, function (req, res, next) {
 		Patients.findOneAndUpdate(
 			{email:req.user["email"]},
 			{$set: req.body},
@@ -118,12 +128,12 @@ module.exports = function (app) {
 			});
 	});
 
-	app.delete('/patients/remove', authController.isAuthenticated, function (req, res, next) {
+	app.delete('/patients/remove', authController.isUser, function (req, res, next) {
     var email = req.user['email'];
-    Patients.remove({email:email}, function (err, removed) {
+    Patients.findOne({email:email}, function (err, patient) {
       if (err) return next(err);
-      Creds.remove({email:email}, function (err, removed) {
-        if (err) return next(err);
+
+      patient.remove().then(function (removed) {
 				return res.status(200).send(removed);
 			});
 		});

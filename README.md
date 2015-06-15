@@ -13,12 +13,13 @@ It will ```urlencode``` each request to avoid any injection attack. It will then
 
 ###API GET Calls include:
 
-|      | PATH          | RES                  |
-|------|---------------|----------------------|
-| GET  | /             | JSON - ERROR         |
-| GET  | /patients     | JSON - patients list |
-| GET  | /patients/:id | JSON - patient info  |
-| GET  | /groups/      | ARRAY - groups       |
+|      | PATH              | RES                  |
+|------|-------------------|----------------------|
+| GET  | /                 | JSON - ERROR         |
+| GET  | /patients         | JSON - patient info  |
+| GET  | /list_of_patients | JSON - patients list |
+| GET  | /patients/:id     | JSON - patient info  |
+| GET  | /groups/          | ARRAY - groups       |
 
 
 ###API POST Calls include:

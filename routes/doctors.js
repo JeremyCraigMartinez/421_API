@@ -86,7 +86,7 @@ module.exports = function (app) {
 	//copy entry in "doctors" table
 	//delete entry in "doctors" and "creds" table
 	//create
-	app.put('/doctors/update_account', authController.isAuthenticated, function (req, res, next) {
+	app.put('/doctors/update_account', authController.isUser, function (req, res, next) {
 		Doctors.findOneAndUpdate(
 			{email:req.user["email"]},
 			{$set: req.body},
@@ -104,7 +104,7 @@ module.exports = function (app) {
 	});
 
 	//update non sensitive information
-	app.put('/doctors/update_info', authController.isAuthenticated, function (req, res, next) {
+	app.put('/doctors/update_info', authController.isUser, function (req, res, next) {
 		Doctors.findOneAndUpdate(
 			{email:req.user["email"]},
 			{$set: req.body},
@@ -115,35 +115,14 @@ module.exports = function (app) {
 			});
 	});
 
-  app.delete('/doctors/remove', authController.isAuthenticated, function (req, res, next) {
-    var email = req.user['email'];
-    Doctors.remove({email:email}, function (err, removed) {
-      if (err) return next(err);
-      Creds.remove({email:email}, function (err, removed) {
-        if (err) return next(err);
-
-				Patients.find({doctor:email}, function (err, relative_patients) {
-					if (!relative_patients) return res.status(200).send(removed);
-
-					var all = [];
-					for (var patient in relative_patients) {
-						all.push(Patients.update(
-											{email:relative_patients[patient].email},
-											{$set:{doctor:null}}));
-					}
-					q.all(all).then(function () {
-        		return res.status(200).send(removed);
-					});
-				});
-      });
-    });
-  });
-	/*app.delete('/doctors/remove', authController.isAuthenticated, function (req, res, next) {
+	app.delete('/doctors/remove', authController.isUser, function (req, res, next) {
 		var email = req.user['email'];
-		Doctors.findOne({email:email}).remove(function (err, removed) {
+		Doctors.findOne({email:email}, function (err, doc) {
 			if (err) return next(err);
 
-			return res.status(200).send(removed);
+			doc.remove().then(function (removed) {
+				return res.status(200).send(removed);				
+			});
 		});
-	});*/
+	});
 }

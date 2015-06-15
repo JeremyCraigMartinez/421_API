@@ -19,7 +19,7 @@ module.exports = function (app) {
 
 		Groups.findById(_id, function (err, group) {
 			if (err) return next(err);
-			if (group) return res.status(200).send("group already exists");
+			if (group) return res.status(200).send({error:"group already exists"});
 
 			Groups.create(req.body, function (err, inserted) {
 				if (err) {
@@ -33,16 +33,14 @@ module.exports = function (app) {
 		});
 	});
 
-	app.delete('/groups/remove/:groupid', authController.isAuthenticated, function (req, res, next) {
+	app.delete('/groups/remove/:groupid', authController.isUser, function (req, res, next) {
 		var _id = req.params['groupid'].toLowerCase();
 
-		Groups.findByIdAndRemove(_id, function (err, removed) {
+		Groups.findById(_id, function (err, group) {
 			if (err) return res.status(400).send(err);
 
-			Patients.update({group:_id}, {$pull:{group:_id}}, {multi:true}, function (err, removed) {
-				if (err) return res.status(400).send(err);
-
-				return res.status(200).send(removed);
+			group.remove().then(function (removed) {
+				return res.status(200).send(removed);				
 			});
 		});
 	});
