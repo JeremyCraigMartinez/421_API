@@ -1,13 +1,9 @@
-var Doctors = require('../../models/Doctors');
-var q = require('q');
+module.exports = function (doctor) {
+	var mongoose = require('mongoose');
 
-module.exports = function (email) {
-	var deferred = q.defer();
-  Doctors.find({email:email}, function (err, doctor) {
-  	if (err) console.log(err);
+	var Doctors = mongoose.model('Doctors');
 
-  	if (!doctor) deferred.resolve(false);
-	  else deferred.resolve(true);
-  });
-  return deferred.promise;
+	Doctors.findOne({email:doctor}, function (err, found) {
+		return (found) ? true : false;
+	});
 }

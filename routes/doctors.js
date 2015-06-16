@@ -8,7 +8,6 @@ var cleanString = require('../helpers/cleanString');
 var hash = require('../helpers/hash');
 var crypto = require('crypto');
 var q = require('q');
-var validate = require('../helpers/validate')();
 
 var authController = require('../helpers/auth');
 
@@ -40,45 +39,22 @@ module.exports = function (app) {
 
 	app.post('/doctors', function (req, res, next) {
 		var new_doctor = {
-			email:       req.body['email'],
+			email:      req.body['email'],
 			first_name: req.body['first_name'],
-			last_name: req.body['last_name'],
-			specialty: req.body['specialty'],
-			hospital:  req.body['hospital']
+			last_name:  req.body['last_name'],
+			specialty:  req.body['specialty'],
+			hospital:   req.body['hospital']
 		}
 
-		validate.is_valid(new_doctor).then(function (error_msg) {
-			if (error_msg.length > 0) return res.status(400).send(error_msg);
-
-			//check if someone with this email already has an account
-			Creds.find({email:req.body['email']}, function (err, doctor) {
-				if (err) return next(err);
-				if (doctor.length) return res.json({error:'doctor already exists. If you want to update, send post to /doctors/update'});
-
-				var new_creds = { email: req.body['email'] };
-				new_creds.password = req.body['pass'];
-
-				//insert row into Creds table
-				Creds.create(new_creds, function (err, inserted) {
-					if (err) {
-						if (err instanceof mongoose.Error.ValidationError) {
-							return res.json(err.errors);
-						}
-						return next(err);
-					}
-
-					//insert row into Doctors table
-					Doctors.create(new_doctor, function (err, inserted) {
-						if (err) {
-							if (err instanceof mongoose.Error.ValidationError) {
-								return res.json(err.errors);
-							}
-							return next(err);
-						}
-						return res.status(201).send(inserted);
-					});
-				});
-			});
+		var new_doc = new Doctors(new_doctor);
+		new_doc.save(req, function (err, inserted) {
+			if (err) {
+				if (err instanceof mongoose.Error.ValidationError) {
+					return res.json(err.errors);
+				}
+				return next(err);
+			}
+			return res.status(201).send(inserted);
 		});
 	});
 

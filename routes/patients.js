@@ -7,7 +7,6 @@ var Groups = require('../models/Groups');
 var cleanString = require('../helpers/cleanString');
 var hash = require('../helpers/hash');
 var crypto = require('crypto');
-var validate = require('../helpers/validate')();
 
 var authController = require('../helpers/auth');
 
@@ -60,38 +59,15 @@ module.exports = function (app) {
 			sex:        req.body['sex']
 		}
 
-		validate.is_valid(new_patient).then(function (error_msg) {
-			if (error_msg.length > 0) return res.status(400).send(error_msg);
-
-			//check if someone with this email already has an account
-			Creds.findOne({email:req.body['email']}, function (err, patient) {
-				if (err) return next(err);
-				if (patient) return res.json({error:'patient already exists. If you want to update, send post to /patients/update'});
-
-				var new_creds = { email: req.body['email'] };
-				new_creds.password = req.body['pass'];
-
-				//insert row into Creds table
-				Creds.create(new_creds, function (err, inserted) {
-					if (err) {
-						if (err instanceof mongoose.Error.ValidationError) {
-							return res.json(err.errors);
-						}
-						return next(err);
-					}
-
-					//insert row into Patients table
-					Patients.create(new_patient, function (err, inserted) {
-						if (err) {
-							if (err instanceof mongoose.Error.ValidationError) {
-								return res.json(err.errors);
-							}
-							return next(err);
-						}
-						return res.status(201).send(inserted);
-					});
-				});
-			});
+		var patient = new Patients(new_patient);
+		patient.save(req, function (err, inserted) {
+			if (err) {
+				if (err instanceof mongoose.Error.ValidationError) {
+					return res.json(err.errors);
+				}
+				return next(err);
+			}
+			return res.status(201).send(inserted);
 		});
 	});
 

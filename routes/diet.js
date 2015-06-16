@@ -9,7 +9,6 @@ var passport = require('passport');
 var cleanString = require('../helpers/cleanString');
 var hash = require('../helpers/hash');
 var crypto = require('crypto');
-var validate = require('../helpers/validate')();
 
 var authController = require('../helpers/auth');
 
