@@ -62,7 +62,7 @@ module.exports = function (app) {
 	//copy entry in "doctors" table
 	//delete entry in "doctors" and "creds" table
 	//create
-	app.put('/doctors/update_account', authController.isUser, function (req, res, next) {
+	app.put('/doctors/update_account', authController.isDoctor, function (req, res, next) {
 		Doctors.findOneAndUpdate(
 			{email:req.user["email"]},
 			{$set: req.body},
@@ -80,7 +80,7 @@ module.exports = function (app) {
 	});
 
 	//update non sensitive information
-	app.put('/doctors/update_info', authController.isUser, function (req, res, next) {
+	app.put('/doctors/update_info', authController.isDoctor, function (req, res, next) {
 		Doctors.findOneAndUpdate(
 			{email:req.user["email"]},
 			{$set: req.body},
@@ -91,7 +91,7 @@ module.exports = function (app) {
 			});
 	});
 
-	app.delete('/doctors/remove', authController.isUser, function (req, res, next) {
+	app.delete('/doctors/remove', authController.isDoctor, function (req, res, next) {
 		var email = req.user['email'];
 		Doctors.findOne({email:email}, function (err, doc) {
 			if (err) return next(err);
