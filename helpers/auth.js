@@ -1,12 +1,12 @@
 var passport = require('passport');
 var BasicStrategy = require('passport-http').BasicStrategy;
-var User = require('../models/Creds');
+var Creds = require('../models/Creds');
 var Patient = require('../models/Patients');
 var Doctor = require('../models/Doctors');
 
 passport.use('isUser',new BasicStrategy(
 	function (email, password, callback) {
-		User.findOne({email:email}, function (err, user) {
+		Creds.findOne({email:email}, function (err, user) {
 			if (err) {return callback(err); }
 
 			// No user found with this email
@@ -27,7 +27,7 @@ passport.use('isUser',new BasicStrategy(
 
 passport.use('isPatient',new BasicStrategy(
 	function (email, password, callback) {
-		User.findOne({email:email}, function (err, user) {
+		Creds.findOne({email:email}, function (err, user) {
 			if (err) {return callback(err); }
 
 			// No user found with this email
@@ -55,7 +55,7 @@ passport.use('isPatient',new BasicStrategy(
 
 passport.use('isDoctor',new BasicStrategy(
 	function (email, password, callback) {
-		User.findOne({email:email}, function (err, user) {
+		Creds.findOne({email:email}, function (err, user) {
 			if (err) {return callback(err); }
 
 			// No user found with this email

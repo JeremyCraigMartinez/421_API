@@ -1,27 +1,43 @@
-	// Gruntfile.js
-	module.exports = function(grunt){
-	  grunt.initConfig({
-	    pkg: grunt.file.readJSON('package.json'),
+// Gruntfile.js
+module.exports = function(grunt){
+  // Load grunt mocha task
+  grunt.loadNpmTasks('grunt-mocha');
+  grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-contrib');
 
-	    // Mocha Test
-	    mochaTest: {
-			  test: {
-			    options: {
-			      reporter: 'list',
-			      timeout: 2000
-			    },
-			    src: ['all.js',
-			    			'test/groups.js',
-			    			'test/doctors.js',
-			    			'test/patients.js',
-			    			'test/diet.js']
-			  }
-			}
-	  });
+  grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
 
-	  // Load grunt mocha task
-	  grunt.loadNpmTasks('grunt-mocha');
-	  grunt.loadNpmTasks('grunt-mocha-test');
+    // Mocha Test
+    mochaTest: {
+		  test: {
+		    options: {
+		      reporter: 'list',
+		      timeout: 2000
+		    },
+		    src: ['test/groups.js',
+		    			'test/doctors.js',
+		    			'test/patients.js',
+		    			'test/diet.js']
+		  },
+		  web_enter: { // fill database for website testing
+		    options: {
+		      reporter: 'list',
+		      timeout: 2000
+		    },
+		    src: ['test/web_testing_enter.js']
+		  },
+		  web_remove: { // remove data entered for website testing
+		    options: {
+		      reporter: 'list',
+		      timeout: 2000
+		    },
+		    src: ['test/web_testing_remove.js']
+		  }
+		}
+  });
 
-	  grunt.registerTask('default', ['mochaTest']);	  
-	};
+  grunt.registerTask('we', ['mochaTest:web_enter']);
+  grunt.registerTask('wr', ['mochaTest:web_remove']);
+  grunt.registerTask('default', ['mochaTest:test']);
+};

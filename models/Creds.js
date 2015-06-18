@@ -5,7 +5,8 @@ var bcrypt = require('bcrypt-nodejs');
 var schema = mongoose.Schema({
 	email: { type: String, lowercase: true, unique: true, trim: true, validate: validEmail },
 	password: { type: String, required: true },
-	created: { type: Date, default: Date.now }
+	created: { type: Date, default: Date.now },
+	admin: { type: Boolean, default: false }
 });
 
 schema.pre('save', function (callback) {

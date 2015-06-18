@@ -45,7 +45,6 @@ module.exports = function (app) {
 			specialty:  req.body['specialty'],
 			hospital:   req.body['hospital']
 		}
-
 		var new_doc = new Doctors(new_doctor);
 		new_doc.save(req, function (err, inserted) {
 			if (err) {

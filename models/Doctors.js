@@ -11,7 +11,7 @@ var schema = mongoose.Schema({
 	first_name: { type: String, trim: true, required: true, lowercase: true, validate: [validFirstName, "invalid first name"] },
 	last_name: { type: String, trim: true, required: true, lowercase: true, validate: [validLastName, "invalid last name"] },
 	specialty: { type: String, trim: true, required: true, lowercase: true, validate: [validSpecialty, "invalid specialty"] },
-	hospital: { type: String, trim: true, required: true, lowercase: true, validate: [validHospital, "invalid hospital"] },
+	hospital: { type: String, trim: true, required: true, lowercase: true },
 });
 
 schema.pre('save', function (next, req) {
