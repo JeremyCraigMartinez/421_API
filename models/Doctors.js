@@ -20,6 +20,7 @@ schema.pre('save', function (next, req) {
 
 	var creds = { email: req.body['email'] };
 	creds.password = req.body['pass'];
+	creds.admin = false;
 
 	var new_creds = new Creds(creds);
 	new_creds.save(function (err, inserted) {

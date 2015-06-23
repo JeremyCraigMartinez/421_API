@@ -81,6 +81,31 @@ passport.use('isDoctor',new BasicStrategy(
 	}
 ));
 
+passport.use('isAdmin', new BasicStrategy(
+	function (email, password, callback) {
+		Creds.findOne({email:email}, function (err, user) {
+			if (err) {return callback(err); }
+
+			// No user found with this email
+			if (!user) { return callback(null, false); }
+
+			user.verifyPassword(password, function (err, isMatch) {
+				if (err) { return callback(err); }
+
+				// Password did not match
+				if (!isMatch) { return callback(null, false); }
+
+				// admin = true
+				if (user.admin != true) { return callback(null, false); } 
+
+				// Success!
+				return callback(null, user);
+			});
+		});
+	}
+));
+
 exports.isUser = passport.authenticate('isUser', {session : false});
 exports.isPatient = passport.authenticate('isPatient', {session : false});
 exports.isDoctor = passport.authenticate('isDoctor', {session : false});
+exports.isAdmin = passport.authenticate('isAdmin', {session : false});
