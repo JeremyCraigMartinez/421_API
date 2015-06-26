@@ -43,6 +43,7 @@ describe('PATIENT TEST', function(){
       .del('/groups/remove/'+type_i_diabetes["_id"])
       .auth(lipschitz["email"], lipschitz["pass"])
       .end(function (err, res){
+        expect(res.status).to.not.equal(401);
         expect(Object.keys(res.body).length).to.not.equal(0);
         done();
       });
@@ -52,6 +53,7 @@ describe('PATIENT TEST', function(){
       .del('/groups/remove/'+type_ii_diabetes["_id"])
       .auth(lipschitz["email"], lipschitz["pass"])
       .end(function (err, res){
+        expect(res.status).to.not.equal(401);
         expect(Object.keys(res.body).length).to.not.equal(0);
         done();
       });
@@ -61,6 +63,7 @@ describe('PATIENT TEST', function(){
       .del('/groups/remove/'+cancer["_id"])
       .auth(lipschitz["email"], lipschitz["pass"])
       .end(function (err, res){
+        expect(res.status).to.not.equal(401);
         expect(Object.keys(res.body).length).to.not.equal(0);
         done();
       });

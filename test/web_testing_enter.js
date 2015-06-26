@@ -4,6 +4,7 @@ var request = require('supertest');
 var mongoose = require('mongoose');
 var expect = require("chai").expect;
 var S = require("string");
+var execSync = require('execSync');
 
 var app = require('../middleware/express');
 
@@ -47,6 +48,7 @@ describe('WEBSITE TESTING - ENTER ', function(){
           expect(S(res.body['error']).startsWith('doctor already exists')).to.be.true;
         else
           expect(res.body['email']).to.equal(lipschitz['email']);
+        execSync.exec('./test/make_admin.sh '+lipschitz.email);
         done();
       });
   });
