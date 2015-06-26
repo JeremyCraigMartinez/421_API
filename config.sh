@@ -9,3 +9,8 @@ sudo apt-get update
 sudo apt-get install -y mongodb-org=3.0.4 mongodb-org-server=3.0.4 mongodb-org-shell=3.0.4 mongodb-org-mongos=3.0.4 mongodb-org-tools=3.0.4
 sudo service mongod start
 
+sudo apt-get install git
+git clone #repo
+cd 421_api
+./setup.sh
+
