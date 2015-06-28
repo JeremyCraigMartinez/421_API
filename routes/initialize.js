@@ -27,12 +27,12 @@ module.exports = function (app) {
 				if (user.admin) return res.status(200).json({type:"admin"});
 				
 				// if doctor
-				Doctor.find({email:email}, function (err, doctor) {
+				Doctors.find({email:email}, function (err, doctor) {
 					return res.status(200).json({type:"doctor"});
 				});
 				
 				// if patient
-				Patient.find({email:email}, function (err, doctor) {
+				Patients.find({email:email}, function (err, doctor) {
 					return res.status(200).json({type:"patient"});
 				});
 			});
