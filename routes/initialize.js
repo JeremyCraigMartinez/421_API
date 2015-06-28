@@ -29,12 +29,12 @@ module.exports = function (app) {
 				
 				// if doctor
 				Doctors.find({email:email}, function (err, doctor) {
-					return res.json({type:"doctor"});
+					if (!err && doctor.length > 0) return res.json({type:"doctor"});
 				});
 				
 				// if patient
-				Patients.find({email:email}, function (err, doctor) {
-					return res.json({type:"patient"});
+				Patients.find({email:email}, function (err, patient) {
+					if (!err && patient.length > 0) return res.json({type:"patient"});
 				});
 			});
 		});
