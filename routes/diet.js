@@ -65,6 +65,7 @@ module.exports = function (app) {
 		});
 	});
 
+	//all diet entries
 	app.get('/diet/doctor/:patient_email', authController.isDoctor, function (req, res, next) {
 		Patients.findOne({email:req.params.patient_email,doctor:req.user.email}, function (err, patient) {
 			if (err) return next(err);
@@ -79,6 +80,7 @@ module.exports = function (app) {
 		});
 	});
 
+	//specific diet entry based on timestamp
 	app.get('/diet/doctor/:patient_email/:timestamp', authController.isDoctor, function (req, res, next) {
 		Patients.findOne({email:req.params.patient_email,doctor:req.user.email}, function (err, patient) {
 			if (err) return next(err);

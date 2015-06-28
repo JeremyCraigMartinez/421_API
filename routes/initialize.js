@@ -22,7 +22,19 @@ module.exports = function (app) {
 				if (err) return next(err);
 
 				// Success!
-				return res.status(200).end();
+
+				// if admin
+				if (user.admin) return res.status(200).json({type:"admin"});
+				
+				// if doctor
+				Doctor.find({email:email}, function (err, doctor) {
+					return res.status(200).json({type:"doctor"});
+				});
+				
+				// if patient
+				Patient.find({email:email}, function (err, doctor) {
+					return res.status(200).json({type:"patient"});
+				});
 			});
 		});
 	});
