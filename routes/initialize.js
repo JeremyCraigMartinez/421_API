@@ -23,17 +23,18 @@ module.exports = function (app) {
 
 				// Success!
 
+				res.status(200);
 				// if admin
-				if (user.admin) return res.status(200).json({type:"admin"});
+				if (user.admin) return res.json({type:"admin"});
 				
 				// if doctor
 				Doctors.find({email:email}, function (err, doctor) {
-					return res.status(200).json({type:"doctor"});
+					return res.json({type:"doctor"});
 				});
 				
 				// if patient
 				Patients.find({email:email}, function (err, doctor) {
-					return res.status(200).json({type:"patient"});
+					return res.json({type:"patient"});
 				});
 			});
 		});
