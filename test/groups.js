@@ -53,8 +53,6 @@ describe('GROUP TESTS', function(){
       .auth(doctor["email"], doctor["pass"])
       .send(group)
       .end(function (err, res){
-        console.log(res.status);
-        console.log(res.body);
         execSync.exec('./test/check_admin.sh '+doctor.email);
         done();
       });
