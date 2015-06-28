@@ -69,24 +69,30 @@ describe('WEBSITE TESTING - ENTER ', function(){
   it('/groups - POST - (create group)', function (done){
     request(app)
       .post('/groups')
+      .auth(lipschitz["email"], lipschitz["pass"])
       .send(type_i_diabetes)
       .end(function (err, res){
+        expect(res.status).to.not.equal(401);
         done();
       });
   });
   it('/groups - POST - (create group)', function (done){
     request(app)
       .post('/groups')
+      .auth(lipschitz["email"], lipschitz["pass"])
       .send(type_ii_diabetes)
       .end(function (err, res){
+        expect(res.status).to.not.equal(401);
         done();
       });
   });
   it('/groups - POST - (create group)', function (done){
     request(app)
       .post('/groups')
+      .auth(lipschitz["email"], lipschitz["pass"])
       .send(cancer)
       .end(function (err, res){
+        expect(res.status).to.not.equal(401);
         done();
       });
   });

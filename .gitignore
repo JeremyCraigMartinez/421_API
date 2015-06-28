@@ -5,3 +5,4 @@ nohup*
 npm-debug.log
 test-curl.js
 *.log
+string
