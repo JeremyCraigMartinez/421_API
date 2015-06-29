@@ -8,25 +8,9 @@ var app = require('../middleware/express');
 //var app = require('express')();
 
 describe('DOCTOR TESTS', function(){
-  var doctor = {
-    email      : "example@test.com",
-    first_name : "example",
-    last_name  : "test",
-    specialty  : "specs",
-    hospital   : "hosp",
-    pass       : "pass" 
-  };
-  var new_doctor = {
-  	email: "example@test.com",
-  	first_name: "new_example",
-  	last_name: "new_test",
-  	specialty: "new_specs",
-  	hospital: "new_hosp",
-  };
-  var new_doctor_creds = {
-    email: "new_example@test.com",
-    pass: "new_pass"
-  }
+  var doctor = require('./doctors/doctor.json');
+  var new_doctor = require('./doctors/new_doctor.json');
+  var new_doctor_creds = require('./creds/new_doctor_creds.json');
 
   //curl --request POST localhost:5025/doctors --data "email=example@test.com" --data "first_name=example" --data "last_name=test" --data "specialty=specs" --data "hospital=hosp" --data "pass=pass" 
   it('/doctors - POST - (create doctor)', function(done){
@@ -46,10 +30,9 @@ describe('DOCTOR TESTS', function(){
   it('/doctors - GET - (all doctors)', function(done){
     request(app)
       .get('/doctors')
-      .auth(doctor['email'], doctor["pass"])
       .end(function (err, res){
         expect(res.status).to.not.equal(401);
-        expect(res.body.indexOf("example@test.com")).to.not.equal(-1);
+        expect(res.body.indexOf(doctor['email'])).to.not.equal(-1);
         done();
       });
   });

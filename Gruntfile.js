@@ -18,7 +18,8 @@ module.exports = function(grunt){
 		    src: ['test/groups.js',
 		    			'test/doctors.js',
 		    			'test/patients.js',
-		    			'test/diet.js']
+		    			'test/diet.js',
+		    			'test/admin.js']
 		  },
 		  web_enter: { // fill database for website testing
 		    options: {

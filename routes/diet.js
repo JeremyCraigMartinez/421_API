@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Creds = require('../models/Creds');
 var Doctors = require('../models/Doctors');
 var Patients = require('../models/Patients');
-var Diet = require('../models/Diet');
+var Diets = require('../models/Diets');
 var Groups = require('../models/Groups');
 var passport = require('passport');
 
@@ -13,7 +13,7 @@ var authController = require('../helpers/auth');
 module.exports = function (app) {
 	app.get('/diet', authController.isPatient, function (req, res, next) {
 		var email = req.user.email;
-		Diet.find({email:email}, function (err, diet_entries) {
+		Diets.find({email:email}, function (err, diet_entries) {
 			if (err) return next(err);
 			if (!diet_entries) return next(null);
 
@@ -23,7 +23,7 @@ module.exports = function (app) {
 
 	app.get('/diet/:timestamp', authController.isPatient, function (req, res, next) {
 		var email = req.user.email;
-		Diet.findOne({email:email,created:req.params.timestamp}, function (err, diet_entry) {
+		Diets.findOne({email:email,created:req.params.timestamp}, function (err, diet_entry) {
 			if (err) return next(err);
 			if (!diet_entry) return next(null);
 
@@ -32,7 +32,7 @@ module.exports = function (app) {
 	});
 
 	app.post('/diet', authController.isPatient, function (req, res, next) {
-		new_diet = new Diet(req.body);
+		new_diet = new Diets(req.body);
 		new_diet.save(function (err, inserted) {
 			if (err) {
 				if (err instanceof mongoose.Error.ValidationError) {
@@ -45,7 +45,7 @@ module.exports = function (app) {
 	});
 	
 	app.put('/diet/:timestamp', authController.isPatient, function (req, res, next) {
-		Diet.findOneAndUpdate(
+		Diets.findOneAndUpdate(
 			{email:req.user.email,created:req.params.timestamp},
 			{$set: req.body},
 			{},
@@ -56,7 +56,7 @@ module.exports = function (app) {
 	});
 
 	app.delete('/diet/:timestamp', authController.isPatient, function (req, res, next) {
-		Diet.findOne({email:req.user.email,created:req.params.timestamp}, function (err, diet) {
+		Diets.findOne({email:req.user.email,created:req.params.timestamp}, function (err, diet) {
 			if (err) return next(err);
 
 			diet.remove().then(function (removed) {
@@ -71,7 +71,7 @@ module.exports = function (app) {
 			if (err) return next(err);
 			if (!patient) return res.status(401).send({unauthorized:"this patient has not chosen you as their doctor"});
 
-			Diet.find({email:patient.email}, function (err, diet_entries) {
+			Diets.find({email:patient.email}, function (err, diet_entries) {
 				if (err) return next(err);
 				if (!diet_entries) return res.json({error:"there are no diet entries for "+patient.first_name+" "+patient.last_name});
 
@@ -86,7 +86,7 @@ module.exports = function (app) {
 			if (err) return next(err);
 			if (!patient) return res.status(401).send({unauthorized:"this patient has not chosen you as their doctor"});
 
-			Diet.findOne({email:patient.email,created:req.params.timestamp}, function (err, diet_entry) {
+			Diets.findOne({email:patient.email,created:req.params.timestamp}, function (err, diet_entry) {
 				if (err) return next(err);
 				if (!diet_entry) return res.json({error:"there are no diet entries for "+patient.first_name+" "+patient.last_name});
 

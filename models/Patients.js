@@ -23,6 +23,7 @@ schema.pre('save', function (next, req) {
 	var Doctors = mongoose.model('Doctors');
 	var Creds = mongoose.model('Creds');
 	var Groups = mongoose.model('Groups');
+	var Diets = mongoose.model('Diets');
 
 	Doctors.findOne({email:req.body.doctor}, function (err, found) {
 		if (err) return next(new Error(err));
@@ -32,6 +33,8 @@ schema.pre('save', function (next, req) {
 		creds.password = req.body['pass'];
 		creds.admin = false;
 		var new_creds = new Creds(creds);
+
+		//save new credentials
 		new_creds.save(function (err, inserted) {
 			if (err) return next(new Error(err));
 
@@ -40,29 +43,19 @@ schema.pre('save', function (next, req) {
 
 			if (typeof groups === "string") {
 				group = groups.toLowerCase();
-				Groups.find({_id:group}, function (err, group_id) {
-					if (err) next(new Error(err));
-
-					if (!group_id) return next(new Error({Error: "not found"}));
-					return next();
-				});			
+				groups = [group]			;
 			}
-			else {
-				Groups.find(function (err, data) {
-					if (err) next(new Error(err));
-
-					for (var key in data) {
-						all.push(data[key]._id)
+			Groups.find(function (err, data) {
+				for (var key in data) {
+					all.push(data[key]._id)
+				}
+				for (var g in groups) {
+					if (all.indexOf(groups[g].toLowerCase()) === -1) {
+						this.groups.splice(this.groups.indexOf(groups[g].toLowerCase()),1);
 					}
-					for (var g in groups) {
-						if (all.indexOf(groups[g].toLowerCase()) === -1) {
-							return next(new Error({Error: "not found"}));
-						}
-					}
-					return next();
-				});
-			}
-
+				}
+				return next();
+			});
 		});
 	});
 });

@@ -9,45 +9,13 @@ var execSync = require('execSync');
 var app = require('../middleware/express');
 //var app = require('express')();
 
-var doctor = {
-  email: "doctor@test.com",
-  first_name: "doctor",
-  last_name: "test",
-  specialty: "specs",
-  hospital: "hosp",
-  pass: "pass" 
-};
-var patient = {
-  email: "patient@test.com",
-  first_name: "patient",
-  last_name: "test",
-  group: "example",
-  doctor: "doctor@test.com",
-  pass: "pass",
-  age:  21 ,
-  height:  72 ,
-  weight:  195 ,
-  sex: "male" 
-};
-var group = {_id:"example"};
-var diet1 = {
-  email: "patient@test.com",
-  created: "23:06-06-16-2015",
-  food: "apple",
-  calories: 80
-}
-var diet2 = {
-  email: "patient@test.com",
-  created: "16:06-07-16-2015",
-  food: "steak",
-  calories: 560
-}
-var update_diet2 = {
-  email: "patient@test.com",
-  created: "16:06-07-16-2015",
-  food: "burger",
-  calories: 460
-}
+var doctor = require('./doctors/doctor.json');
+var patient = require('./patients/patient.json');
+var new_patient_creds = require('./creds/new_patient_creds.json');
+var group = require('./groups/test.json');
+var diet1 = require('./diets/diet1.json');
+var diet2 = require('./diets/diet2.json');
+var update_diet2 = require('./diets/new_diet2.json');
 
 describe('DIET TEST', function(){
   // creating prerequisites for tests (doctor, patient, group)
@@ -190,10 +158,22 @@ describe('DIET TEST', function(){
         done();
       });
   });
+
+  it('/patients/update_account - PUT', function (done){
+    request(app)
+      .put('/patients/update_account')
+      .auth(patient['email'], patient["pass"])
+      .send(new_patient_creds)
+      .end(function (err, res){
+        expect(err).to.be.null;
+        done();
+      });
+  });
+
   it('/diet/:timestamp - DELETE', function (done){
     request(app)
       .del('/diet/'+diet1.created)
-      .auth(patient['email'], patient["pass"])
+      .auth(new_patient_creds['email'], new_patient_creds["pass"])
       .end(function (err, res){
         expect(Object.keys(res.body).length).to.not.equal(0);
         expect(res.status).to.not.equal(401);
@@ -203,7 +183,7 @@ describe('DIET TEST', function(){
   it('/diet/:timestamp - DELETE', function (done){
     request(app)
       .del('/diet/'+update_diet2.created)
-      .auth(patient['email'], patient["pass"])
+      .auth(new_patient_creds['email'], new_patient_creds["pass"])
       .end(function (err, res){
         expect(Object.keys(res.body).length).to.not.equal(0);
         expect(res.status).to.not.equal(401);
@@ -217,7 +197,7 @@ describe('DIET TEST', function(){
   it('/patients/remove - DELETE', function (done){
     request(app)
       .del('/patients/remove')
-      .auth(patient['email'], patient["pass"])
+      .auth(new_patient_creds['email'], new_patient_creds["pass"])
       .end(function (err, res){
         expect(Object.keys(res.body).length).to.not.equal(0);
         done();
@@ -237,7 +217,7 @@ describe('DIET TEST', function(){
   it('/doctors/remove - DELETE', function (done){
     request(app)
       .del('/doctors/remove')
-      .auth("doctor@test.com", "pass")
+      .auth(doctor["email"], doctor["pass"])
       .end(function (err, res){
         expect(Object.keys(res.body).length).to.not.equal(0);
         done();

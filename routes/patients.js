@@ -3,6 +3,7 @@ var Creds = require('../models/Creds');
 var Doctors = require('../models/Doctors');
 var Patients = require('../models/Patients');
 var Groups = require('../models/Groups');
+var Diets = require('../models/Diets');
 
 var cleanString = require('../helpers/cleanString');
 var hash = require('../helpers/hash');
@@ -86,7 +87,23 @@ module.exports = function (app) {
 					object['email'] = (req.body['email']) ? req.body['email'] : object['email'];
 					object['password'] = (req.body['pass']) ? req.body['pass'] : object['password'];
 					object.save(function (err) {
-						return res.json(object);
+						if (err) return next(err);
+
+						// if user changes email, update all corresponding diet entries
+						if (req.user["email"] != req.body["email"]) {
+							Diets.find({email:req.user['email']}, function (err, diets) {
+								if (err) return next(err);
+
+								for (var each in diets) {
+									diets[each].email = req.body['email'];
+									diets[each].save();
+								}
+								return res.json(object);
+							});
+						}
+						else {
+							return res.json(object);
+						}
 					});
 				});
 			});

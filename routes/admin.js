@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Creds = require('../models/Creds');
 var Doctors = require('../models/Doctors');
 var Patients = require('../models/Patients');
+var Diets = require('../models/Diets');
 var Groups = require('../models/Groups');
 
 var cleanString = require('../helpers/cleanString');
@@ -65,11 +66,27 @@ module.exports = function (app) {
 			{},
 			function (err, object) {
 				if (err) next(err);
-				Creds.findOne({email:req.params["patient"]}, function (err, object) {
-					object['email'] = (req.body['email']) ? req.body['email'] : object['email'];
-					object['password'] = (req.body['pass']) ? req.body['pass'] : object['password'];
-					object.save(function (err) {
-						return res.json(object);
+				Creds.findOne({email:req.params["patient"]}, function (err, creds) {
+					creds['email'] = (req.body['email']) ? req.body['email'] : creds['email'];
+					creds['password'] = (req.body['pass']) ? req.body['pass'] : creds['password'];
+					creds.save(function (err) {
+						if (err) return next(err);
+
+						// if user changes email, update all corresponding diet entries
+						if (req.params["patient"] != req.body["email"]) {
+							Diets.find({email:req.params['patient']}, function (err, diets) {
+								if (err) return next(err);
+
+								for (var each in diets) {
+									diets[each].email = req.body['email'];
+									diets[each].save();
+								}
+								return res.json(object);
+							});
+						}
+						else {
+							return res.json(object);
+						}
 					});
 				});
 			});
@@ -113,13 +130,23 @@ module.exports = function (app) {
 		});
 	});
 
+	app.delete('/admin/diet/remove/:patient/:timestamp', authController.isAdmin, function (req, res, next) {
+    Diets.findOne({email:req.params['patient'],created:req.params.timestamp}, function (err, diet) {
+      if (err) return next(err);
+
+      diet.remove().then(function (removed) {
+				return res.status(200).send(removed);
+			});
+		});
+	});
+
 	//all diet entries
 	app.get('/admin/diet/:patient_email', authController.isAdmin, function (req, res, next) {
 		Patients.findOne({email:req.params.patient_email}, function (err, patient) {
 			if (err) return next(err);
 			if (!patient) return res.status(401).send({error:"no patient by that email"});
 
-			Diet.find({email:patient.email}, function (err, diet_entries) {
+			Diets.find({email:patient.email}, function (err, diet_entries) {
 				if (err) return next(err);
 				if (!diet_entries) return res.json({error:"there are no diet entries for "+patient.first_name+" "+patient.last_name});
 
@@ -134,7 +161,7 @@ module.exports = function (app) {
 			if (err) return next(err);
 			if (!patient) return res.status(401).send({error:"no patient by that email"});
 
-			Diet.findOne({email:patient.email,created:req.params.timestamp}, function (err, diet_entry) {
+			Diets.findOne({email:patient.email,created:req.params.timestamp}, function (err, diet_entry) {
 				if (err) return next(err);
 				if (!diet_entry) return res.json({error:"there are no diet entries for "+patient.first_name+" "+patient.last_name});
 

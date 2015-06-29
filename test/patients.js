@@ -9,42 +9,11 @@ var app = require('../middleware/express');
 //var app = require('express')();
 
 describe('PATIENT TEST', function(){
-  var doctor = {
-  	email: "doctor@test.com",
-  	first_name: "doctor",
-  	last_name: "test",
-  	specialty: "specs",
-  	hospital: "hosp",
-  	pass: "pass" 
-  };
-  var patient = {
-  	email: "patient@test.com",
-  	first_name: "patient",
-  	last_name: "test",
-  	group: "example",
-  	doctor: "doctor@test.com",
-  	pass: "pass",
-  	age:  21 ,
-  	height:  72 ,
-  	weight:  195 ,
-  	sex: "male" 
-  };
-  var new_patient = {
-  	email: "patient@test.com",
-  	first_name: "new_patient",
-  	last_name: "new_test",
-  	group: "new_example",
-  	doctor: "doctor@test.com",
-  	age:  99 ,
-  	height:  99 ,
-  	weight:  99 ,
-  	sex: "male" 
-  };
-  var new_creds = {
-    email: "new_patient@test.com",
-    pass: "new_pass"
-  }
-  var group = {_id:"example"};
+  var doctor = require('./doctors/doctor.json');
+  var patient = require('./patients/patient.json');
+  var new_patient = require('./patients/new_patient.json');
+  var new_creds = require('./creds/new_patient_creds.json');
+  var group = require('./groups/test.json');
 
   //create patients doctor
   //curl --request POST localhost:5025/doctors --data "email=doctor@test.com" --data "first_name=doctor" --data "last_name=test" --data "specialty=specs" --data "hospital=hosp" --data "pass=pass" 
@@ -173,7 +142,7 @@ describe('PATIENT TEST', function(){
   it('/doctors/remove - DELETE', function (done){
     request(app)
       .del('/doctors/remove')
-      .auth("doctor@test.com", "pass")
+      .auth(doctor["email"], doctor["pass"])
       .end(function (err, res){
         expect(Object.keys(res.body).length).to.not.equal(0);
         done();

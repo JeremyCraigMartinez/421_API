@@ -21,15 +21,8 @@ after(function (done) {
   done();
 });
 
-var group = {_id:"example"};
-var doctor = {
-  email      : "example@test.com",
-  first_name : "example",
-  last_name  : "test",
-  specialty  : "specs",
-  hospital   : "hosp",
-  pass       : "pass" 
-};
+var group = require('./groups/test.json');
+var doctor = require('./doctors/doctor.json');
 
 describe('GROUP TESTS', function(){
   //curl --request POST localhost:5025/doctors --data "email=example@test.com" --data "first_name=example" --data "last_name=test" --data "specialty=specs" --data "hospital=hosp" --data "pass=pass" 
@@ -61,7 +54,7 @@ describe('GROUP TESTS', function(){
     request(app)
       .get('/groups')
       .end(function (err, res){
-        expect(res.body.filter(function(v){ return v['_id']=='example';}).length).to.not.equal(0);
+        expect(res.body.filter(function(v){ return v['_id']===group._id;}).length).to.not.equal(0);
         done();
       });
   });
