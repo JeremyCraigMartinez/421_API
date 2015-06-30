@@ -78,8 +78,6 @@ describe('ADMIN TESTS', function(){
         expect(res.status).to.not.equal(401);
         expect(diet1.email).to.equal(res.body.email);
         expect(diet1.created).to.equal(res.body.created);
-        expect(diet1.food).to.equal(res.body.food);
-        expect(diet1.calories).to.equal(res.body.calories);
         done();
       });
   });
@@ -168,12 +166,6 @@ describe('ADMIN TESTS', function(){
         done();
       });
   });
-
-/*
-
-/admin/doctors/remove/:doctor
-/admin/patients/remove/:patient
-*/
 
   it('/admin/diet/remove/:patient/:timestamp - DELETE', function (done){
     request(app)

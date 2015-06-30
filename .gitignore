@@ -3,7 +3,7 @@ node_modules
 bin
 nohup*
 npm-debug.log
-test-curl.js
+test-curl*
 *.log
 string
 .dbshell

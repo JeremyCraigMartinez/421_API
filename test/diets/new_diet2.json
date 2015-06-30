@@ -2,5 +2,6 @@
   "email" : "patient@test.com",
   "created" : "16:06-07-16-2015",
   "food" : "burger",
+  "foodID" : "01011",
   "calories" : 460
 }

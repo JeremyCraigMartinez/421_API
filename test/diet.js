@@ -66,8 +66,6 @@ describe('DIET TEST', function(){
         expect(res.status).to.not.equal(401);
         expect(diet1.email).to.equal(res.body.email);
         expect(diet1.created).to.equal(res.body.created);
-        expect(diet1.food).to.equal(res.body.food);
-        expect(diet1.calories).to.equal(res.body.calories);
         done();
       });
   });
@@ -80,8 +78,6 @@ describe('DIET TEST', function(){
         expect(res.status).to.not.equal(401);
         expect(diet2.email).to.equal(res.body.email);
         expect(diet2.created).to.equal(res.body.created);
-        expect(diet2.food).to.equal(res.body.food);
-        expect(diet2.calories).to.equal(res.body.calories);
         done();
       });
   });
@@ -103,8 +99,6 @@ describe('DIET TEST', function(){
         expect(res.status).to.not.equal(401);
         expect(diet2.email).to.equal(res.body.email);
         expect(diet2.created).to.equal(res.body.created);
-        expect(diet2.food).to.equal(res.body.food);
-        expect(diet2.calories).to.equal(res.body.calories);
         done();
       });
   });
@@ -126,8 +120,6 @@ describe('DIET TEST', function(){
         expect(res.status).to.not.equal(401);
         expect(diet2.email).to.equal(res.body.email);
         expect(diet2.created).to.equal(res.body.created);
-        expect(diet2.food).to.equal(res.body.food);
-        expect(diet2.calories).to.equal(res.body.calories);
         done();
       });
   });
@@ -140,8 +132,6 @@ describe('DIET TEST', function(){
         expect(res.status).to.not.equal(401);
         expect(diet2.email).to.equal(res.body.email);
         expect(diet2.created).to.equal(res.body.created);
-        expect(diet2.food).to.equal(res.body.food);
-        expect(diet2.calories).to.equal(res.body.calories);
         done();
       });
   });
@@ -153,8 +143,6 @@ describe('DIET TEST', function(){
         expect(res.status).to.not.equal(401);
         expect(update_diet2.email).to.equal(res.body.email);
         expect(update_diet2.created).to.equal(res.body.created);
-        expect(update_diet2.food).to.equal(res.body.food);
-        expect(update_diet2.calories).to.equal(res.body.calories);
         done();
       });
   });

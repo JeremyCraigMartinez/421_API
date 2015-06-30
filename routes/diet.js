@@ -33,8 +33,9 @@ module.exports = function (app) {
 
 	app.post('/diet', authController.isPatient, function (req, res, next) {
 		new_diet = new Diets(req.body);
-		new_diet.save(function (err, inserted) {
+		new_diet.save(req.body, function (err, inserted) {
 			if (err) {
+				console.log(err);
 				if (err instanceof mongoose.Error.ValidationError) {
 					return res.json(err.errors);
 				}

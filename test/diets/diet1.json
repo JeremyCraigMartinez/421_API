@@ -1,6 +1,5 @@
 {
   "email" : "patient@test.com",
   "created" : "23:06-06-16-2015",
-  "food" : "apple",
-  "calories" : 80
+  "foodID" : "01011"
 }
