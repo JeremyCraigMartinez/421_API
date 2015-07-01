@@ -1,11 +1,11 @@
 ###This is the API for the Senior Design Wearable Sensors Project
 
 > IP Address: 104.236.169.12  
-> Port: 5024
+> Port: 5025
 
 This server is SSL encrypted. Therefore, it is acceptable through HTTPS ONLY!!!!! 
 
-Test it in your browser right now. Access our API [here](https://104.236.169.12:5024). 
+Test it in your browser right now. Access our API [here](https://104.236.169.12:5025). 
 
 For now, there is nothing guarding the information attainble through the API calls. However, when in development later on, There will be an API key and a proxy server. This proxy server will check that the GET/POST request contains the API key. It will ONLY accept POST request data through a JSON request. 
 
