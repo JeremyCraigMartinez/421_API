@@ -76,13 +76,14 @@ module.exports = function (app) {
 	//copy entry in "patients" table
 	//delete entry in "patients" and "creds" table
 	//create
-	app.put('/patients/update_account', authController.isUser, function (req, res, next) {
+	app.put('/patients/update_account', authController.isPatient, function (req, res, next) {
 		Patients.findOneAndUpdate(
 			{email:req.user["email"]},
 			{$set: req.body},
 			{},
 			function (err, object) {
-				if (err) next(err);
+				if (err) return next(err);
+				if (!object) return next(null);
 				Creds.findOne({email:req.user["email"]}, function (err, object) {
 					object['email'] = (req.body['email']) ? req.body['email'] : object['email'];
 					object['password'] = (req.body['pass']) ? req.body['pass'] : object['password'];
@@ -110,7 +111,7 @@ module.exports = function (app) {
 	});
 
 	//update non sensitive information
-	app.put('/patients/update_info', authController.isUser, function (req, res, next) {
+	app.put('/patients/update_info', authController.isPatient, function (req, res, next) {
 		Patients.findOneAndUpdate(
 			{email:req.user["email"]},
 			{$set: req.body},
@@ -121,7 +122,7 @@ module.exports = function (app) {
 			});
 	});
 
-	app.delete('/patients/remove', authController.isUser, function (req, res, next) {
+	app.delete('/patients/remove', authController.isPatient, function (req, res, next) {
     var email = req.user['email'];
     Patients.findOne({email:email}, function (err, patient) {
       if (err) return next(err);

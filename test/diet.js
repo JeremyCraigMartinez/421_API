@@ -64,6 +64,7 @@ describe('DIET TEST', function(){
       .send(diet1)
       .end(function (err, res) {
         expect(res.status).to.not.equal(401);
+        expect(diet1.foodID).to.equal(res.body.foodID);
         expect(diet1.email).to.equal(res.body.email);
         expect(diet1.created).to.equal(res.body.created);
         done();
@@ -76,6 +77,7 @@ describe('DIET TEST', function(){
       .send(diet2)
       .end(function (err, res) {
         expect(res.status).to.not.equal(401);
+        expect(diet2.foodID).to.equal(res.body.foodID);
         expect(diet2.email).to.equal(res.body.email);
         expect(diet2.created).to.equal(res.body.created);
         done();
@@ -99,6 +101,7 @@ describe('DIET TEST', function(){
         expect(res.status).to.not.equal(401);
         expect(diet2.email).to.equal(res.body.email);
         expect(diet2.created).to.equal(res.body.created);
+        expect(diet2.foodID).to.equal(res.body.foodID);
         done();
       });
   });
@@ -119,6 +122,7 @@ describe('DIET TEST', function(){
       .end(function (err, res) {
         expect(res.status).to.not.equal(401);
         expect(diet2.email).to.equal(res.body.email);
+        expect(diet2.foodID).to.equal(res.body.foodID);
         expect(diet2.created).to.equal(res.body.created);
         done();
       });
@@ -130,7 +134,7 @@ describe('DIET TEST', function(){
       .send(update_diet2)
       .end(function (err, res) {
         expect(res.status).to.not.equal(401);
-        expect(diet2.email).to.equal(res.body.email);
+        expect(diet2.foodID).to.equal(res.body.foodID);
         expect(diet2.created).to.equal(res.body.created);
         done();
       });
@@ -141,7 +145,7 @@ describe('DIET TEST', function(){
       .auth(doctor['email'], doctor["pass"])
       .end(function (err, res) {
         expect(res.status).to.not.equal(401);
-        expect(update_diet2.email).to.equal(res.body.email);
+        expect(update_diet2.foodID).to.equal(res.body.foodID);
         expect(update_diet2.created).to.equal(res.body.created);
         done();
       });

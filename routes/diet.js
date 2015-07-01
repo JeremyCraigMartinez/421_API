@@ -46,9 +46,12 @@ module.exports = function (app) {
 	});
 	
 	app.put('/diet/:timestamp', authController.isPatient, function (req, res, next) {
+		var update = {};
+		if (req.body.created) update.created = req.body.created;
+		if (req.body.foodID) update.foodID = req.body.foodID;
 		Diets.findOneAndUpdate(
 			{email:req.user.email,created:req.params.timestamp},
-			{$set: req.body},
+			{$set: update},
 			{},
 			function (err, object) {
 				if (err) return next(err);
