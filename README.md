@@ -13,15 +13,6 @@ It will ```urlencode``` each request to avoid any injection attack. It will then
 
 ###API GET Calls include:
 
-
-|      | PATH              | RES                  |
-|------|-------------------|----------------------|
-| GET  | /                 | JSON - ERROR         |
-| GET  | /patients         | JSON - patient info  |
-| GET  | /list_of_patients | JSON - patients list |
-| GET  | /patients/:id     | JSON - patient info  |
-| GET  | /groups/          | ARRAY - groups       |
-=======
 |      | PATH          | RES                  |
 |------|---------------|----------------------|
 | GET  | /             | JSON - ERROR         |
@@ -30,7 +21,6 @@ It will ```urlencode``` each request to avoid any injection attack. It will then
 | GET  | /groups/      | ARRAY - groups       |
 | GET  | /doctors/     | ARRAY - doctors      |
 | GET  | /doctors/:id  | JSON - doctor info   |
->>>>>>> d27c76fafaff48bd1cd199d485026ced0687b1f8
 
 
 ###API POST Calls include:
