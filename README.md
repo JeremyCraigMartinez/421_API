@@ -13,7 +13,7 @@ It will ```urlencode``` each request to avoid any injection attack. It will then
 
 ###API GET Calls include:
 
-<<<<<<< HEAD
+
 |      | PATH              | RES                  |
 |------|-------------------|----------------------|
 | GET  | /                 | JSON - ERROR         |
