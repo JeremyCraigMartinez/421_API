@@ -11,7 +11,23 @@ For now, there is nothing guarding the information attainble through the API cal
 
 It will ```urlencode``` each request to avoid any injection attack. It will then look for the API key. If the user is authenticated, the proxy will route the clients request to API server. The API server will only accept request from the IP address that the proxy server is on. This is clearly for security.
 
-###API GET Calls include:
+##API Calls include:
+
+###Admin API Calls
+> These API calls are only accepted from an admin user (admin doctor). An admin must be manually added by the DB admin
+
+|      | PATH          | RES                  |
+|------|-----------------------------------------|----------------------|
+| GET  | /admin/patients  
+| PUT  | /admin/doctors/update_account/:doctor
+| PUT  | /admin/doctors/update_info/:doctor
+| PUT  | /admin/patients/update_account/:patient
+| PUT  | /admin/patients/update_info/:patient
+| DEL  | /admin/doctors/remove/:doctor
+| DEL  | /admin/patients/remove/:patient
+| DEL  | /admin/diet/remove/:patient/:timestamp
+| GET  | /admin/diet/:patient_email
+| GET  | /admin/diet/:patient_email/:timestamp
 
 |      | PATH          | RES                  |
 |------|---------------|----------------------|
