@@ -52,7 +52,7 @@ module.exports = function (app) {
 		Diets.findOneAndUpdate(
 			{email:req.user.email,created:req.params.timestamp},
 			{$set: update},
-			{},
+			{runValidators:true},
 			function (err, object) {
 				if (err) return next(err);
 				return res.json(object);

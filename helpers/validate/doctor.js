@@ -1,9 +1,7 @@
-module.exports = function (doctor) {
-	var mongoose = require('mongoose');
-
-	var Doctors = mongoose.model('Doctors');
-
+var Doctors = require('../../models/Doctors');
+module.exports = function (doctor, done) {
 	Doctors.findOne({email:doctor}, function (err, found) {
-		return (found) ? true : false;
+		if (found) done(true);
+		else done(false);
 	});
 }

@@ -6,11 +6,13 @@ var validWeight = require('../helpers/validate/weight');
 var validHeight = require('../helpers/validate/height');
 var validName = require('../helpers/validate/name');
 var validSex = require('../helpers/validate/sex');
+var validGroup = require('../helpers/validate/groups');
+var Doctors = require('./Doctors');
 
 var schema = mongoose.Schema({
 	email: { type: String, trim: true, unique: true, required: true, ref: 'Creds', validate: [validEmail, "invalid email"] },
 	doctor: { type: String, trim: true, required: true, ref: 'Doctors', validate: [validDoctor, "invalid doctor"] },
-	group: [{ type: String, time: true, lowercase: true, ref: 'Groups' }],
+	group: [{ type: String, time: true, lowercase: true, ref: 'Groups', validate: [validGroup, "invalid groups"] }],
 	first_name: { type: String, trim: true, required: true, lowercase: true, validate: [validName, "invalid first name"] },
 	last_name: { type: String, trim: true, required: true, lowercase: true, validate: [validName, "invalid last name"] },
 	age: { type: Number, required: true, validate: [validAge, "invalid age"] },
@@ -25,38 +27,16 @@ schema.pre('save', function (next, req) {
 	var Groups = mongoose.model('Groups');
 	var Diets = mongoose.model('Diets');
 
-	Doctors.findOne({email:req.body.doctor}, function (err, found) {
+
+	var creds = { email: req.body['email'] };
+	creds.password = req.body['pass'];
+	creds.admin = false;
+	var new_creds = new Creds(creds);
+	//save new credentials
+	new_creds.save(function (err, inserted) {
 		if (err) return next(new Error(err));
-		if (!found) return next(new Error({Error: "not found"}));
-		
-		var creds = { email: req.body['email'] };
-		creds.password = req.body['pass'];
-		creds.admin = false;
-		var new_creds = new Creds(creds);
 
-		//save new credentials
-		new_creds.save(function (err, inserted) {
-			if (err) return next(new Error(err));
-
-			var all = []
-			var groups = req.body.groups;
-
-			if (typeof groups === "string") {
-				group = groups.toLowerCase();
-				groups = [group]			;
-			}
-			Groups.find(function (err, data) {
-				for (var key in data) {
-					all.push(data[key]._id)
-				}
-				for (var g in groups) {
-					if (all.indexOf(groups[g].toLowerCase()) === -1) {
-						this.groups.splice(this.groups.indexOf(groups[g].toLowerCase()),1);
-					}
-				}
-				return next();
-			});
-		});
+		return next();
 	});
 });
 

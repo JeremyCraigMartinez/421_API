@@ -3,7 +3,7 @@
 	"first_name" : "new_patient",
 	"last_name" : "new_test",
 	"group" : "test",
-	"doctor" : "example@test.com",
+	"doctor" : "doctor@test.com",
 	"age" :  99 ,
 	"height" :  99 ,
 	"weight" :  99 ,

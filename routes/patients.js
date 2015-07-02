@@ -80,7 +80,7 @@ module.exports = function (app) {
 		Patients.findOneAndUpdate(
 			{email:req.user["email"]},
 			{$set: req.body},
-			{},
+			{runValidators:true},
 			function (err, object) {
 				if (err) return next(err);
 				if (!object) return next(null);
@@ -112,12 +112,14 @@ module.exports = function (app) {
 
 	//update non sensitive information
 	app.put('/patients/update_info', authController.isPatient, function (req, res, next) {
+		delete req.body.email;
+		delete req.body.password;
 		Patients.findOneAndUpdate(
 			{email:req.user["email"]},
 			{$set: req.body},
-			{},
+			{runValidators:true},
 			function (err, object, t) {
-				if (err) next(err);
+				if (err) return next(err);
 				return res.json(object);
 			});
 	});

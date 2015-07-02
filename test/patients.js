@@ -8,13 +8,16 @@ var execSync = require('execSync');
 var app = require('../middleware/express');
 //var app = require('express')();
 
-describe('PATIENT TEST', function(){
-  var doctor = require('./doctors/doctor.json');
-  var patient = require('./patients/patient.json');
-  var new_patient = require('./patients/new_patient.json');
-  var new_creds = require('./creds/new_patient_creds.json');
-  var group = require('./groups/test.json');
+var doctor = require('./doctors/doctor.json');
+var patient = require('./patients/patient.json');
+var new_patient = require('./patients/new_patient.json');
+var patient_incorrect_doctor = require('./patients/patient_incorrect_doctor.json');
+var patient_incorrect_groups = require('./patients/patient_incorrect_groups.json');
+var new_creds = require('./creds/new_patient_creds.json');
+var group = require('./groups/test.json');
+var group2 = require('./groups/test2.json');
 
+describe('PATIENT TEST', function(){
   //create patients doctor
   //curl --request POST localhost:5025/doctors --data "email=doctor@test.com" --data "first_name=doctor" --data "last_name=test" --data "specialty=specs" --data "hospital=hosp" --data "pass=pass" 
   it('/doctors - POST - (create doctor)', function (done){
@@ -35,6 +38,15 @@ describe('PATIENT TEST', function(){
       .post('/groups')
       .auth(doctor['email'], doctor["pass"])
       .send(group)
+      .end(function (err, res){
+        done();
+      });
+  });
+  it('/groups - POST - (create group)', function (done){
+    request(app)
+      .post('/groups')
+      .auth(doctor['email'], doctor["pass"])
+      .send(group2)
       .end(function (err, res){
         done();
       });
@@ -80,6 +92,26 @@ describe('PATIENT TEST', function(){
       .send(new_patient)
       .end(function (err, res){
         expect(err).to.be.null;
+        done();
+      });
+  });
+  it('/patients/update_info - PUT', function (done){
+    request(app)
+      .put('/patients/update_info')
+      .auth(patient['email'], patient["pass"])
+      .send(patient_incorrect_doctor)
+      .end(function (err, res){
+        expect(err).to.not.be.null;
+        done();
+      });
+  });
+  it('/patients/update_info - PUT', function (done){
+    request(app)
+      .put('/patients/update_info')
+      .auth(patient['email'], patient["pass"])
+      .send(patient_incorrect_groups)
+      .end(function (err, res){
+        expect(err).to.not.be.null;
         done();
       });
   });
@@ -211,6 +243,16 @@ describe('PATIENT TEST', function(){
   it('/groups/remove/:groupid - DELETE', function(done){
     request(app)
       .del('/groups/remove/'+group["_id"])
+      .auth(doctor["email"], doctor["pass"])
+      .end(function (err, res){
+        expect(res.status).to.not.equal(401);
+        expect(Object.keys(res.body).length).to.not.equal(0);
+        done();
+      });
+  });
+  it('/groups/remove/:groupid - DELETE', function(done){
+    request(app)
+      .del('/groups/remove/'+group2["_id"])
       .auth(doctor["email"], doctor["pass"])
       .end(function (err, res){
         expect(res.status).to.not.equal(401);

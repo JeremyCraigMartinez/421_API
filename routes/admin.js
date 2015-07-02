@@ -30,7 +30,7 @@ module.exports = function (app) {
 		Doctors.findOneAndUpdate(
 			{email:req.params["doctor"]},
 			{$set: req.body},
-			{},
+			{runValidators:true},
 			function (err, object) {
 				if (err) return next(err);
 				Creds.findOne({email:req.params["doctor"]}, function (err, object) {
@@ -52,7 +52,7 @@ module.exports = function (app) {
 		Doctors.findOneAndUpdate(
 			{email:req.params["doctor"]},
 			{$set: req.body},
-			{},
+			{runValidators:true},
 			function (err, object, t) {
 				if (err) next(err);
 				return res.json(object);
@@ -63,7 +63,7 @@ module.exports = function (app) {
 		Patients.findOneAndUpdate(
 			{email:req.params["patient"]},
 			{$set: req.body},
-			{},
+			{runValidators:true},
 			function (err, object) {
 				if (err) next(err);
 				Creds.findOne({email:req.params["patient"]}, function (err, creds) {
@@ -101,7 +101,7 @@ module.exports = function (app) {
 		Patients.findOneAndUpdate(
 			{email:req.params["patient"]},
 			{$set: req.body},
-			{},
+			{runValidators:true},
 			function (err, object, t) {
 				if (err) next(err);
 				return res.json(object);

@@ -65,7 +65,7 @@ module.exports = function (app) {
 		Doctors.findOneAndUpdate(
 			{email:req.user["email"]},
 			{$set: req.body},
-			{},
+			{runValidators:true},
 			function (err, object) {
 				if (err) next(err);
 				Creds.findOne({email:req.user["email"]}, function (err, object) {
@@ -83,7 +83,7 @@ module.exports = function (app) {
 		Doctors.findOneAndUpdate(
 			{email:req.user["email"]},
 			{$set: req.body},
-			{},
+			{runValidators:true},
 			function (err, object, t) {
 				if (err) next(err);
 				return res.json(object);
