@@ -119,7 +119,12 @@ module.exports = function (app) {
 			{$set: req.body},
 			{runValidators:true},
 			function (err, object, t) {
-				if (err) return next(err);
+				if (err) {
+					if (err instanceof mongoose.Error.ValidationError) {
+						return res.status(400).json(err.errors);
+					}
+					return next(err);
+				}
 				return res.json(object);
 			});
 	});
