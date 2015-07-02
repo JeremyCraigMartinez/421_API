@@ -49,7 +49,7 @@ module.exports = function (app) {
 		new_doc.save(req, function (err, inserted) {
 			if (err) {
 				if (err instanceof mongoose.Error.ValidationError) {
-					return res.json(err.errors);
+					return res.status(400).json(err.errors);
 				}
 				return next(err);
 			}
@@ -62,16 +62,30 @@ module.exports = function (app) {
 	//delete entry in "doctors" and "creds" table
 	//create
 	app.put('/doctors/update_account', authController.isDoctor, function (req, res, next) {
+		var update = {};
+		if (req.body.email) update.email = req.body.email;
+		if (req.body.pass) update.password = req.body.pass;
 		Doctors.findOneAndUpdate(
 			{email:req.user["email"]},
 			{$set: req.body},
 			{runValidators:true},
 			function (err, object) {
-				if (err) next(err);
+				if (err) {
+					if (err instanceof mongoose.Error.ValidationError) {
+						return res.status(400).json(err.errors);
+					}
+					return next(err);
+				}
 				Creds.findOne({email:req.user["email"]}, function (err, object) {
-					object['email'] = (req.body['email']) ? req.body['email'] : object['email'];
-					object['password'] = (req.body['pass']) ? req.body['pass'] : object['password'];
+					object['email'] = (update['email']) ? update['email'] : object['email'];
+					object['password'] = (update['password']) ? update['password'] : object['password'];
 					object.save(function (err) {
+						if (err) {
+							if (err instanceof mongoose.Error.ValidationError) {
+								return res.status(400).json(err.errors);
+							}
+							return next(err);
+						}
 						return res.json(object);
 					});
 				});
@@ -85,7 +99,12 @@ module.exports = function (app) {
 			{$set: req.body},
 			{runValidators:true},
 			function (err, object, t) {
-				if (err) next(err);
+				if (err) {
+					if (err instanceof mongoose.Error.ValidationError) {
+						return res.status(400).json(err.errors);
+					}
+					return next(err);
+				}
 				return res.json(object);
 			});
 	});

@@ -25,7 +25,7 @@ module.exports = function (app) {
 			Groups.create(req.body, function (err, inserted) {
 				if (err) {
 					if (err instanceof mongoose.Error.ValidationError) {
-						return res.json(err.errors);
+						return res.status(400).json(err.errors);
 					}
 					return next(err);
 				}

@@ -64,7 +64,7 @@ module.exports = function (app) {
 		patient.save(req, function (err, inserted) {
 			if (err) {
 				if (err instanceof mongoose.Error.ValidationError) {
-					return res.json(err.errors);
+					return res.status(400).json(err.errors);
 				}
 				return next(err);
 			}
@@ -77,18 +77,31 @@ module.exports = function (app) {
 	//delete entry in "patients" and "creds" table
 	//create
 	app.put('/patients/update_account', authController.isPatient, function (req, res, next) {
+		var update = {};
+		if (req.body.email) update.email = req.body.email;
+		if (req.body.pass) update.password = req.body.pass;
 		Patients.findOneAndUpdate(
 			{email:req.user["email"]},
-			{$set: req.body},
+			{$set: update},
 			{runValidators:true},
 			function (err, object) {
-				if (err) return next(err);
+				if (err) {
+					if (err instanceof mongoose.Error.ValidationError) {
+						return res.status(400).json(err.errors);
+					}
+					return next(err);
+				}
 				if (!object) return next(null);
 				Creds.findOne({email:req.user["email"]}, function (err, object) {
-					object['email'] = (req.body['email']) ? req.body['email'] : object['email'];
-					object['password'] = (req.body['pass']) ? req.body['pass'] : object['password'];
+					object['email'] = (update['email']) ? update['email'] : object['email'];
+					object['password'] = (update['password']) ? update['password'] : object['password'];
 					object.save(function (err) {
-						if (err) return next(err);
+						if (err) {
+							if (err instanceof mongoose.Error.ValidationError) {
+								return res.status(400).json(err.errors);
+							}
+							return next(err);
+						}
 
 						// if user changes email, update all corresponding diet entries
 						if (req.user["email"] != req.body["email"]) {

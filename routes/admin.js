@@ -27,16 +27,30 @@ module.exports = function (app) {
 	});
 
 	app.put('/admin/doctors/update_account/:doctor', authController.isAdmin, function (req, res, next) {
+		var update = {};
+		if (req.body.email) update.email = req.body.email;
+		if (req.body.pass) update.password = req.body.pass;
 		Doctors.findOneAndUpdate(
 			{email:req.params["doctor"]},
-			{$set: req.body},
+			{$set: update},
 			{runValidators:true},
 			function (err, object) {
-				if (err) return next(err);
+				if (err) {
+					if (err instanceof mongoose.Error.ValidationError) {
+						return res.status(400).json(err.errors);
+					}
+					return next(err);
+				}
 				Creds.findOne({email:req.params["doctor"]}, function (err, object) {
-					object['email'] = (req.body['email']) ? req.body['email'] : object['email'];
-					object['password'] = (req.body['pass']) ? req.body['pass'] : object['password'];
+					object['email'] = (update['email']) ? update['email'] : object['email'];
+					object['password'] = (update['password']) ? update['password'] : object['password'];
 					object.save(function (err) {
+						if (err) {
+							if (err instanceof mongoose.Error.ValidationError) {
+								return res.status(400).json(err.errors);
+							}
+							return next(err);
+						}
 						return res.json(object);
 					});
 				});
@@ -45,37 +59,58 @@ module.exports = function (app) {
 
 	//update non sensitive information
 	app.put('/admin/doctors/update_info/:doctor', authController.isAdmin, function (req, res, next) {
-		//if user is trying to change email here
-		if (req.body['email'] != undefined && req.params["doctor"] != req.body['email']) {
-			return res.status(400).json({"error":"cannot change email through this api call. Please use /admin/doctors/update_account/:doctor or /doctors/update_account/"});
-		}
+		delete req.body.email;
+		delete req.body.password;
 		Doctors.findOneAndUpdate(
 			{email:req.params["doctor"]},
 			{$set: req.body},
 			{runValidators:true},
 			function (err, object, t) {
-				if (err) next(err);
+				if (err) {
+					if (err instanceof mongoose.Error.ValidationError) {
+						return res.status(400).json(err.errors);
+					}
+					return next(err);
+				}
 				return res.json(object);
 			});
 	});
 
 	app.put('/admin/patients/update_account/:patient', authController.isAdmin, function (req, res, next) {
+		var update = {};
+		if (req.body.email) update.email = req.body.email;
+		if (req.body.pass) update.password = req.body.pass;
 		Patients.findOneAndUpdate(
 			{email:req.params["patient"]},
-			{$set: req.body},
+			{$set: update},
 			{runValidators:true},
 			function (err, object) {
-				if (err) next(err);
+				if (err) {
+					if (err instanceof mongoose.Error.ValidationError) {
+						return res.status(400).json(err.errors);
+					}
+					return next(err);
+				}
 				Creds.findOne({email:req.params["patient"]}, function (err, creds) {
-					creds['email'] = (req.body['email']) ? req.body['email'] : creds['email'];
-					creds['password'] = (req.body['pass']) ? req.body['pass'] : creds['password'];
+					creds['email'] = (update['email']) ? update['email'] : creds['email'];
+					creds['password'] = (update['password']) ? update['password'] : creds['password'];
 					creds.save(function (err) {
-						if (err) return next(err);
+						if (err) {
+							if (err instanceof mongoose.Error.ValidationError) {
+								return res.status(400).json(err.errors);
+							}
+							return next(err);
+						}
 
 						// if user changes email, update all corresponding diet entries
 						if (req.params["patient"] != req.body["email"]) {
 							Diets.find({email:req.params['patient']}, function (err, diets) {
-								if (err) return next(err);
+								if (err) {
+									if (err instanceof mongoose.Error.ValidationError) {
+										return res.status(400).json(err.errors);
+									}
+									return next(err);
+								}
 
 								for (var each in diets) {
 									diets[each].email = req.body['email'];
@@ -94,16 +129,19 @@ module.exports = function (app) {
 
 	//update non sensitive information
 	app.put('/admin/patients/update_info/:patient', authController.isAdmin, function (req, res, next) {
-		//if user is trying to change email here
-		if (req.body['email'] != undefined && req.params["patient"] != req.body['email']) {
-			return res.status(400).json({"error":"cannot change email through this api call. Please use /admin/doctors/update_account/:doctor or /doctors/update_account/"});
-		}
+		delete req.body.email;
+		delete req.body.password;
 		Patients.findOneAndUpdate(
 			{email:req.params["patient"]},
 			{$set: req.body},
 			{runValidators:true},
 			function (err, object, t) {
-				if (err) next(err);
+				if (err) {
+					if (err instanceof mongoose.Error.ValidationError) {
+						return res.status(400).json(err.errors);
+					}
+					return next(err);
+				}
 				return res.json(object);
 			});
 	});
