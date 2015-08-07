@@ -14,6 +14,7 @@ var lipschitz = require('./doctors/lipschitz.json');
 
 // import patients
 var jeremy = require('./patients/jeremy.json');
+var jm = require('./patients/jm.json');
 var barrack = require('./patients/barrack.json');
 var oprah = require('./patients/oprah.json');
 var marisa = require('./patients/marisa.json');
@@ -24,6 +25,12 @@ var samuel = require('./patients/samuel.json');
 var type_i_diabetes = require('./groups/type_i_diabetes');
 var type_ii_diabetes = require('./groups/type_ii_diabetes');
 var cancer = require('./groups/cancer');
+
+//import diet
+var diet1 = require('./diets/jm_1.json');
+var diet2 = require('./diets/jm_2.json');
+var diet3 = require('./diets/jm_3.json');
+
 
 before(function (done) {
   mongoose.connect('mongodb://localhost/m3', function (err) {
@@ -98,7 +105,7 @@ describe('WEBSITE TESTING - ENTER ', function(){
   });
 
   // create patients
-  it('/patients - POST - (create patient)', function (done){
+  it('/patients - POST - (create jeremy)', function (done){
     request(app)
       .post('/patients')
       .send(jeremy)
@@ -110,7 +117,19 @@ describe('WEBSITE TESTING - ENTER ', function(){
         done();
       });
   });
-  it('/patients - POST - (create patient)', function (done){
+  it('/patients - POST - (create jm)', function (done){
+    request(app)
+      .post('/patients')
+      .send(jm)
+      .end(function (err, res){
+        if (res.body['error']) 
+          expect(S(res.body['error']).startsWith('patient already exists')).to.be.true;
+        else
+          expect(res.body['email']).to.equal(jm['email']);
+        done();
+      });
+  });
+  it('/patients - POST - (create barrack)', function (done){
     request(app)
       .post('/patients')
       .send(barrack)
@@ -122,7 +141,7 @@ describe('WEBSITE TESTING - ENTER ', function(){
         done();
       });
   });
-  it('/patients - POST - (create patient)', function (done){
+  it('/patients - POST - (create oprah)', function (done){
     request(app)
       .post('/patients')
       .send(oprah)
@@ -134,7 +153,7 @@ describe('WEBSITE TESTING - ENTER ', function(){
         done();
       });
   });
-  it('/patients - POST - (create patient)', function (done){
+  it('/patients - POST - (create marisa)', function (done){
     request(app)
       .post('/patients')
       .send(marisa)
@@ -146,7 +165,7 @@ describe('WEBSITE TESTING - ENTER ', function(){
         done();
       });
   });
-  it('/patients - POST - (create patient)', function (done){
+  it('/patients - POST - (create michelle)', function (done){
     request(app)
       .post('/patients')
       .send(michelle)
@@ -158,7 +177,7 @@ describe('WEBSITE TESTING - ENTER ', function(){
         done();
       });
   });
-  it('/patients - POST - (create patient)', function (done){
+  it('/patients - POST - (create samuel)', function (done){
     request(app)
       .post('/patients')
       .send(samuel)
@@ -170,4 +189,46 @@ describe('WEBSITE TESTING - ENTER ', function(){
         done();
       });
   });
+
+  //diet entry
+  it('/diet - POST - (food entry)', function (done) {
+    request(app)
+      .post('/diet')
+      .auth(jm['email'], jm["pass"])
+      .send(diet1)
+      .end(function (err, res) {
+        expect(res.status).to.not.equal(401);
+        expect(diet1.foodID).to.equal(res.body.foodID);
+        expect(diet1.email).to.equal(res.body.email);
+        expect(diet1.created).to.equal(res.body.created);
+        done();
+      });
+  });
+  it('/diet - POST - (food entry)', function (done) {
+    request(app)
+      .post('/diet')
+      .auth(jm['email'], jm["pass"])
+      .send(diet2)
+      .end(function (err, res) {
+        expect(res.status).to.not.equal(401);
+        expect(diet2.foodID).to.equal(res.body.foodID);
+        expect(diet2.email).to.equal(res.body.email);
+        expect(diet2.created).to.equal(res.body.created);
+        done();
+      });
+  });
+  it('/diet - POST - (food entry)', function (done) {
+    request(app)
+      .post('/diet')
+      .auth(jm['email'], jm["pass"])
+      .send(diet3)
+      .end(function (err, res) {
+        expect(res.status).to.not.equal(401);
+        expect(diet3.foodID).to.equal(res.body.foodID);
+        expect(diet3.email).to.equal(res.body.email);
+        expect(diet3.created).to.equal(res.body.created);
+        done();
+      });
+  });
+
 });

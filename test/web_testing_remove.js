@@ -13,6 +13,7 @@ var lipschitz = require('./doctors/lipschitz.json');
 
 // import patients
 var jeremy = require('./patients/jeremy.json');
+var jm = require('./patients/jm.json');
 var barrack = require('./patients/barrack.json');
 var oprah = require('./patients/oprah.json');
 var marisa = require('./patients/marisa.json');
@@ -23,6 +24,11 @@ var samuel = require('./patients/samuel.json');
 var type_i_diabetes = require('./groups/type_i_diabetes');
 var type_ii_diabetes = require('./groups/type_ii_diabetes');
 var cancer = require('./groups/cancer');
+
+// import diet
+var diet1 = require('./diets/jm_1.json');
+var diet2 = require('./diets/jm_2.json');
+var diet3 = require('./diets/jm_3.json');
 
 before(function (done) {
   mongoose.connect('mongodb://localhost/m3', function (err) {
@@ -89,8 +95,40 @@ describe('PATIENT TEST', function(){
       });
   });
 
+  // remove diet (must be before patient removal)
+  it('/diet/:timestamp - DELETE', function (done){
+    request(app)
+      .del('/diet/'+diet1.created)
+      .auth(jm['email'], jm["pass"])
+      .end(function (err, res){
+        expect(Object.keys(res.body).length).to.not.equal(0);
+        expect(res.status).to.not.equal(401);
+        done();
+      });
+  });
+  it('/diet/:timestamp - DELETE', function (done){
+    request(app)
+      .del('/diet/'+diet2.created)
+      .auth(jm['email'], jm["pass"])
+      .end(function (err, res){
+        expect(Object.keys(res.body).length).to.not.equal(0);
+        expect(res.status).to.not.equal(401);
+        done();
+      });
+  });
+  it('/diet/:timestamp - DELETE', function (done){
+    request(app)
+      .del('/diet/'+diet3.created)
+      .auth(jm['email'], jm["pass"])
+      .end(function (err, res){
+        expect(Object.keys(res.body).length).to.not.equal(0);
+        expect(res.status).to.not.equal(401);
+        done();
+      });
+  });
+
   // remove patients
-  it('/patients/remove - DELETE', function (done){
+  it('/patients/remove - DELETE jeremy', function (done){
     request(app)
       .del('/patients/remove')
       .auth(jeremy['email'], jeremy["pass"])
@@ -99,7 +137,16 @@ describe('PATIENT TEST', function(){
         done();
       });
   });
-  it('/patients/remove - DELETE', function (done){
+  it('/patients/remove - DELETE jm', function (done){
+    request(app)
+      .del('/patients/remove')
+      .auth(jm['email'], jm["pass"])
+      .end(function (err, res){
+        expect(Object.keys(res.body).length).to.not.equal(0);
+        done();
+      });
+  });
+  it('/patients/remove - DELETE barrack', function (done){
     request(app)
       .del('/patients/remove')
       .auth(barrack['email'], barrack["pass"])
@@ -108,7 +155,7 @@ describe('PATIENT TEST', function(){
         done();
       });
   });
-  it('/patients/remove - DELETE', function (done){
+  it('/patients/remove - DELETE oprah', function (done){
     request(app)
       .del('/patients/remove')
       .auth(oprah['email'], oprah["pass"])
@@ -117,7 +164,7 @@ describe('PATIENT TEST', function(){
         done();
       });
   });
-  it('/patients/remove - DELETE', function (done){
+  it('/patients/remove - DELETE marisa', function (done){
     request(app)
       .del('/patients/remove')
       .auth(marisa['email'], marisa["pass"])
@@ -126,7 +173,7 @@ describe('PATIENT TEST', function(){
         done();
       });
   });
-  it('/patients/remove - DELETE', function (done){
+  it('/patients/remove - DELETE michelle', function (done){
     request(app)
       .del('/patients/remove')
       .auth(michelle['email'], michelle["pass"])
@@ -135,7 +182,7 @@ describe('PATIENT TEST', function(){
         done();
       });
   });
-  it('/patients/remove - DELETE', function (done){
+  it('/patients/remove - DELETE samuel', function (done){
     request(app)
       .del('/patients/remove')
       .auth(samuel['email'], samuel["pass"])

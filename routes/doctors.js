@@ -63,6 +63,7 @@ module.exports = function (app) {
 	//create
 	app.put('/doctors/update_account', authController.isDoctor, function (req, res, next) {
 		var update = {};
+		var oldEmail = req.user.email;
 		if (req.body.email) update.email = req.body.email;
 		if (req.body.pass) update.password = req.body.pass;
 		Doctors.findOneAndUpdate(
@@ -76,6 +77,7 @@ module.exports = function (app) {
 					}
 					return next(err);
 				}
+				// update doctors credentials in creds table
 				Creds.findOne({email:req.user["email"]}, function (err, object) {
 					object['email'] = (update['email']) ? update['email'] : object['email'];
 					object['password'] = (update['password']) ? update['password'] : object['password'];
@@ -86,7 +88,16 @@ module.exports = function (app) {
 							}
 							return next(err);
 						}
-						return res.json(object);
+						//if email was change, update doctor foreign key for all corresponding patients
+						Patients.update({doctor:oldEmail}, {doctor:update.email}, {multi:true}, function (err) {
+							if (err) {
+								if (err instanceof mongoose.Error.ValidationError) {
+									return res.status(400).json(err.errors);
+								}
+								return next(err);
+							}
+							return res.json(object);
+						});
 					});
 				});
 			});
