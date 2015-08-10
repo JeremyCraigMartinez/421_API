@@ -84,9 +84,9 @@ It will ```urlencode``` each request to avoid any injection attack. It will then
         group: ["WSU"], //array can be any length from 0-
         first_name: "jeremy",
         last_name: "martinez",
-        age: "22",
-        height: "72", //inches
-        weight: "180", //pounds
+        age: 22,
+        height: 72, //inches
+        weight: 180, //pounds
         sex: "male"        
     }
 
