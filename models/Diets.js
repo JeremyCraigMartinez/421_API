@@ -12,7 +12,8 @@ var schema = mongoose.Schema({
 	created: { type: String, required: true, validate: [validDate,"invalid date"] },
 	food: { type: String, trim: true, required: true },
 	foodID: { type: String, required: true },
-	calories: { type: Number, required: true }
+	calories: { type: Number, required: true },
+	quantity: { type: Number, required: true }
 });
 
 schema.index({email:1, created:1}, {unique: true});
@@ -35,7 +36,7 @@ schema.pre('validate', function (callback, body) {
 			res.on('data', function (data) {
 				var data = JSON.parse(data);
 				user.food = data.report.foods[0].name;
-				user.calories = data.report.foods[0].nutrients[0].value
+				user.calories = data.report.foods[0].nutrients[0].value * user.quantity
 			});
 
 			res.on('end', function () {

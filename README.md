@@ -67,7 +67,7 @@ It will ```urlencode``` each request to avoid any injection attack. It will then
 | GET  | /diet                                  | all diet entries*                              | pat  |
 | GET  | /diet/:timestamp                       | get specific diet entry*                       | pat  |
 | POST | /diet                                  | create diet entry*                             | pat  |
-| PUT  | /diet/:timestamp                       | modify diet entry*                             | pat   |
+| PUT  | /diet/:timestamp                       | modify diet entry*                             | pat  |
 | DEL  | /diet/:timestamp                       | delete diety entry*                            | pat  |
 | GET  | /diet/doctor/:patient_email            | get all diet entries for specified patient     | doc  |
 | GET  | /diet/doctor/:patient_email/:timestamp | get specific diet entry for specified patient  | doc  |
@@ -79,15 +79,15 @@ It will ```urlencode``` each request to avoid any injection attack. It will then
 > /patients 
 
     {
-    	email:"email@example.com",
-    	pass:"$ExamPLePasSworD$",
-        group: ["WSU"], //array can be any length from 0-
-        first_name: "jeremy",
-        last_name: "martinez",
-        age: 22,
-        height: 72, //inches
-        weight: 180, //pounds
-        sex: "male"        
+    	email      : "email@example.com",
+    	pass       : "$ExamPLePasSworD$",
+        group      : ["WSU"], //array can be any length from 0-
+        first_name : "jeremy",
+        last_name  : "martinez",
+        age        : 22,
+        height     : 72, //inches
+        weight     : 180, //pounds
+        sex        : "male"        
     }
 
 > /groups 
@@ -110,9 +110,10 @@ It will ```urlencode``` each request to avoid any injection attack. It will then
 > /diet
 
     {
-      email : "patient@test.com",
-      created : "23:06-06-16-2015",
-      foodID : "01011"
+      email    : "patient@test.com",
+      created  : "23:06-06-16-2015",
+      foodID   : "01011",
+      quantity : 2
     }
 
 
@@ -125,17 +126,17 @@ It will ```urlencode``` each request to avoid any injection attack. It will then
 
     {
       "email" : "new_example@test.com",
-      "pass" : "new_pass"
+      "pass"  : "new_pass"
     }
     
 > /admin/doctors/update_info/:doctor**
 > /doctors/update_info**
 
     {
-        "first_name": "Doctor",
-        "last_name": "Lipschitz",
-        "specialty": "rugrats",
-        "hospital": "some hospital",
+        "first_name" : "Doctor",
+        "last_name"  : "Lipschitz",
+        "specialty"  : "rugrats",
+        "hospital"   : "some hospital",
     }
 
 > /admin/patients/update_info/:patient**
@@ -143,20 +144,21 @@ It will ```urlencode``` each request to avoid any injection attack. It will then
     
     {
         "first_name" : "new_patient",
-        "last_name" : "new_test",
-        "group" : "test",
-        "doctor" : "doctor@test.com",
-        "age" :  99 ,
-        "height" :  99 ,
-        "weight" :  99 ,
-        "sex" : "male" 
+        "last_name"  : "new_test",
+        "group"      : "test",
+        "doctor"     : "doctor@test.com",
+        "age"        :  99 ,
+        "height"     :  99 ,
+        "weight"     :  99 ,
+        "sex"        : "male" 
     }
 
 > /diet/:timestamp**
 
     {
-      "created" : "16:06-07-16-2015",
-      "foodID" : "01011"
+      "created"  : "16:06-07-16-2015",
+      "foodID"   : "01011",
+      "quantity" : 0.5
     }
 
 **In order to update an entry, you only have to send the fields that you want to update. So any number of the fields in the JSON of the PUT API call can be sent. All that are sent will be updated. So only send the fields that the user wants to change.
