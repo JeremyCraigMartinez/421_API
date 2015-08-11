@@ -37,9 +37,12 @@ schema.pre('validate', function (callback, body) {
 				var data = JSON.parse(data);
 				user.food = data.report.foods[0].name;
 				user.calories = data.report.foods[0].nutrients[0].value * user.quantity
+
+				// enter data into our local database
 			});
 
 			res.on('end', function () {
+				// get data from local database
 				callback();
 			});
 		});
