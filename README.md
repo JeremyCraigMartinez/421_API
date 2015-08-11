@@ -110,7 +110,6 @@ It will ```urlencode``` each request to avoid any injection attack. It will then
 > /diet
 
     {
-      email    : "patient@test.com",
       created  : "23:06-06-16-2015",
       foodID   : "01011",
       quantity : 2
