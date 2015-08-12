@@ -1,0 +1,144 @@
+'use strict';
+
+var request = require('supertest');
+var expect = require("chai").expect;
+var S = require("string");
+var execSync = require('execSync');
+
+var app = require('../middleware/express');
+//var app = require('express')();
+
+var doctor = require('./doctors/doctor.json');
+var patient = require('./patients/patient.json');
+var group = require('./groups/test.json');
+var raw_data1 = require('./raw_data/raw_data1.json');
+var raw_data2 = require('./raw_data/raw_data2.json');
+var raw_data3 = require('./raw_data/raw_data3.json');
+
+describe('RAW DATA TEST', function(){
+  it('/doctors - POST - (create doctor)', function (done){
+    request(app)
+      .post('/doctors')
+      .send(doctor)
+      .end(function (err, res){
+        if (res.body['error']) 
+          expect(S(res.body['error']).startsWith('doctor already exists')).to.be.true;
+        else
+          expect(res.body['email']).to.equal(doctor['email']);
+        execSync.exec('./test/make_admin.sh '+doctor.email);
+        done();
+      });
+  });
+  it('/groups - POST - (create group)', function (done){
+    request(app)
+      .post('/groups')
+      .auth(doctor['email'], doctor["pass"])
+      .send(group)
+      .end(function (err, res){
+        done();
+      });
+  });
+  it('/patients - POST - (create patient)', function (done){
+    request(app)
+      .post('/patients')
+      .send(patient)
+      .end(function (err, res){
+        if (res.body['error']) 
+          expect(S(res.body['error']).startsWith('patient already exists')).to.be.true;
+        else
+          expect(res.body['email']).to.equal(patient['email']);
+        done();
+      });
+  });
+
+  it('/raw_data - POST - (create raw_data1)', function (done){
+    request(app)
+      .post('/raw_data')
+      .auth(patient['email'], patient["pass"])
+      .send(raw_data1)
+      .end(function (err, res){
+        if (res.body['error']) 
+          expect(S(res.body['error']).startsWith('patient already exists')).to.be.true;
+        else
+          expect(res.body['email']).to.equal(raw_data1['email']);
+        done();
+      });
+  });
+  it('/raw_data - POST - (create raw_data2)', function (done){
+    request(app)
+      .post('/raw_data')
+      .auth(patient['email'], patient["pass"])
+      .send(raw_data2)
+      .end(function (err, res){
+        if (res.body['error']) 
+          expect(S(res.body['error']).startsWith('patient already exists')).to.be.true;
+        else
+          expect(res.body['email']).to.equal(raw_data2['email']);
+        done();
+      });
+  });
+  it('/raw_data - POST - (create raw_data3)', function (done){
+    request(app)
+      .post('/raw_data')
+      .auth(patient['email'], patient["pass"])
+      .send(raw_data3)
+      .end(function (err, res){
+        expect(err).to.not.equal(undefined);
+        done();
+      });
+  });
+  it('/raw_data/:timestamp - DELETE raw_data1', function (done){
+    request(app)
+      .del('/raw_data/'+raw_data1.created)
+      .auth(patient['email'], patient["pass"])
+      .end(function (err, res){
+        if (res.body['error']) 
+          expect(S(res.body['error']).startsWith('patient already exists')).to.be.true;
+        else
+          expect(res.body.n).to.equal(1);
+        done();
+      });
+  });
+  it('/raw_data/:timestamp - DELETE raw_data2', function (done){
+    request(app)
+      .del('/raw_data/'+raw_data2.created)
+      .auth(patient['email'], patient["pass"])
+      .end(function (err, res){
+        if (res.body['error']) 
+          expect(S(res.body['error']).startsWith('patient already exists')).to.be.true;
+        else
+          expect(res.body.n).to.equal(1);
+        done();
+      });
+  });
+
+  it('/patients/remove - DELETE', function (done){
+    request(app)
+      .del('/patients/remove')
+      .auth(patient['email'], patient["pass"])
+      .end(function (err, res){
+        expect(Object.keys(res.body).length).to.not.equal(0);
+        done();
+      });
+  });
+  it('/groups/remove/:groupid- DELETE - remove group', function(done){
+    request(app)
+      .del('/groups/remove/'+group["_id"])
+      .auth(doctor["email"], doctor["pass"])
+      .end(function (err, res){
+        expect(res.status).to.not.equal(401);
+        expect(Object.keys(res.body).length).to.not.equal(0);
+        done();
+      });
+  });
+  it('/doctors/remove - DELETE', function (done){
+    request(app)
+      .del('/doctors/remove')
+      .auth(doctor["email"], doctor["pass"])
+      .end(function (err, res){
+        expect(Object.keys(res.body).length).to.not.equal(0);
+        done();
+      });
+  });
+
+});

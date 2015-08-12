@@ -9,7 +9,7 @@ module.exports = function (app) {
 	});
 
 	app.use(function(err, req, res, next) {
-		console.error('error at %s\n', req.url, err);
+		//console.error('error at %s\n', req.url, err);
 		res.status(500).send('Oops');
 	});
 }

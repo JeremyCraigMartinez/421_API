@@ -4,6 +4,8 @@ var groups = require('./groups');
 var doctors = require('./doctors');
 var diet = require('./diet');
 var admin = require('./admin');
+var raw_data = require('./raw_data');
+var data = require('./admin');
 var initialize = require('./initialize');
 
 var mongoose = require('mongoose');
@@ -15,6 +17,8 @@ module.exports = function(app) {
 	doctors(app);
 	diet(app);
 	admin(app);
+	raw_data(app);
+	data(app);
 	initialize(app);
 
 	errors(app);

@@ -18,6 +18,7 @@ var diet2 = require('./diets/diet2.json');
 var update_diet2 = require('./diets/new_diet2.json');
 
 describe('DIET TEST', function(){
+  this.timeout(15000);
   // creating prerequisites for tests (doctor, patient, group)
   //curl --request POST localhost:5025/doctors --data "email=doctor@test.com" --data "first_name=doctor" --data "last_name=test" --data "specialty=specs" --data "hospital=hosp" --data "pass=pass" 
   it('/doctors - POST - (create doctor)', function (done){

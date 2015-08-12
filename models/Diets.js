@@ -4,6 +4,7 @@ var validDate = require('../helpers/validate/date');
 var validFood = require('../helpers/validate/name');
 var Creds = require('./Creds');
 var Patients = require('./Patients');
+var Usda = require('./Usda');
 var http = require('http');
 var fs = require('fs');
 
@@ -33,22 +34,35 @@ schema.pre('validate', function (callback, body) {
 		}
 		var req = http.get(options, function (res) {
 			res.setEncoding('utf8');
+
 			res.on('data', function (data) {
 				var data = JSON.parse(data);
 				user.food = data.report.foods[0].name;
 				user.calories = data.report.foods[0].nutrients[0].value * user.quantity
 
 				// enter data into our local database
+				var usda = { 
+					foodID: user.foodID, 
+					calories: data.report.foods[0].nutrients[0].value,
+					name: data.report.foods[0].name 
+				}
+				new_usda = new Usda(usda);
+				new_usda.save(function (err, saved) {
+					if (err) console.log(err);
+				});
 			});
 
 			res.on('end', function () {
-				// get data from local database
 				callback();
 			});
 		});
 
 		req.on('error', function (err) {
-			console.log(err);
+			// retrieve data from local database
+			Usda.find({ foodID: user.foodID }, function (err, found) {
+				user.food = found.name;
+				user.calories = found.calories;
+			});
 		});
 
 		req.end();
