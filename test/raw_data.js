@@ -92,10 +92,11 @@ describe('RAW DATA TEST', function(){
       .del('/raw_data/'+raw_data1.created)
       .auth(patient['email'], patient["pass"])
       .end(function (err, res){
+
         if (res.body['error']) 
           expect(S(res.body['error']).startsWith('patient already exists')).to.be.true;
         else
-          expect(res.body.n).to.equal(1);
+          expect(res.body.created).to.equal(raw_data1.created);
         done();
       });
   });
@@ -107,7 +108,7 @@ describe('RAW DATA TEST', function(){
         if (res.body['error']) 
           expect(S(res.body['error']).startsWith('patient already exists')).to.be.true;
         else
-          expect(res.body.n).to.equal(1);
+          expect(res.body.created).to.equal(raw_data2.created);
         done();
       });
   });

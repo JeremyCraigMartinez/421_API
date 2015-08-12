@@ -9,7 +9,7 @@ mongoose.connect('mongodb://localhost/m3', function(err) {
 	console.log('connected');
 
 	// crontab included here
-	cron();
+	// cron();
 
 	var options = {
 		key: fs.readFileSync('ssl/server.key'),

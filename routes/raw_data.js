@@ -33,6 +33,8 @@ module.exports = function (app) {
 		var raw_data = req.body;
 		raw_data.email = req.user.email;
 
+		if (raw_data.entered) delete raw_data.entered;
+
 		var new_raw_data = new Raw_Data(raw_data);
 		new_raw_data.save(function (err, data) {
 			if (err) {
@@ -47,10 +49,11 @@ module.exports = function (app) {
 
 	// delete all raw_data entries from requesting patient
 	app.delete('/raw_data/:timestamp', authController.isPatient, function (req, res, next) {
-		Raw_Data.remove({ created: req.params.timestamp, email: req.user.email }, function (err, removed) {
+		Raw_Data.findOne({ created: req.params.timestamp, email: req.user.email }, function (err, found) {
 			if (err) return next(err);
 
-			return res.json(removed);
+			found.remove();
+			return res.json(found);
 		});
 	});
 
