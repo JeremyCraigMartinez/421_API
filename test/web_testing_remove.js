@@ -30,6 +30,9 @@ var diet1 = require('./diets/jm_1.json');
 var diet2 = require('./diets/jm_2.json');
 var diet3 = require('./diets/jm_3.json');
 
+var raw_data1 = require('./raw_data/raw_data1');
+var raw_data2 = require('./raw_data/raw_data2');
+
 before(function (done) {
   mongoose.connect('mongodb://localhost/m3', function (err) {
     if (err) console.log(err);
@@ -43,6 +46,31 @@ after(function (done) {
 });
 
 describe('PATIENT TEST', function(){
+  //raw data remove
+  it('/raw_data/:timestamp - DELETE raw_data1', function (done){
+    request(app)
+      .del('/raw_data/'+raw_data1.created)
+      .auth(jm['email'], jm["pass"])
+      .end(function (err, res){
+        if (res.body['error']) 
+          expect(S(res.body['error']).startsWith('jm does not exists')).to.be.true;
+        else
+          expect(res.body.n).to.equal(1);
+        done();
+      });
+  });
+  it('/raw_data/:timestamp - DELETE raw_data2', function (done){
+    request(app)
+      .del('/raw_data/'+raw_data2.created)
+      .auth(jm['email'], jm["pass"])
+      .end(function (err, res){
+        if (res.body['error']) 
+          expect(S(res.body['error']).startsWith('jm does not exists')).to.be.true;
+        else
+          expect(res.body.n).to.equal(1);
+        done();
+      });
+  });
   // removes group
   it('/groups/remove/:groupid - DELETE', function(done){
     request(app)

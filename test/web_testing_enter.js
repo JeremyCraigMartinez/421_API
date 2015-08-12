@@ -31,6 +31,8 @@ var diet1 = require('./diets/jm_1.json');
 var diet2 = require('./diets/jm_2.json');
 var diet3 = require('./diets/jm_3.json');
 
+var raw_data1 = require('./raw_data/raw_data1');
+var raw_data2 = require('./raw_data/raw_data2');
 
 before(function (done) {
   mongoose.connect('mongodb://localhost/m3', function (err) {
@@ -230,5 +232,30 @@ describe('WEBSITE TESTING - ENTER ', function(){
         done();
       });
   });
-
+  it('/raw_data - POST - (create raw_data1)', function (done){
+    request(app)
+      .post('/raw_data')
+      .auth(jm['email'], jm["pass"])
+      .send(raw_data1)
+      .end(function (err, res){
+        if (res.body['error']) 
+          expect(S(res.body['error']).startsWith('data already exists')).to.be.true;
+        else
+          expect(res.body['email']).to.equal(jm['email']);
+        done();
+      });
+  });
+  it('/raw_data - POST - (create raw_data2)', function (done){
+    request(app)
+      .post('/raw_data')
+      .auth(jm['email'], jm["pass"])
+      .send(raw_data2)
+      .end(function (err, res){
+        if (res.body['error']) 
+          expect(S(res.body['error']).startsWith('data already exists')).to.be.true;
+        else
+          expect(res.body['email']).to.equal(jm['email']);
+        done();
+      });
+  });
 });
