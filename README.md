@@ -3,13 +3,7 @@
 > IP Address: 104.236.169.12  
 > Port: 5025
 
-This server is SSL encrypted. Therefore, it is acceptable through HTTPS ONLY!!!!! 
-
 Test it in your browser right now. Access our API [here](https://104.236.169.12:5025). 
-
-For now, there is nothing guarding the information attainble through the API calls. However, when in development later on, There will be an API key and a proxy server. This proxy server will check that the GET/POST request contains the API key. It will ONLY accept POST request data through a JSON request. 
-
-It will ```urlencode``` each request to avoid any injection attack. It will then look for the API key. If the user is authenticated, the proxy will route the clients request to API server. The API server will only accept request from the IP address that the proxy server is on. This is clearly for security.
 
 ##API Calls include:
 
@@ -72,6 +66,22 @@ It will ```urlencode``` each request to avoid any injection attack. It will then
 | GET  | /diet/doctor/:patient_email            | get all diet entries for specified patient     | doc  |
 | GET  | /diet/doctor/:patient_email/:timestamp | get specific diet entry for specified patient  | doc  |
 
+###Raw Data API Calls
+
+|      | PATH                                   | DESC                                           | auth |
+|------|----------------------------------------|------------------------------------------------|------|
+| GET  | /raw_data                              | all data entries*                              | pat  |
+| GET  | /raw_data/:timestamp                   | get specific data entry*                       | pat  |
+| POST | /raw_data                              | create data entry*                             | pat  |
+| DEL  | /raw_data/:timestamp                   | delete diety entry*                            | pat  |
+
+###Data API Calls
+
+|      | PATH                                   | DESC                                           | auth |
+|------|----------------------------------------|------------------------------------------------|------|
+| GET  | /data                                  | all data entries*                              | pat  |
+| GET  | /data/:timestamp                       | get specific data entry*                       | pat  |
+
 *these api calls pertain to a specific user (patient or doctor). The login in the API call will process the information based on the user of the request; meaning that whoever authenticates to make the api call will be the user that this logic is carried out on. Ex: GET - /patients; the description says find information on patient, but which patient? It will find information on the patient that authenticates in order to make the API call.
 
 ###API POST Calls include:
@@ -113,6 +123,14 @@ It will ```urlencode``` each request to avoid any injection attack. It will then
       created  : "23:06-06-16-2015",
       foodID   : "01011",
       quantity : 2
+    }
+
+> /raw_data
+
+    {
+      created : "23:06-06-16-2015",
+      email   : "example@test.com",
+      data    : "Data not yet determined"
     }
 
 
