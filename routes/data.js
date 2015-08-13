@@ -27,4 +27,14 @@ module.exports = function (app) {
 			return res.json(data);
 		});
 	});
+
+	// delete all data entries from requesting patient
+	app.delete('/data/:timestamp', authController.isPatient, function (req, res, next) {
+		Raw_Data.findOne({ created: req.params.timestamp, email: req.user.email }, function (err, found) {
+			if (err) return next(err);
+
+			found.remove();
+			return res.json(found);
+		});
+	});
 }

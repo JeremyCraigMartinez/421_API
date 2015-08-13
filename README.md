@@ -81,6 +81,7 @@ Test it in your browser right now. Access our API [here](https://104.236.169.12:
 |------|----------------------------------------|------------------------------------------------|------|
 | GET  | /data                                  | all data entries*                              | pat  |
 | GET  | /data/:timestamp                       | get specific data entry*                       | pat  |
+| DEL  | /data/:timestamp                       | delete diety entry*                            | pat  |
 
 *these api calls pertain to a specific user (patient or doctor). The login in the API call will process the information based on the user of the request; meaning that whoever authenticates to make the api call will be the user that this logic is carried out on. Ex: GET - /patients; the description says find information on patient, but which patient? It will find information on the patient that authenticates in order to make the API call.
 

@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var validEmail = require('../helpers/validate/email');
 var validDate = require('../helpers/validate/date');
+var Raw_Data = require('./Raw_Data');
 
 var schema = mongoose.Schema({
 	email: { type: String, trim: true, required: true, ref: 'Patients', validate: [validEmail,"invalid email"] },
@@ -9,5 +10,11 @@ var schema = mongoose.Schema({
 });
 
 schema.index({email:1, created:1}, {unique: true});
+
+schema.post('remove', function (doc) {
+	Raw_Data.findOne({ created: doc.timestamp, email: doc.email }, function (err, found) {
+		if (found) found.remove();
+	});
+});
 
 module.exports = mongoose.model('Data', schema);
