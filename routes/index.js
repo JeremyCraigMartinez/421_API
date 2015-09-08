@@ -5,7 +5,7 @@ var doctors = require('./doctors');
 var diet = require('./diet');
 var admin = require('./admin');
 var raw_data = require('./raw_data');
-var data = require('./admin');
+var data = require('./data');
 var initialize = require('./initialize');
 
 var mongoose = require('mongoose');

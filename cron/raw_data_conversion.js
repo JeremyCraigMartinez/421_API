@@ -1,4 +1,4 @@
-var Raw_Data_tmp = require('../models/Raw_Data_tmp');
+var Raw_Data = require('../models/Raw_Data');
 var Data = require('../models/Data');
 
 var crontab = require('node-crontab');
@@ -7,15 +7,14 @@ var moment = require('moment');
 var child_process = require('child_process');
 
 var global_funcs = {};
-var yesterday;
 
 global_funcs.convert_data = function () {
 	var deferred = Q.defer();
-	Raw_Data_tmp.find({entered: {$gt: yesterday}}, function (err, found_raw_data_entries) {
+	Raw_Data.find({processed: false}, function (err, found_raw_data_entries) {
 		var all = [];
 		for (var each in found_raw_data_entries) {
 			all.push(global_funcs.convert(found_raw_data_entries[each]));
-			found_raw_data_entries[each].remove();
+			found_raw_data_entries[each].processed = true;
 		}
 		Q.all(all).then(function (processed_data) {
 			global_funcs.enter_processed_data(processed_data).then(function (success) {
@@ -58,9 +57,6 @@ global_funcs.enter_processed_data = function (processed_data) {
 
 module.exports = function() {
 	var jobId = crontab.scheduleJob("0 0 * * *", function(){ 
-		var now = new Date();
-		yesterday = new Date(moment(now.toISOString()).subtract(1,'days')._d);
-
 	  global_funcs.convert_data().then(function (success) {
 	  	console.log('Raw Data processed and entered at '+Date());
 	  });

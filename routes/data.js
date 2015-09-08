@@ -20,7 +20,7 @@ module.exports = function (app) {
 
 	// get specific data entry at :timestamp from requesting patient
 	app.get('/data/:timestamp', authController.isPatient, function (req, res, next) {
-		Data.findOne({ email: req.user.email, created: req.params.timestamp }function (err, data) {
+		Data.findOne({ email: req.user.email, created: req.params.timestamp }, function (err, data) {
 			if (err) return next(err);
 			if (!data) return invalid(res);
 

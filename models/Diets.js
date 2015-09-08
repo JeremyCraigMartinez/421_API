@@ -8,6 +8,8 @@ var Usda = require('./Usda');
 var http = require('http');
 var fs = require('fs');
 
+var ValidationError = mongoose.Error.ValidationError;
+
 var schema = mongoose.Schema({
 	email: { type: String, trim: true, required: true, ref: 'Patients', validate: [validEmail,"invalid email"] },
 	created: { type: String, required: true, validate: [validDate,"invalid date"] },
@@ -32,40 +34,41 @@ schema.pre('validate', function (callback, body) {
 				"Content-Type": 'applications/json'
 			}
 		}
-		var req = http.get(options, function (res) {
-			res.setEncoding('utf8');
+		Usda.find({ foodID: user.foodID }, function (err, found_usda) {
+			if (err || found_usda.length===0) {
+				var req = http.get(options, function (res) {
+					res.setEncoding('utf8');
 
-			res.on('data', function (data) {
-				var data = JSON.parse(data);
-				user.food = data.report.foods[0].name;
-				user.calories = data.report.foods[0].nutrients[0].value * user.quantity
+					res.on('data', function (data) {
+						var data = JSON.parse(data);
+						user.food = data.report.foods[0].name;
+						user.calories = data.report.foods[0].nutrients[0].value * user.quantity
 
-				// enter data into our local database
-				var usda = { 
-					foodID: user.foodID, 
-					calories: data.report.foods[0].nutrients[0].value,
-					name: data.report.foods[0].name 
-				}
-				new_usda = new Usda(usda);
-				new_usda.save(function (err, saved) {
-					if (err) console.log(err);
+						// enter data into our local database
+						var usda = { 
+							foodID: user.foodID, 
+							calories: data.report.foods[0].nutrients[0].value,
+							name: data.report.foods[0].name 
+						}
+						new_usda = new Usda(usda);
+						new_usda.save(function (err, saved) {
+							if (err) console.log(err);
+						});
+					});
+
+					res.on('end', function () {
+						callback();
+					});
 				});
-			});
 
-			res.on('end', function () {
+				req.end();
+			}
+			else {
+				user.food = found_usda[0].name;
+				user.calories = found_usda[0].calories * user.quantity;
 				callback();
-			});
+			}
 		});
-
-		req.on('error', function (err) {
-			// retrieve data from local database
-			Usda.find({ foodID: user.foodID }, function (err, found) {
-				user.food = found.name;
-				user.calories = found.calories;
-			});
-		});
-
-		req.end();
 	}
 	else callback();
 });
