@@ -180,3 +180,30 @@ Test it in your browser right now. Access our API [here](https://104.236.169.12:
     }
 
 **In order to update an entry, you only have to send the fields that you want to update. So any number of the fields in the JSON of the PUT API call can be sent. All that are sent will be updated. So only send the fields that the user wants to change.
+
+
+##User Stories 
+(mostly just mobile app interfacing with API. No point to writing user stories for website)
+
+__As a patient using the mobile app...__
+
+| I want to                                         | so that <some reason>                                                                 |
+|---------------------------------------------------|---------------------------------------------------------------------------------------|
+| get my information								| I can review the validity of my account information									|
+| update my account									| I can fix incorrect information for my account information							|
+| change my account email or password				| I can recover my password or change my password/email									|
+| delete my account									| I don't have to use this app anymore													|
+| get my diet information							| I can review what my previous entries have been										|
+| get a specific diet entry							| I can see what I entered at a specific time											|
+| enter a diet entry								| I can monitor my diet																	|
+| update a diet entry								| I can fix an incorrect diet entry														|
+| delete a diet entry								| I can remove accidental or falsey diet entries										|
+| get raw data entries								| ?																						|
+| get a specific raw data entry						| ?																						|
+| entry a raw data entry							| the mobile app can submit raw sensor data on my behalf								|
+| delete raw data entry								| ?																						|
+| get processed data entries						| I can review my recent activity														|
+| get a specific processed data entry				| I can review a data entry in particular												|
+| delete a processed data entry						| I can remove accidental or falsey data entries ?										|
+
+? should I delete these?
