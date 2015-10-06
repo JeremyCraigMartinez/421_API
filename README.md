@@ -92,6 +92,7 @@ Test it in your browser right now. Access our API [here](https://104.236.169.12:
     {
     	email      : "email@example.com",
     	pass       : "$ExamPLePasSworD$",
+    	doctor     : "house@md.com",
         group      : ["WSU"], //array can be any length from 0-
         first_name : "jeremy",
         last_name  : "martinez",
