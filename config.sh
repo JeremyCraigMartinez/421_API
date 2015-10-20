@@ -14,5 +14,7 @@ git clone #repo
 cd 421_api
 ./setup.sh
 
+npm install
+
 sudo npm install -g grunt-cli
 sudo npm install -g express
