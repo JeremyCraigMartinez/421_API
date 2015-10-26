@@ -31,7 +31,6 @@ schema.index({ email: 1, created: 1 }, { unique: true });
 
 // validation script for data since I cannot explicity (or at least don't know how to) call a validation script on sub documents
 schema.pre('validate', function (callback, body) {
-	console.log(this);
 	if (!(
 		"accelerometer"   in this.data &&
 		"magnetometer"    in this.data &&
