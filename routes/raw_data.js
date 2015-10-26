@@ -36,7 +36,7 @@ module.exports = function (app) {
 		if (raw_data.entered) delete raw_data.entered;
 
 		var new_raw_data = new Raw_Data(raw_data);
-		new_raw_data.save(function (err, data) {
+		new_raw_data.save(new_raw_data, function (err, data) {
 			if (err) {
 				if (err instanceof mongoose.Error.ValidationError) {
 					return res.status(404).json(err.errors);

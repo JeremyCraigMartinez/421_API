@@ -199,12 +199,8 @@ __As a patient using the mobile app...__
 | enter a diet entry								| I can monitor my diet																	|
 | update a diet entry								| I can fix an incorrect diet entry														|
 | delete a diet entry								| I can remove accidental or falsey diet entries										|
-| get raw data entries								| ?																						|
-| get a specific raw data entry						| ?																						|
 | entry a raw data entry							| the mobile app can submit raw sensor data on my behalf								|
-| delete raw data entry								| ?																						|
 | get processed data entries						| I can review my recent activity														|
 | get a specific processed data entry				| I can review a data entry in particular												|
 | delete a processed data entry						| I can remove accidental or falsey data entries ?										|
 
-? should I delete these?

@@ -14,6 +14,7 @@ var group = require('./groups/test.json');
 var raw_data1 = require('./raw_data/raw_data1.json');
 var raw_data2 = require('./raw_data/raw_data2.json');
 var raw_data3 = require('./raw_data/raw_data3.json');
+var raw_data4 = require('./raw_data/raw_data4.json');
 
 describe('RAW DATA TEST', function(){
   it('/doctors - POST - (create doctor)', function (done){
@@ -77,13 +78,25 @@ describe('RAW DATA TEST', function(){
         done();
       });
   });
-  it('/raw_data - POST - (create raw_data3)', function (done){
+  it('/raw_data - POST - (create raw_data3) - true negative - repeating timestamp', function (done){
     request(app)
       .post('/raw_data')
       .auth(patient['email'], patient["pass"])
       .send(raw_data3)
       .end(function (err, res){
         expect(err).to.not.equal(undefined);
+        expect(err).to.not.equal(null);
+        done();
+      });
+  });
+  it('/raw_data - POST - (create raw_data4) - true negative - wrong data format', function (done){
+    request(app)
+      .post('/raw_data')
+      .auth(patient['email'], patient["pass"])
+      .send(raw_data4)
+      .end(function (err, res){
+        expect(err).to.not.equal(undefined);
+        expect(err).to.not.equal(null);
         done();
       });
   });

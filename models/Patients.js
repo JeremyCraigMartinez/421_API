@@ -12,7 +12,7 @@ var Doctors = require('./Doctors');
 var schema = mongoose.Schema({
 	email: { type: String, trim: true, unique: true, required: true, ref: 'Creds', validate: [validEmail, "invalid email"] },
 	doctor: { type: String, trim: true, required: true, ref: 'Doctors', validate: [validDoctor, "invalid doctor"] },
-	group: [{ type: String, time: true, lowercase: true, ref: 'Groups', validate: [validGroup, "invalid groups"] }],
+	group: [{ type: String, trim: true, lowercase: true, ref: 'Groups', validate: [validGroup, "invalid groups"] }],
 	first_name: { type: String, trim: true, required: true, lowercase: true, validate: [validName, "invalid first name"] },
 	last_name: { type: String, trim: true, required: true, lowercase: true, validate: [validName, "invalid last name"] },
 	age: { type: Number, required: true, validate: [validAge, "invalid age"] },
