@@ -41,8 +41,9 @@ module.exports = function (app) {
 				if (err instanceof mongoose.Error.ValidationError) {
 					return res.status(404).json(err.errors);
 				}
+				console.log(err);
 				return res.status(404).send(err);
-				return next(err);
+				//return next(err);
 			}
 			return res.status(201).json(data);
 		});
