@@ -95,8 +95,10 @@ describe('RAW DATA TEST', function(){
       .auth(patient['email'], patient["pass"])
       .send(raw_data4)
       .end(function (err, res){
-        expect(err).to.not.equal(undefined);
-        expect(err).to.not.equal(null);
+        if (res.body['error']) 
+          expect(S(res.body['error']).startsWith('patient already exists')).to.be.true;
+        else
+          expect(res.body['email']).to.equal(raw_data4['email']);
         done();
       });
   });
@@ -122,6 +124,18 @@ describe('RAW DATA TEST', function(){
           expect(S(res.body['error']).startsWith('patient already exists')).to.be.true;
         else
           expect(res.body.created).to.equal(raw_data2.created);
+        done();
+      });
+  });
+  it('/raw_data/:timestamp - DELETE raw_data4', function (done){
+    request(app)
+      .del('/raw_data/'+raw_data4.created)
+      .auth(patient['email'], patient["pass"])
+      .end(function (err, res){
+        if (res.body['error']) 
+          expect(S(res.body['error']).startsWith('patient already exists')).to.be.true;
+        else
+          expect(res.body.created).to.equal(raw_data4.created);
         done();
       });
   });

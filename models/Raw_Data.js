@@ -44,15 +44,17 @@ schema.pre('validate', function (callback, body) {
 		"x" in this.data.gyroscope     &&
 		"y" in this.data.gyroscope     &&
 		"z" in this.data.gyroscope     &&
-		this.data.accelerometer.x.length > 0 &&
-		this.data.accelerometer.y.length > 0 &&
-		this.data.accelerometer.z.length > 0 &&
-		this.data.magnetometer.x.length > 0  &&
-		this.data.magnetometer.y.length > 0  &&
-		this.data.magnetometer.z.length > 0  &&
-		this.data.gyroscope.x.length > 0     &&
-		this.data.gyroscope.y.length > 0     &&
-		this.data.gyroscope.z.length > 0     
+		(
+			this.data.accelerometer.x.length > 0 ||
+			this.data.accelerometer.y.length > 0 ||
+			this.data.accelerometer.z.length > 0 ||
+			this.data.magnetometer.x.length > 0  ||
+			this.data.magnetometer.y.length > 0  ||
+			this.data.magnetometer.z.length > 0  ||
+			this.data.gyroscope.x.length > 0     ||
+			this.data.gyroscope.y.length > 0     ||
+			this.data.gyroscope.z.length > 0
+		)
 		))
 		return callback(new Error("You suck Kyle!"));
 	return callback();
