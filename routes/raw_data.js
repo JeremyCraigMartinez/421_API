@@ -32,6 +32,7 @@ module.exports = function (app) {
 	app.post('/raw_data', authController.isPatient, function (req, res, next) {
 		var raw_data = req.body;
 		raw_data.email = req.user.email;
+		console.log(req.body);
 
 		if (raw_data.entered) delete raw_data.entered;
 
