@@ -11,15 +11,16 @@ var now = new Date();
 
 global_funcs.dump_data = function () {
 	var deferred = Q.defer();
-	child_process.exec(process.cwd()+'/mongodump_raw_data.sh '+Date(), function (err, stdout, stderr) {
+	child_process.exec(process.cwd()+'/mongodump_raw_data.sh '+Date().replace(/\ /g,"_"), function (err, stdout, stderr) {
 		deferred.resolve(stdout);
 	});
 	return deferred.promise;
 }
 
 module.exports = function() {
-	var jobId = crontab.scheduleJob("0 1 * * *", function(){ 
+	var jobId = crontab.scheduleJob("* * * * *", function(){ 
 	  global_funcs.dump_data().then(function (success) {
+	  	console.log(process.cwd()+'/mongodump_raw_data.sh '+Date().replace(/\ /g,"_"));
 	  	console.log('Raw Data dumped at '+Date()+': successful: '+success);
 	  });
 	});

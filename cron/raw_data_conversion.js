@@ -29,9 +29,9 @@ global_funcs.convert = function (raw_data_entries) {
 	var deferred = Q.defer();
 	console.log(child_process);
 	console.log(child_process.exec);
-	child_process.exec(process.cwd()+'/algorithm.sh '+raw_data_entries['data'], function (err, stdout, stderr) {
-		raw_data_entries['data'] = stdout;
-		deferred.resolve(raw_data_entries);
+	child_process.exec('touch newfile'/*'nodejs '+process.cwd()+'/convert.js '+raw_data_entries['data']*/, function (err, stdout, stderr) {
+		//raw_data_entries['data'] = stdout;
+		deferred.resolve("raw_data_entries");
 	});
 	return deferred.promise;
 }
@@ -56,7 +56,7 @@ global_funcs.enter_processed_data = function (processed_data) {
 }
 
 module.exports = function() {
-	var jobId = crontab.scheduleJob("0 0 * * *", function(){ 
+	var jobId = crontab.scheduleJob("* * * * *", function(){ 
 	  global_funcs.convert_data().then(function (success) {
 	  	console.log('Raw Data processed and entered at '+Date());
 	  });
