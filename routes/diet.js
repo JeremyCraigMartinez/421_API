@@ -100,4 +100,34 @@ module.exports = function (app) {
 			});
 		});
 	});
+
+	//all diet entries
+	app.get('/diet/admin/:patient_email', authController.isAdmin, function (req, res, next) {
+		Patients.findOne({email:req.params.patient_email}, function (err, patient) {
+			if (err) return next(err);
+			if (!patient) return res.status(500).json(new Error("ask jeremy what happened"));
+
+			Diets.find({email:patient.email}, function (err, diet_entries) {
+				if (err) return next(err);
+				if (!diet_entries) return res.json({error:"there are no diet entries for "+patient.first_name+" "+patient.last_name});
+
+				res.json(diet_entries);
+			});
+		});
+	});
+
+	//specific diet entry based on timestamp
+	app.get('/diet/admin/:patient_email/:timestamp', authController.isAdmin, function (req, res, next) {
+		Patients.findOne({email:req.params.patient_email}, function (err, patient) {
+			if (err) return next(err);
+			if (!patient) return res.status(500).json(new Error("ask jeremy what happened"));
+
+			Diets.findOne({email:patient.email,created:req.params.timestamp}, function (err, diet_entry) {
+				if (err) return next(err);
+				if (!diet_entry) return res.json({error:"there are no diet entries for "+patient.first_name+" "+patient.last_name});
+
+				res.json(diet_entry);
+			});
+		});
+	});
 }
