@@ -267,7 +267,7 @@ describe('WEBSITE TESTING - ENTER ', function(){
         done();
       });
   });
-  it('/data - POST - (create data1)', function (done){
+  /*it('/data - POST - (create data1)', function (done){
     request(app)
       .post('/data')
       .auth(jm['email'], jm["pass"])
@@ -322,5 +322,5 @@ describe('WEBSITE TESTING - ENTER ', function(){
         done();
       });
 
-  });  
+  });  */
 });

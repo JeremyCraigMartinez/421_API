@@ -56,9 +56,13 @@ global_funcs.enter_processed_data = function (processed_data) {
 }
 
 module.exports = function() {
-	var jobId = crontab.scheduleJob("* * * * *", function(){ 
+	var jobId = crontab.scheduleJob("* * * * *", function(){
+	  child_process.exec('cd 421_ClassifyCron; java -classpath .:libs/mongo-java-driver-2.13.3.jar:libs/weka.jar com.ireach.ClassifyCron', function (err, stdout, stderr) {
+	    if (err) console.log(err);
+	  });
+	/* 
 	  global_funcs.convert_data().then(function (success) {
 	  	console.log('Raw Data processed and entered at '+Date());
-	  });
+	  });*/
 	});
 }
