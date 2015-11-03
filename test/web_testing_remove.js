@@ -33,6 +33,14 @@ var diet3 = require('./diets/jm_3.json');
 var raw_data1 = require('./raw_data/raw_data1');
 var raw_data2 = require('./raw_data/raw_data2');
 
+var data1 = require('./data/data1.json');
+var data2 = require('./data/data2.json');
+//var data3 = require('./data/data3.json'); true negatives - won't pass test
+//var data4 = require('./data/data4.json'); true negatives - won't pass test
+//var data5 = require('./data/data5.json'); true negatives - won't pass test
+var data6 = require('./data/data6.json');
+var data7 = require('./data/data7.json');
+
 before(function (done) {
   mongoose.connect('mongodb://localhost/m3', function (err) {
     if (err) console.log(err);
@@ -55,7 +63,7 @@ describe('PATIENT TEST', function(){
         if (res.body['error']) 
           expect(S(res.body['error']).startsWith('jm does not exists')).to.be.true;
         else
-          expect(res.body.n).to.equal(1);
+          expect(res.body.created).to.equal(raw_data1.created);
         done();
       });
   });
@@ -67,10 +75,47 @@ describe('PATIENT TEST', function(){
         if (res.body['error']) 
           expect(S(res.body['error']).startsWith('jm does not exists')).to.be.true;
         else
-          expect(res.body.n).to.equal(1);
+          expect(res.body.created).to.equal(raw_data2.created);
         done();
       });
   });
+  // removes data
+  it('/data/:timestamp - DELETE data1', function (done){
+    request(app)
+      .del('/data/'+data1.created)
+      .auth(jm['email'], jm["pass"])
+      .end(function (err, res){
+        expect(res.body.created).to.equal(data1.created);
+        done();
+      });
+  });
+  it('/data/:timestamp - DELETE data2', function (done){
+    request(app)
+      .del('/data/'+data2.created)
+      .auth(jm['email'], jm["pass"])
+      .end(function (err, res){
+        expect(res.body.created).to.equal(data2.created);
+        done();
+      });
+  });
+  it('/data/:timestamp - DELETE data6', function (done){
+    request(app)
+      .del('/data/'+data6.created)
+      .auth(jm['email'], jm["pass"])
+      .end(function (err, res){
+        expect(res.body.created).to.equal(data6.created);
+        done();
+      });
+  });
+  it('/data/:timestamp - DELETE data7', function (done){
+    request(app)
+      .del('/data/'+data7.created)
+      .auth(jm['email'], jm["pass"])
+      .end(function (err, res){
+        expect(res.body.created).to.equal(data7.created);
+        done();
+      });
+  });  
   // removes group
   it('/groups/remove/:groupid - DELETE', function(done){
     request(app)

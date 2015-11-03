@@ -8,8 +8,8 @@ var execSync = require('execSync');
 var app = require('../middleware/express');
 //var app = require('express')();
 
-var doctor = require('./doctors/doctor.json');
-var patient = require('./patients/patient.json');
+var house = require('./doctors/house.json');
+var jm = require('./patients/jm.json');
 var group = require('./groups/test.json');
 var raw_data1 = require('./raw_data/raw_data1.json');
 var raw_data2 = require('./raw_data/raw_data2.json');
@@ -20,34 +20,34 @@ describe('RAW DATA TEST', function(){
   it('/doctors - POST - (create doctor)', function (done){
     request(app)
       .post('/doctors')
-      .send(doctor)
+      .send(house)
       .end(function (err, res){
         if (res.body['error']) 
-          expect(S(res.body['error']).startsWith('doctor already exists')).to.be.true;
+          expect(S(res.body['error']).startsWith('house already exists')).to.be.true;
         else
-          expect(res.body['email']).to.equal(doctor['email']);
-        execSync.exec('./test/make_admin.sh '+doctor.email);
+          expect(res.body['email']).to.equal(house['email']);
+        execSync.exec('./test/make_admin.sh '+house.email);
         done();
       });
   });
   it('/groups - POST - (create group)', function (done){
     request(app)
       .post('/groups')
-      .auth(doctor['email'], doctor["pass"])
+      .auth(house['email'], house["pass"])
       .send(group)
       .end(function (err, res){
         done();
       });
   });
-  it('/patients - POST - (create patient)', function (done){
+  it('/patients - POST - (create jm)', function (done){
     request(app)
       .post('/patients')
-      .send(patient)
+      .send(jm)
       .end(function (err, res){
         if (res.body['error']) 
           expect(S(res.body['error']).startsWith('patient already exists')).to.be.true;
         else
-          expect(res.body['email']).to.equal(patient['email']);
+          expect(res.body['email']).to.equal(jm['email']);
         done();
       });
   });
@@ -55,7 +55,7 @@ describe('RAW DATA TEST', function(){
   it('/raw_data - POST - (create raw_data1)', function (done){
     request(app)
       .post('/raw_data')
-      .auth(patient['email'], patient["pass"])
+      .auth(jm['email'], jm["pass"])
       .send(raw_data1)
       .end(function (err, res){
         if (res.body['error']) 
@@ -68,7 +68,7 @@ describe('RAW DATA TEST', function(){
   it('/raw_data - POST - (create raw_data2)', function (done){
     request(app)
       .post('/raw_data')
-      .auth(patient['email'], patient["pass"])
+      .auth(jm['email'], jm["pass"])
       .send(raw_data2)
       .end(function (err, res){
         if (res.body['error']) 
@@ -81,7 +81,7 @@ describe('RAW DATA TEST', function(){
   it('/raw_data - POST - (create raw_data3) - true negative - repeating timestamp', function (done){
     request(app)
       .post('/raw_data')
-      .auth(patient['email'], patient["pass"])
+      .auth(jm['email'], jm["pass"])
       .send(raw_data3)
       .end(function (err, res){
         expect(err).to.not.equal(undefined);
@@ -89,10 +89,10 @@ describe('RAW DATA TEST', function(){
         done();
       });
   });
-  it('/raw_data - POST - (create raw_data4) - true negative - wrong data format', function (done){
+  it('/raw_data - POST - (create raw_data4)', function (done){
     request(app)
       .post('/raw_data')
-      .auth(patient['email'], patient["pass"])
+      .auth(jm['email'], jm["pass"])
       .send(raw_data4)
       .end(function (err, res){
         if (res.body['error']) 
@@ -105,37 +105,28 @@ describe('RAW DATA TEST', function(){
   it('/raw_data/:timestamp - DELETE raw_data1', function (done){
     request(app)
       .del('/raw_data/'+raw_data1.created)
-      .auth(patient['email'], patient["pass"])
+      .auth(jm['email'], jm["pass"])
       .end(function (err, res){
 
-        if (res.body['error']) 
-          expect(S(res.body['error']).startsWith('patient already exists')).to.be.true;
-        else
-          expect(res.body.created).to.equal(raw_data1.created);
+        expect(res.body.created).to.equal(raw_data1.created);
         done();
       });
   });
   it('/raw_data/:timestamp - DELETE raw_data2', function (done){
     request(app)
       .del('/raw_data/'+raw_data2.created)
-      .auth(patient['email'], patient["pass"])
+      .auth(jm['email'], jm["pass"])
       .end(function (err, res){
-        if (res.body['error']) 
-          expect(S(res.body['error']).startsWith('patient already exists')).to.be.true;
-        else
-          expect(res.body.created).to.equal(raw_data2.created);
+        expect(res.body.created).to.equal(raw_data2.created);
         done();
       });
   });
   it('/raw_data/:timestamp - DELETE raw_data4', function (done){
     request(app)
       .del('/raw_data/'+raw_data4.created)
-      .auth(patient['email'], patient["pass"])
+      .auth(jm['email'], jm["pass"])
       .end(function (err, res){
-        if (res.body['error']) 
-          expect(S(res.body['error']).startsWith('patient already exists')).to.be.true;
-        else
-          expect(res.body.created).to.equal(raw_data4.created);
+        expect(res.body.created).to.equal(raw_data4.created);
         done();
       });
   });
@@ -143,7 +134,7 @@ describe('RAW DATA TEST', function(){
   it('/patients/remove - DELETE', function (done){
     request(app)
       .del('/patients/remove')
-      .auth(patient['email'], patient["pass"])
+      .auth(jm['email'], jm["pass"])
       .end(function (err, res){
         expect(Object.keys(res.body).length).to.not.equal(0);
         done();
@@ -152,7 +143,7 @@ describe('RAW DATA TEST', function(){
   it('/groups/remove/:groupid- DELETE - remove group', function(done){
     request(app)
       .del('/groups/remove/'+group["_id"])
-      .auth(doctor["email"], doctor["pass"])
+      .auth(house["email"], house["pass"])
       .end(function (err, res){
         expect(res.status).to.not.equal(401);
         expect(Object.keys(res.body).length).to.not.equal(0);
@@ -162,7 +153,7 @@ describe('RAW DATA TEST', function(){
   it('/doctors/remove - DELETE', function (done){
     request(app)
       .del('/doctors/remove')
-      .auth(doctor["email"], doctor["pass"])
+      .auth(house["email"], house["pass"])
       .end(function (err, res){
         expect(Object.keys(res.body).length).to.not.equal(0);
         done();

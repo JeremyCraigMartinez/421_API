@@ -32,7 +32,6 @@ module.exports = function (app) {
 	app.post('/raw_data', authController.isPatient, function (req, res, next) {
 		var raw_data = req.body;
 		raw_data.email = req.user.email;
-		console.log(req.body);
 
 		if (raw_data.entered) delete raw_data.entered;
 
@@ -42,7 +41,6 @@ module.exports = function (app) {
 				if (err instanceof mongoose.Error.ValidationError) {
 					return res.status(404).json(err.errors);
 				}
-				console.log(err);
 				return res.status(404).send(err);
 				//return next(err);
 			}

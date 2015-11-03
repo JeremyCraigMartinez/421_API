@@ -80,6 +80,7 @@ Test it in your browser right now. Access our API [here](https://104.236.169.12:
 |      | PATH                                   | DESC                                           | auth |
 |------|----------------------------------------|------------------------------------------------|------|
 | GET  | /data                                  | all data entries*                              | pat  |
+| POST | /data/                                 | only used for testing purposes                 | pat  |
 | GET  | /data/:timestamp                       | get specific data entry*                       | pat  |
 | DEL  | /data/:timestamp                       | delete diety entry*                            | pat  |
 

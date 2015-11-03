@@ -20,7 +20,8 @@ module.exports = function(grunt){
 		    			'test/patients.js',
 		    			'test/diet.js',
 		    			'test/admin.js',
-		    			'test/raw_data.js']
+		    			'test/raw_data.js',
+		    			'test/data.js']
 		  },
 		  web_enter: { // fill database for website testing
 		    options: {

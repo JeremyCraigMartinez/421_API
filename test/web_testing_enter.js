@@ -34,6 +34,15 @@ var diet3 = require('./diets/jm_3.json');
 var raw_data1 = require('./raw_data/raw_data1');
 var raw_data2 = require('./raw_data/raw_data2');
 
+var data1 = require('./data/data1.json');
+var data2 = require('./data/data2.json');
+//var data3 = require('./data/data3.json'); true negatives - won't pass test
+//var data4 = require('./data/data4.json'); true negatives - won't pass test
+//var data5 = require('./data/data5.json'); true negatives - won't pass test
+var data6 = require('./data/data6.json');
+var data7 = require('./data/data7.json');
+
+
 before(function (done) {
   mongoose.connect('mongodb://localhost/m3', function (err) {
     if (err) console.log(err);
@@ -258,4 +267,60 @@ describe('WEBSITE TESTING - ENTER ', function(){
         done();
       });
   });
+  it('/data - POST - (create data1)', function (done){
+    request(app)
+      .post('/data')
+      .auth(jm['email'], jm["pass"])
+      .send(data1)
+      .end(function (err, res){
+        if (res.body['error']) 
+          expect(S(res.body['error']).startsWith('patient already exists')).to.be.true;
+        else
+          expect(res.body['email']).to.equal(data1['email']);
+        done();
+      });
+  });
+  it('/data - POST - (create data2)', function (done){
+    request(app)
+      .post('/data')
+      .auth(jm['email'], jm["pass"])
+      .send(data2)
+      .end(function (err, res){
+        if (res.body['error']) 
+          expect(S(res.body['error']).startsWith('patient already exists')).to.be.true;
+        else
+          expect(res.body['email']).to.equal(data2['email']);
+        done();
+      });
+  });
+
+  it('/data - POST - (create data6)', function (done){
+    request(app)
+      .post('/data')
+      .auth(jm['email'], jm["pass"])
+      .send(data6)
+      .end(function (err, res){
+        if (res.body['error']) 
+          expect(S(res.body['error']).startsWith('patient already exists')).to.be.true;
+        else
+          expect(res.body['email']).to.equal(data6['email']);
+        done();
+      });
+
+  });
+  it('/data - POST - (create data7)', function (done){
+    request(app)
+      .post('/data')
+      .auth(jm['email'], jm["pass"])
+      .send(data7)
+      .end(function (err, res){
+        if (res.body['error']) {
+          expect(S(res.body['error']).startsWith('patient already exists')).to.be.true;
+        }
+        else
+          expect(res.body['email']).to.equal(data7['email']);
+        done();
+      });
+
+  });  
 });

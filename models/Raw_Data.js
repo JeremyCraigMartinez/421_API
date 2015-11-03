@@ -55,8 +55,10 @@ schema.pre('validate', function (callback, body) {
 			this.data.gyroscope.y.length > 0     ||
 			this.data.gyroscope.z.length > 0
 		)
-		))
-		return callback(new Error("You suck Kyle!"));
+		)) {
+
+		return callback(new Error("Data was either empty or incomplete"));
+	}
 	return callback();
 });
 
