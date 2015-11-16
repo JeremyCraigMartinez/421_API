@@ -20,7 +20,6 @@ var new_patient_creds = require('./creds/new_patient_creds.json');
 var diet1 = require('./diets/diet1.json');
 
 describe('ADMIN TESTS', function(){
-  //curl --request POST localhost:5025/doctors --data "email=example@test.com" --data "first_name=example" --data "last_name=test" --data "specialty=specs" --data "hospital=hosp" --data "pass=pass" 
   it('/doctors - POST - (create doctor)', function(done){
     request(app)
       .post('/doctors')
@@ -46,14 +45,23 @@ describe('ADMIN TESTS', function(){
         done();
       });
   });
-  //curl https://localhost:5025 --request POST --data "_id=example"
   it('/groups - POST - create group', function(done){
     request(app)
       .post('/groups')
       .auth(doctor["email"], doctor["pass"])
       .send(group)
       .end(function (err, res){
-        execSync.exec('./test/check_admin.sh '+doctor.email);
+        expect(res.status).to.equal(201);
+        done();
+      });
+  });
+  it('/groups - POST - create group - true negative', function(done){
+    request(app)
+      .post('/groups')
+      .auth(doctor2["email"], doctor2["pass"])
+      .send(group)
+      .end(function (err, res){
+        expect(res.status).to.equal(401);
         done();
       });
   });
@@ -98,6 +106,15 @@ describe('ADMIN TESTS', function(){
       .end(function (err, res){
         expect(res.status).to.not.equal(401);
         expect(res.body.length).to.not.equal(0);
+        done();
+      });
+  });
+  it('/admin/patients - GET - (all patients) - true negative', function(done){
+    request(app)
+      .get('/admin/patients')
+      .auth(doctor2["email"], doctor2["pass"])
+      .end(function (err, res){
+        expect(res.status).to.equal(401);
         done();
       });
   });
@@ -197,6 +214,15 @@ describe('ADMIN TESTS', function(){
         done();
       });
   });
+  it('/groups/remove/:groupid- DELETE - remove group - true negative', function(done){
+    request(app)
+      .del('/groups/remove/'+group["_id"])
+      .auth(doctor2["email"], doctor2["pass"])
+      .end(function (err, res){
+        expect(res.status).to.equal(401);
+        done();
+      });
+  });
   it('/admin/doctors/remove/:doctor - DELETE', function(done){
     request(app)
       .del('/admin/doctors/remove/'+new_doctor2_creds["email"])
@@ -207,12 +233,30 @@ describe('ADMIN TESTS', function(){
         done();
       });
   });
+  it('/admin/doctors/remove/:doctor - DELETE - true negative', function(done){
+    request(app)
+      .del('/admin/doctors/remove/'+new_doctor2_creds["email"])
+      .auth(doctor2["email"], doctor2["pass"])
+      .end(function (err, res){
+        expect(res.status).to.equal(401);
+        done();
+      });
+  });
   it('/doctors/remove - DELETE', function(done){
     request(app)
       .del('/doctors/remove')
       .auth(doctor["email"], doctor["pass"])
       .end(function (err, res){
         expect(Object.keys(res.body).length).to.not.equal(0);
+        done();
+      });
+  });
+  it('/doctors/remove - DELETE - true negative', function(done){
+    request(app)
+      .del('/doctors/remove')
+      .auth(doctor2["email"], doctor2["pass"])
+      .end(function (err, res){
+        expect(res.status).to.equal(401);
         done();
       });
   });

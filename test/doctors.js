@@ -2,13 +2,30 @@
 
 var request = require('supertest');
 var expect = require("chai").expect;
+var mongoose = require('mongoose');
 var S = require("string");
+var execSync = require('execSync');
 
 var app = require('../middleware/express');
 //var app = require('express')();
 
+before(function (done) {
+  mongoose.connect('mongodb://localhost/m3', function (err) {
+    if (err) console.log(err);
+    done();
+  });
+});
+
+after(function (done) {
+  mongoose.connection.close();
+  done();
+});
+
 describe('DOCTOR TESTS', function(){
   var doctor = require('./doctors/doctor.json');
+  var fakedoctor = JSON.parse(JSON.stringify(doctor));
+  delete fakedoctor.hospital;
+  fakedoctor.email = fakedoctor.email+'n';
   var new_doctor = require('./doctors/new_doctor.json');
   var new_doctor_creds = require('./creds/new_doctor_creds.json');
 
@@ -27,6 +44,15 @@ describe('DOCTOR TESTS', function(){
         done();
       });
   });
+  it('/doctors - POST - (create doctor) - true negative', function(done){
+    request(app)
+      .post('/doctors')
+      .send(fakedoctor)
+      .end(function (err, res){
+        expect(res.status).to.not.equal(201);
+        done();
+      });
+  });
   it('/doctors - GET - (all doctors)', function(done){
     request(app)
       .get('/doctors')
@@ -39,7 +65,6 @@ describe('DOCTOR TESTS', function(){
   it('/doctors/:email - GET - (specific doctor)', function(done){
     request(app)
       .get('/doctors/'+doctor["email"])
-      .auth(doctor['email'], doctor["pass"])
       .end(function (err, res){
         expect(res.status).to.not.equal(401);
         expect(Object.keys(res.body).length).to.not.equal(0);
@@ -58,12 +83,21 @@ describe('DOCTOR TESTS', function(){
         done();
       });
   });
+  it('/doctors/update_info - PUT - true negative', function(done){
+    request(app)
+      .put('/doctors/update_info')
+      .auth(fakedoctor['email'], fakedoctor["pass"])
+      .send(new_doctor)
+      .end(function (err, res){
+        expect(res.status).to.equal(401);
+        expect(err).to.not.be.null;
+        done();
+      });
+  });
   it('/doctors/:email - GET - (specific doctor)', function(done){
     request(app)
       .get('/doctors/'+new_doctor["email"])
-      .auth(doctor['email'], doctor["pass"])
       .end(function (err, res){
-        expect(res.status).to.not.equal(401);
         expect(res.body['specialty']).to.equal('new_specs');
         expect(Object.keys(res.body).length).to.not.equal(0);
         done();
@@ -80,10 +114,20 @@ describe('DOCTOR TESTS', function(){
         done();
       });
   });
+  it('/doctors/update_account - PUT - true negative', function(done){
+    request(app)
+      .put('/doctors/update_account')
+      .auth(fakedoctor['email'], fakedoctor["pass"])
+      .send(new_doctor_creds)
+      .end(function (err, res){
+        expect(res.status).to.equal(401);
+        expect(err).to.not.be.null;
+        done();
+      });
+  });
   it('/doctors/:email - GET - (specific doctor)', function(done){
     request(app)
       .get('/doctors/'+new_doctor_creds["email"])
-      .auth(new_doctor_creds["email"], new_doctor_creds["pass"])
       .end(function (err, res){
         expect(res.status).to.not.equal(401);
         expect(Object.keys(res.body).length).to.not.equal(0);
