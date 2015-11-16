@@ -9,18 +9,6 @@ var execSync = require('execSync');
 var app = require('../middleware/express');
 //var app = require('express')();
 
-before(function (done) {
-  mongoose.connect('mongodb://localhost/m3', function (err) {
-    if (err) console.log(err);
-    done();
-  });
-});
-
-after(function (done) {
-  mongoose.connection.close();
-  done();
-});
-
 describe('DOCTOR TESTS', function(){
   var doctor = require('./doctors/doctor.json');
   var fakedoctor = JSON.parse(JSON.stringify(doctor));
