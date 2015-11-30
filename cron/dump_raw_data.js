@@ -18,7 +18,7 @@ global_funcs.dump_data = function () {
 }
 
 module.exports = function() {
-	var jobId = crontab.scheduleJob("* * * * *", function(){ 
+	var jobId = crontab.scheduleJob("0 0 * * *", function(){ 
 	  global_funcs.dump_data().then(function (success) {
 	  	console.log(process.cwd()+'/mongodump_raw_data.sh '+Date().replace(/\ /g,"_").match(/\w+?:\d\d/i)[0]);
 	  	console.log('Raw Data dumped at '+Date()+': successful: '+success);
