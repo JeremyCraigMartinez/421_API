@@ -51,7 +51,7 @@ module.exports = function (app) {
 				if (err instanceof mongoose.Error.ValidationError) {
 					return res.status(400).json(err.errors);
 				}
-				return next(err);
+				return res.status(400).json(err);
 			}
 			return res.status(201).send(inserted);
 		});
